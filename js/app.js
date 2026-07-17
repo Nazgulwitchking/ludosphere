@@ -14,6 +14,14 @@ document.addEventListener(
 
         NavigationManager.init();
 
+        SearchManager.init();
+
+        AccountManager.init();
+
+        UpdateManager.init();
+
+        await GameManager.init();
+
         console.log(
             "Ludosphere gestartet"
         );
