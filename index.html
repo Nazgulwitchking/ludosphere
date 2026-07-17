@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Ludosphere</title>
+
+    <!-- PWA -->
+
+    <link rel="manifest"
+          href="manifest.json">
+
+    <meta name="theme-color"
+          content="#4f78db">
+
+    <meta name="apple-mobile-web-app-capable"
+          content="yes">
+
+    <meta name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent">
+
+    <meta name="apple-mobile-web-app-title"
+          content="Ludosphere">
+
+    <link rel="apple-touch-icon"
+          href="assets/icons/icon-192.png">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+          href="css/core.css">
+
+</head>
+
+<body>
+
+    <!-- ===================================================== -->
+    <!-- THEME BACKGROUND SYSTEM -->
+    <!-- ===================================================== -->
+
+    <div id="backgroundLayer"
+         class="background-layer"></div>
+
+    <div id="effectsLayer"
+         class="effects-layer"></div>
+
+    <div id="widgetLayer"
+         class="widget-layer"></div>
+
+
+    <!-- ===================================================== -->
+    <!-- LANDING PAGE -->
+    <!-- ===================================================== -->
+
+    <section id="landing-page">
+
+        <div class="landing-container">
+
+            <h1 data-i18n="APP_TITLE"></h1>
+
+            <p data-i18n="APP_DESCRIPTION"></p>
+
+            <div class="landing-features">
+
+                <div class="feature-card">
+
+                    <span>🎉</span>
+
+                    <p data-i18n="FEATURE_PARTY_GAMES"></p>
+
+                </div>
+
+                <div class="feature-card">
+
+                    <span>👥</span>
+
+                    <p data-i18n="FEATURE_GROUP_PLAY"></p>
+
+                </div>
+
+                <div class="feature-card">
+
+                    <span>🌍</span>
+
+                    <p data-i18n="FEATURE_MULTILANGUAGE"></p>
+
+                </div>
+
+            </div>
+
+            <button id="installButton"
+                    class="primary-btn"
+                    data-i18n="INSTALL_ANDROID">
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- ONBOARDING -->
+    <!-- ===================================================== -->
+
+    <section id="onboarding"
+             style="display:none;">
+
+        <!-- Welcome -->
+
+        <div class="popup-screen"
+             id="welcome-step">
+
+            <h2 data-i18n="WELCOME_TITLE"></h2>
+
+            <p data-i18n="WELCOME_TEXT"></p>
+
+            <div class="welcome-images">
+
+                <div class="placeholder-image"></div>
+
+                <div class="placeholder-image"></div>
+
+                <div class="placeholder-image"></div>
+
+            </div>
+
+            <button class="primary-btn next-step"
+                    data-i18n="CONTINUE">
+            </button>
+
+        </div>
+
+
+        <!-- Play Group -->
+
+        <div class="popup-screen"
+             id="group-step"
+             style="display:none;">
+
+            <h2 data-i18n="PLAY_WITH_TITLE"></h2>
+
+            <p data-i18n="PLAY_WITH_DESCRIPTION"></p>
+
+            <div class="selection-grid">
+
+                <button class="select-option"
+                        data-value="friends">
+
+                    <span data-i18n="OPTION_FRIENDS"></span>
+
+                </button>
+
+                <button class="select-option"
+                        data-value="family">
+
+                    <span data-i18n="OPTION_FAMILY"></span>
+
+                </button>
+
+                <button class="select-option"
+                        data-value="school">
+
+                    <span data-i18n="OPTION_SCHOOL"></span>
+
+                </button>
+
+                <button class="select-option"
+                        data-value="couple">
+
+                    <span data-i18n="OPTION_COUPLE"></span>
+
+                </button>
+
+                <button class="select-option"
+                        data-value="party">
+
+                    <span data-i18n="OPTION_PARTY"></span>
+
+                </button>
+
+                <button class="select-option"
+                        data-value="mixed">
+
+                    <span data-i18n="OPTION_MIXED"></span>
+
+                </button>
+
+            </div>
+
+            <button class="primary-btn next-step"
+                    data-i18n="CONTINUE">
+            </button>
+
+        </div>
+
+
+        <!-- Gender -->
+
+        <div class="popup-screen"
+             id="gender-step"
+             style="display:none;">
+
+            <h2 data-i18n="GENDER_TITLE"></h2>
+
+            <div class="selection-grid">
+
+                <button class="select-option"
+                        data-value="male">
+
+                    <span data-i18n="GENDER_MALE"></span>
+
+                </button>
+
+                <button class="select-option"
+                        data-value="female">
+
+                    <span data-i18n="GENDER_FEMALE"></span>
+
+                </button>
+
+                <button class="select-option"
+                        data-value="other">
+
+                    <span data-i18n="GENDER_OTHER"></span>
+
+                </button>
+
+                <button class="select-option"
+                        data-value="skip">
+
+                    <span data-i18n="SKIP"></span>
+
+                </button>
+
+            </div>
+
+            <button class="primary-btn next-step"
+                    data-i18n="CONTINUE">
+            </button>
+
+        </div>
+
+
+        <!-- Language -->
+
+        <div class="popup-screen"
+             id="language-step"
+             style="display:none;">
+
+            <h2 data-i18n="LANGUAGE_TITLE"></h2>
+
+            <p data-i18n="LANGUAGE_DESCRIPTION"></p>
+
+            <div class="selection-grid">
+
+                <button class="select-option" data-lang="de">Deutsch</button>
+                <button class="select-option" data-lang="en">English</button>
+                <button class="select-option" data-lang="es">Español</button>
+                <button class="select-option" data-lang="fr">Français</button>
+                <button class="select-option" data-lang="it">Italiano</button>
+                <button class="select-option" data-lang="nl">Nederlands</button>
+                <button class="select-option" data-lang="pl">Polski</button>
+                <button class="select-option" data-lang="pt">Português</button>
+                <button class="select-option" data-lang="ru">Русский</button>
+                <button class="select-option" data-lang="tr">Türkçe</button>
+
+            </div>
+
+            <button id="finishOnboarding"
+                    class="primary-btn"
+                    data-i18n="FINISH">
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- MAIN APP -->
+    <!-- ===================================================== -->
+
+    <section id="app"
+             style="display:none;">
+
+        <header class="app-header">
+
+            <div class="header-top">
+
+                <h1 data-i18n="APP_NAME_SHORT"></h1>
+
+                <button id="settingsBtn"
+                        aria-label="Settings">
+
+                    ⚙️
+
+                </button>
+
+            </div>
+
+            <div class="search-container">
+
+                <input type="text"
+                       id="gameSearch"
+                       name="gameSearch"
+                       autocomplete="off"
+                       spellcheck="false"
+                       data-i18n-placeholder="SEARCH_GAMES">
+
+            </div>
+
+        </header>
+
+
+        <!-- Library -->
+
+        <main id="libraryPage"
+              class="page active-page">
+
+            <div id="gamesGrid">
+
+                <!-- Games loaded by JS -->
+
+            </div>
+
+        </main>
+
+
+        <!-- My Games -->
+
+        <main id="myGamesPage"
+              class="page">
+
+            <div class="widget-area">
+
+                <!-- Future Widgets -->
+
+            </div>
+
+            <div id="myGamesGrid">
+
+                <!-- Favorite Games -->
+
+            </div>
+
+        </main>
+
+
+        <!-- Bottom Navigation -->
+
+        <nav class="bottom-navigation">
+
+            <button id="libraryTab"
+                    class="nav-btn active"
+                    data-i18n="TAB_LIBRARY">
+            </button>
+
+            <button id="myGamesTab"
+                    class="nav-btn"
+                    data-i18n="TAB_MY_GAMES">
+            </button>
+
+        </nav>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- SETTINGS -->
+    <!-- ===================================================== -->
+
+    <div id="settingsModal"
+         style="display:none;">
+
+        <div class="modal-content">
+
+            <h2 data-i18n="SETTINGS_TITLE"></h2>
+
+            <button id="changeLanguageBtn"
+                    data-i18n="CHANGE_LANGUAGE">
+            </button>
+
+            <button id="changeThemeBtn"
+                    data-i18n="APP_DESIGN">
+            </button>
+
+            <button id="accountBtn"
+                    data-i18n="ACCOUNT_SETTINGS">
+            </button>
+
+            <button id="resetProfileBtn"
+                    data-i18n="RESET_PROFILE">
+            </button>
+
+            <button id="closeSettingsBtn"
+                    data-i18n="CLOSE">
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ===================================================== -->
+    <!-- JAVASCRIPT -->
+    <!-- ===================================================== -->
+
+   <script src="js/config.js"></script>
+
+<script src="js/eventBus.js"></script>
+
+<script src="js/storageManager.js"></script>
+
+<script src="js/languageManager.js"></script>
+
+<script src="js/themeManager.js"></script>
+
+<script src="js/installManager.js"></script>
+
+<script src="js/navigationManager.js"></script>
+
+<script src="js/onboardingManager.js"></script>
+
+<script src="js/searchManager.js"></script>
+
+<script src="js/gameManager.js"></script>
+
+<script src="js/accountManager.js"></script>
+
+<script src="js/apiManager.js"></script>
+
+<script src="js/updateManager.js"></script>
+
+<script src="js/app.js"></script>
+
+</body>
+
+</html>
