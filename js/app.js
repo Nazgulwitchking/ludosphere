@@ -2,7 +2,26 @@ document.addEventListener(
     "DOMContentLoaded",
     async () => {
 
+        if (
+    "serviceWorker"
+    in navigator
+) {
+
+    navigator.serviceWorker
+        .register("/sw.js")
+        .then(() => {
+
+            console.log(
+                "[PWA] Service Worker Registered"
+            );
+
+        });
+
+}
+
         StorageManager.init();
+
+        ApiManager.init();
 
         await LanguageManager.init();
 

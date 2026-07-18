@@ -175,8 +175,18 @@ const CONFIG = {
             "/account",
 
         FAVORITES_ENDPOINT:
-            "/favorites"
+            "/favorites",
+        SYNC_ENDPOINT:
+            "/sync",
 
+        LOGIN_ENDPOINT:
+            "/login",
+
+        REGISTER_ENDPOINT:
+            "/register",
+
+        VERSION_ENDPOINT:
+            "/version",
     },
 
 
