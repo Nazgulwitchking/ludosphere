@@ -33,29 +33,47 @@ const OnboardingManager = {
 
     init() {
 
-        if (
-            StorageManager.isOnboardingDone()
-        ) {
+    if (
+        !InstallManager.isRunningAsApp()
+    ) {
 
-            this.showApp();
+        document.getElementById(
+            "landing-page"
+        ).style.display = "block";
 
-            return;
+        document.getElementById(
+            "onboarding"
+        ).style.display = "none";
 
-        }
+        document.getElementById(
+            "app"
+        ).style.display = "none";
 
-        this.setupSelections();
+        return;
 
-        this.setupButtons();
+    }
 
-        this.showOnboarding();
+    if (
+        StorageManager.isOnboardingDone()
+    ) {
 
-        console.log(
-            "[OnboardingManager] Initialized"
-        );
+        this.showApp();
 
-    },
+        return;
 
+    }
 
+    this.setupSelections();
+
+    this.setupButtons();
+
+    this.showOnboarding();
+
+    console.log(
+        "[OnboardingManager] Initialized"
+    );
+
+},
 
     /*
     =========================================================
