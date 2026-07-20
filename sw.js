@@ -3,7 +3,7 @@ const CACHE_NAME = "ludosphere-cache-v1";
 const CORE_FILES = [
     "./",
     "./index.html",
-    "./css/core.css",
+    "./css/core.css", // Übereinstimmung mit der index.html
     "./js/config.js",
     "./js/storageManager.js",
     "./js/languageManager.js",
@@ -16,7 +16,9 @@ const CORE_FILES = [
     "./js/gameManager.js",
     "./js/updateManager.js",
     "./js/app.js",
-    "./manifest.json"
+    "./manifest.json",
+    "./languages/de.json",
+    "./languages/en.json"
 ];
 
 // INSTALL
