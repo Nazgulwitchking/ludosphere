@@ -1,0 +1,42 @@
+{
+    "APP_TITLE": "Ludosphere",
+
+    "APP_DESCRIPTION": "The ultimate free party game app for friends, family, school, couples and every social gathering.",
+
+    "INSTALL_ANDROID": "Install App",
+
+    "FEATURE_PARTY_GAMES": "Hundreds of Party Games",
+    "FEATURE_GROUP_PLAY": "Play With Any Group",
+    "FEATURE_MULTILANGUAGE": "Multiple Languages",
+
+    "WELCOME_TITLE": "Welcome to Ludosphere",
+
+    "WELCOME_TEXT": "The best completely free party game app. Discover exciting games, challenges and activities for every occasion.",
+
+    "CONTINUE": "Continue",
+
+    "PLAY_WITH_TITLE": "Who do you usually play with?",
+
+    "PLAY_WITH_DESCRIPTION": "Choose the groups you most often play with. This helps us recommend suitable games.",
+
+    "OPTION_FRIENDS": "Friends",
+    "OPTION_FAMILY": "Family",
+    "OPTION_SCHOOL": "School",
+    "OPTION_COUPLE": "Partner",
+    "OPTION_PARTY": "Party Groups",
+    "OPTION_MIXED": "Mixed Groups",
+
+    "GENDER_TITLE": "Select Your Gender",
+
+    "GENDER_MALE": "Male",
+    "GENDER_FEMALE": "Female",
+    "GENDER_OTHER": "Other",
+
+    "SKIP": "Skip",
+
+    "LANGUAGE_TITLE": "Choose Your Language",
+
+    "LANGUAGE_DESCRIPTION": "Select the language you want to use in Ludosphere.",
+
+    "FINISH": "Finish Setup"
+}

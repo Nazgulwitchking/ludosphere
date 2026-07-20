@@ -34,7 +34,7 @@ const CONFIG = {
     =========================================================
     */
 
-    DEFAULT_LANGUAGE: "de",
+    DEFAULT_LANGUAGE: "en",
 
     DEFAULT_THEME: "neutral",
 
