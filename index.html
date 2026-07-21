@@ -344,9 +344,14 @@
                     data-i18n="CHANGE_LANGUAGE">
             </button>
 
+            <button id="changeThemeBtn"
+                    data-i18n="APP_DESIGN"
+                    style="display:none;">
+            </button>
+
             <div class="settings-group">
                 <label data-i18n="APP_DESIGN">App-Design</label>
-                <select id="themeSelect" class="settings-select" onchange="ThemeManager.applyTheme(this.value)">
+                <select id="themeSelect" class="settings-select" onchange="if(typeof ThemeManager !== 'undefined') ThemeManager.applyTheme(this.value)">
                     <option value="neutral" data-i18n="THEME_NEUTRAL">Neutral</option>
                     <option value="midnight" data-i18n="THEME_MIDNIGHT">Mitternacht</option>
                     <option value="sunny" data-i18n="THEME_SUNNY">Sonnig</option>
