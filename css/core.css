@@ -632,3 +632,28 @@ body {
 #closeSettingsBtn:hover {
     background: rgba(239, 68, 68, 0.5) !important;
 }
+/* 1. Verhindert, dass Effekt- und Hintergrund-Layer Klicks abfangen */
+.background-layer,
+#themeOverlay,
+.effects-layer,
+.widget-layer {
+    pointer-events: none !important;
+}
+
+/* 2. Macht Elemente innerhalb von Widgets wieder klickbar */
+.widget-layer * {
+    pointer-events: auto;
+}
+
+/* 3. Stellt sicher, dass die Landingpage und der Install-Button ganz oben liegen */
+#landing-page {
+    position: relative;
+    z-index: 10;
+}
+
+#installButton {
+    position: relative;
+    z-index: 11;
+    cursor: pointer;
+    pointer-events: auto !important;
+}
