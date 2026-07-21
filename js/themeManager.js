@@ -133,48 +133,4 @@ const ThemeManager = {
         container.appendChild(rainContainer);
     },
 
-      /* =========================================================
-       SETTINGS MODAL EVENT HANDLER (REPARIERT)
-       ========================================================= */
-    setupModalEvents() {
-        const bindEvents = () => {
-            const settingsBtn = document.getElementById("settingsBtn");
-            const closeSettingsBtn = document.getElementById("closeSettingsBtn");
-            const settingsModal = document.getElementById("settingsModal");
-            const themeSelect = document.getElementById("themeSelect");
-
-            // Modal Öffnen bei Klick aufs Zahnrad ⚙️
-            if (settingsBtn && settingsModal) {
-                settingsBtn.onclick = () => {
-                    if (themeSelect) {
-                        themeSelect.value = this.getCurrentTheme();
-                    }
-                    settingsModal.style.display = "flex";
-                };
-            }
-
-            // Modal Schließen bei Klick auf "Schließen"
-            if (closeSettingsBtn && settingsModal) {
-                closeSettingsBtn.onclick = () => {
-                    settingsModal.style.display = "none";
-                };
-            }
-
-            // Modal Schließen bei Klick außerhalb der Box
-            window.addEventListener("click", (event) => {
-                if (event.target === settingsModal) {
-                    settingsModal.style.display = "none";
-                }
-            });
-        };
-
-        // Prüft, ob das DOM schon bereit ist oder noch lädt
-        if (document.readyState === "loading") {
-            document.addEventListener("DOMContentLoaded", bindEvents);
-        } else {
-            bindEvents();
-        }
-    
-    },
-
-}
+    }
