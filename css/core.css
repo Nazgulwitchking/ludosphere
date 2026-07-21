@@ -31,8 +31,8 @@ html, body {
     background: linear-gradient(
         180deg,
         #4f78db 0%,
-        #66a5f7 45%,
-        #78d2ff 100%
+        #5b8be8 55%,
+        #689df5 100%
     ) !important;
 
     /* 2. Hardware-Beschleunigung erzwingen (behebt die harten Farbblöcke/Kanten auf iPhones) */
