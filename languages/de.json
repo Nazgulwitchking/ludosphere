@@ -1,42 +1,37 @@
 {
-    "APP_TITLE": "Ludosphere",
-
-    "APP_DESCRIPTION": "Die ultimative kostenlose Partyspiel-App für Freunde, Familie, Schule, Paare und jede soziale Runde.",
-
-    "INSTALL_ANDROID": "App installieren",
-
-    "FEATURE_PARTY_GAMES": "Hunderte Partyspiele",
-    "FEATURE_GROUP_PLAY": "Für jede Gruppe",
-    "FEATURE_MULTILANGUAGE": "Mehrsprachig",
-
-    "WELCOME_TITLE": "Willkommen bei Ludosphere",
-
-    "WELCOME_TEXT": "Die beste komplett kostenlose Partyspiel-App. Entdecke spannende Spiele, Challenges und Aktivitäten für jeden Anlass.",
-
-    "CONTINUE": "Weiter",
-
-    "PLAY_WITH_TITLE": "Mit wem spielst du normalerweise?",
-
-    "PLAY_WITH_DESCRIPTION": "Wähle die Gruppen aus, mit denen du am häufigsten spielst. Dadurch können wir passende Spiele empfehlen.",
-
-    "OPTION_FRIENDS": "Freunde",
-    "OPTION_FAMILY": "Familie",
-    "OPTION_SCHOOL": "Schule",
-    "OPTION_COUPLE": "Partner",
-    "OPTION_PARTY": "Partygruppen",
-    "OPTION_MIXED": "Gemischte Gruppen",
-
-    "GENDER_TITLE": "Wähle dein Geschlecht",
-
-    "GENDER_MALE": "Männlich",
-    "GENDER_FEMALE": "Weiblich",
-    "GENDER_OTHER": "Andere",
-
-    "SKIP": "Überspringen",
-
-    "LANGUAGE_TITLE": "Sprache auswählen",
-
-    "LANGUAGE_DESCRIPTION": "Wähle die Sprache aus, die du in Ludosphere verwenden möchtest.",
-
-    "FINISH": "Einrichtung abschließen"
+  "APP_TITLE": "Ludosphere",
+  "APP_DESCRIPTION": "Die ultimative kostenlose Partyspiel-App für Freunde, Familie, Schule, Partner und Partys",
+  "INSTALL_ANDROID": "App installieren",
+  "FEATURE_PARTY_GAMES": "Hunderte Partyspiele",
+  "FEATURE_GROUP_PLAY": "Für jede Gruppe",
+  "FEATURE_MULTILANGUAGE": "Mehrsprachig",
+  "WELCOME_TITLE": "Willkommen bei Ludosphere",
+  "WELCOME_TEXT": "Die beste komplett kostenlose Partyspiel-App. Entdecke spannende Spiele, Challenges und mehr!",
+  "CONTINUE": "Weiter",
+  "PLAY_WITH_TITLE": "Mit wem spielst du normalerweise?",
+  "PLAY_WITH_DESCRIPTION": "Wähle die Gruppen aus, mit denen du am häufigsten spielst.",
+  "OPTION_FRIENDS": "Freunde",
+  "OPTION_FAMILY": "Familie",
+  "OPTION_SCHOOL": "Schule",
+  "OPTION_COUPLE": "Partner",
+  "OPTION_PARTY": "Partygruppen",
+  "OPTION_MIXED": "Gemischte Gruppen",
+  "GENDER_TITLE": "Wähle dein Geschlecht",
+  "GENDER_MALE": "Männlich",
+  "GENDER_FEMALE": "Weiblich",
+  "GENDER_OTHER": "Andere",
+  "SKIP": "Überspringen",
+  "LANGUAGE_TITLE": "Sprache auswählen",
+  "LANGUAGE_DESCRIPTION": "Wähle die Sprache aus, die du in Ludosphere verwenden möchtest.",
+  "FINISH": "Einrichtung abschließen",
+  "APP_NAME_SHORT": "Ludosphere",
+  "SEARCH_GAMES": "Spiele suchen...",
+  "TAB_LIBRARY": "Bibliothek",
+  "TAB_MY_GAMES": "Meine Spiele",
+  "SETTINGS_TITLE": "Einstellungen",
+  "CHANGE_LANGUAGE": "Sprache ändern",
+  "APP_DESIGN": "App-Design",
+  "ACCOUNT_SETTINGS": "Konto",
+  "RESET_PROFILE": "Profil zurücksetzen",
+  "CLOSE": "Schließen"
 }
