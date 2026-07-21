@@ -30,7 +30,7 @@
 
     <link rel="stylesheet"
           type="text/css"
-          href="css/core.css?v=1.0.15">
+          href="css/core.css?v=1.0.16">
 
 </head>
 
@@ -38,6 +38,8 @@
 
     <div id="backgroundLayer"
          class="background-layer"></div>
+
+    <div id="themeOverlay"></div>
 
     <div id="effectsLayer"
          class="effects-layer"></div>
@@ -295,7 +297,7 @@
 
             <div id="gamesGrid">
 
-                </div>
+            </div>
 
         </main>
 
@@ -305,11 +307,11 @@
 
             <div class="widget-area">
 
-                </div>
+            </div>
 
             <div id="myGamesGrid">
 
-                </div>
+            </div>
 
         </main>
 
@@ -342,9 +344,22 @@
                     data-i18n="CHANGE_LANGUAGE">
             </button>
 
-            <button id="changeThemeBtn"
-                    data-i18n="APP_DESIGN">
-            </button>
+            <div class="settings-group">
+                <label data-i18n="APP_DESIGN">App-Design</label>
+                <select id="themeSelect" class="settings-select" onchange="ThemeManager.applyTheme(this.value)">
+                    <option value="neutral" data-i18n="THEME_NEUTRAL">Neutral</option>
+                    <option value="midnight" data-i18n="THEME_MIDNIGHT">Mitternacht</option>
+                    <option value="sunny" data-i18n="THEME_SUNNY">Sonnig</option>
+                    <option value="cyberpunk" data-i18n="THEME_CYBERPUNK">Cyberpunk</option>
+                    <option value="aurora" data-i18n="THEME_AURORA">Polarlicht</option>
+                    <option value="sakura" data-i18n="THEME_SAKURA">Kirschblüte</option>
+                    <option value="galaxy" data-i18n="THEME_GALAXY">Galaxie</option>
+                    <option value="lava" data-i18n="THEME_LAVA">Lava</option>
+                    <option value="forest" data-i18n="THEME_FOREST">Zauberwald</option>
+                    <option value="winter" data-i18n="THEME_WINTER">Winter</option>
+                    <option value="royal" data-i18n="THEME_ROYAL">Königreich</option>
+                </select>
+            </div>
 
             <button id="accountBtn"
                     data-i18n="ACCOUNT_SETTINGS">

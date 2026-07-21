@@ -31,7 +31,20 @@
   "SETTINGS_TITLE": "Settings",
   "CHANGE_LANGUAGE": "Change Language",
   "APP_DESIGN": "App Design",
+  "SELECT_THEME": "Select App Theme",
   "ACCOUNT_SETTINGS": "Account",
+  "ACCOUNT_LINK": "Link Account",
   "RESET_PROFILE": "Reset Profile",
-  "CLOSE": "Close"
+  "CLOSE": "Close",
+  "THEME_NEUTRAL": "Neutral",
+  "THEME_MIDNIGHT": "Midnight",
+  "THEME_SUNNY": "Sunny",
+  "THEME_CYBERPUNK": "Cyberpunk",
+  "THEME_AURORA": "Northern Lights",
+  "THEME_SAKURA": "Cherry Blossom",
+  "THEME_GALAXY": "Galaxy",
+  "THEME_LAVA": "Lava",
+  "THEME_FOREST": "Magic Forest",
+  "THEME_WINTER": "Winter",
+  "THEME_ROYAL": "Kingdom"
 }

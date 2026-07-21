@@ -1,7 +1,7 @@
 {
   "APP_TITLE": "Ludosphere",
   "APP_DESCRIPTION": "L'app definitiva e gratuita di giochi per feste per amici, famiglia, scuola, coppie e party",
-  "INSTALL_ANDROID": "Installa app",
+  "INSTALL_ANDROID": "Installa l'app",
   "FEATURE_PARTY_GAMES": "Centinaia di giochi per feste",
   "FEATURE_GROUP_PLAY": "Gioca con qualsiasi gruppo",
   "FEATURE_MULTILANGUAGE": "Lingue multiple",
@@ -31,7 +31,20 @@
   "SETTINGS_TITLE": "Impostazioni",
   "CHANGE_LANGUAGE": "Cambia lingua",
   "APP_DESIGN": "Design dell'app",
+  "SELECT_THEME": "Seleziona design dell'app",
   "ACCOUNT_SETTINGS": "Account",
+  "ACCOUNT_LINK": "Collega account",
   "RESET_PROFILE": "Ripristina profilo",
-  "CLOSE": "Chiudi"
+  "CLOSE": "Chiudi",
+  "THEME_NEUTRAL": "Neutro",
+  "THEME_MIDNIGHT": "Mezzanotte",
+  "THEME_SUNNY": "Soleggiato",
+  "THEME_CYBERPUNK": "Cyberpunk",
+  "THEME_AURORA": "Aurora boreale",
+  "THEME_SAKURA": "Ciliegio in fiore",
+  "THEME_GALAXY": "Galassia",
+  "THEME_LAVA": "Lava",
+  "THEME_FOREST": "Foresta incantata",
+  "THEME_WINTER": "Inverno",
+  "THEME_ROYAL": "Regno"
 }

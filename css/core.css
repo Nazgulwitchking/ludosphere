@@ -545,3 +545,90 @@ body {
     .landing-container h1 { font-size: 34px; }
     .header-top h1 { font-size: 24px; }
 }
+/* =========================================================
+   SETTINGS MODAL STYLING
+   ========================================================= */
+#settingsModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#settingsModal .modal-content {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 24px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    color: #ffffff;
+}
+
+#settingsModal h2 {
+    margin: 0 0 10px 0;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.settings-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+.settings-select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 15px;
+    outline: none;
+    cursor: pointer;
+}
+
+.settings-select option {
+    background: #1e293b;
+    color: #ffffff;
+}
+
+/* Standard-Buttons im Modal */
+#settingsModal button {
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#settingsModal button:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+#closeSettingsBtn {
+    margin-top: 10px;
+    background: rgba(239, 68, 68, 0.3) !important;
+    border-color: rgba(239, 68, 68, 0.5) !important;
+}
+
+#closeSettingsBtn:hover {
+    background: rgba(239, 68, 68, 0.5) !important;
+}

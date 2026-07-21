@@ -1,0 +1,254 @@
+/* =========================================================
+   1. NEUTRAL / STANDARD THEME
+   ========================================================= */
+body.theme-neutral, body {
+    --bg-gradient: linear-gradient(180deg, #4f78db 0%, #66a5f7 50%, #78d2ff 100%);
+    --card-bg: rgba(255, 255, 255, 0.25);
+    --card-border: rgba(255, 255, 255, 0.4);
+    --text-color: #ffffff;
+    --accent-color: #4f78db;
+}
+
+.background-layer.neutral {
+    background: var(--bg-gradient) !important;
+}
+
+
+/* =========================================================
+   2. MITTERNACHTS-STIMMUNG 🌙
+   ========================================================= */
+body.theme-midnight {
+    --bg-gradient: linear-gradient(180deg, #050b14 0%, #0a192f 60%, #112240 100%);
+    --card-bg: rgba(16, 30, 54, 0.55);
+    --card-border: rgba(64, 153, 255, 0.25);
+    --text-color: #e6f1ff;
+    --accent-color: #64ffda;
+}
+
+.background-layer.midnight {
+    background: var(--bg-gradient) !important;
+}
+
+/* Sternenhimmel-Effekt via Radial-Gradients */
+.background-layer.midnight::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 150px 180px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 280px 80px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 300px, #fff, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 350px 350px;
+    opacity: 0.6;
+    animation: twinkleStars 4s infinite alternate ease-in-out;
+}
+
+@keyframes twinkleStars {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.8; }
+}
+
+/* Vollmond */
+.midnight-moon {
+    position: fixed;
+    top: 40px;
+    right: 30px;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, #fffedb 0%, #ffeaa7 70%, rgba(255,255,255,0) 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 35px rgba(255, 234, 167, 0.6);
+    pointer-events: none;
+    z-index: -8;
+}
+
+/* Schloss-Silhouette unten */
+.midnight-castle {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320"><path fill="%23030712" d="M0,320 L0,220 L40,220 L40,180 L30,180 L30,140 L50,110 L70,140 L60,140 L60,180 L100,180 L100,220 L180,220 L180,120 L160,120 L160,80 L190,40 L220,80 L200,80 L200,120 L240,120 L240,220 L350,220 L350,160 L380,110 L410,160 L400,160 L400,220 L1200,220 L1200,320 Z"></path></svg>') no-repeat bottom center;
+    background-size: cover;
+    pointer-events: none;
+    z-index: -7;
+    opacity: 0.85;
+}
+
+/* Fliegende Fledermaus */
+.animated-bat {
+    position: fixed;
+    left: -60px;
+    width: 35px;
+    height: 20px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23000000"><path d="M12,4.5C10.5,6.5 7,6 4,8C1,10 0,13 3,14C6,15 8,12 12,14C16,12 18,15 21,14C24,13 23,10 20,8C17,6 13.5,6.5 12,4.5Z"/></svg>') no-repeat center;
+    background-size: contain;
+    pointer-events: none;
+    z-index: -6;
+    animation: batFly 12s linear infinite;
+}
+
+@keyframes batFly {
+    0% { transform: translateX(-10vw) translateY(0); opacity: 0; }
+    10% { opacity: 0.9; }
+    90% { opacity: 0.9; }
+    100% { transform: translateX(110vw) translateY(-40px); opacity: 0; }
+}
+
+/* Vorbeiziehende Wolke */
+.animated-cloud {
+    position: fixed;
+    top: 60px;
+    right: -150px;
+    width: 200px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50px;
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.3);
+    filter: blur(8px);
+    pointer-events: none;
+    z-index: -7;
+    animation: cloudMove 25s linear infinite;
+}
+
+@keyframes cloudMove {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-120vw); }
+}
+/* =========================================================
+   3. SUNNY STIMMUNG ☀️
+   ========================================================= */
+body.theme-sunny {
+    --bg-gradient: linear-gradient(180deg, #38bdf8 0%, #0284c7 45%, #fde047 85%, #fef08a 100%);
+    --card-bg: rgba(255, 255, 255, 0.35);
+    --card-border: rgba(255, 255, 255, 0.6);
+    --text-color: #0f172a;
+    --accent-color: #0284c7;
+}
+
+.background-layer.sunny {
+    background: var(--bg-gradient) !important;
+}
+
+/* Strahlende Sonne */
+.sunny-sun {
+    position: fixed;
+    top: 30px;
+    left: 40px;
+    width: 90px;
+    height: 90px;
+    background: radial-gradient(circle, #fef08a 0%, #fde047 70%, rgba(253, 224, 71, 0) 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 50px rgba(253, 224, 71, 0.8);
+    pointer-events: none;
+    z-index: -8;
+}
+
+/* Palmen-Silhouette unten */
+.sunny-beach {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 140px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320"><path fill="%23eab308" opacity="0.6" d="M0,280 Q300,240 600,280 T1200,260 L1200,320 L0,320 Z"></path><path fill="%23ca8a04" opacity="0.8" d="M0,300 Q400,260 800,300 T1200,290 L1200,320 L0,320 Z"></path></svg>') no-repeat bottom center;
+    background-size: cover;
+    pointer-events: none;
+    z-index: -7;
+}
+
+/* Vorbeiziehende Möwe */
+.animated-seagull {
+    position: fixed;
+    left: -50px;
+    width: 30px;
+    height: 15px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ffffff"><path d="M2,10 C6,6 10,8 12,11 C14,8 18,6 22,10 C18,9 14,12 12,15 C10,12 6,9 2,10 Z"/></svg>') no-repeat center;
+    background-size: contain;
+    pointer-events: none;
+    z-index: -6;
+    animation: flySeagull 14s linear infinite;
+}
+
+@keyframes flySeagull {
+    0% { transform: translateX(-10vw) translateY(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(110vw) translateY(-20px); opacity: 0; }
+}
+
+
+/* =========================================================
+   4. CYBERPUNK CITY 🌆
+   ========================================================= */
+body.theme-cyberpunk {
+    --bg-gradient: linear-gradient(180deg, #090514 0%, #170b2c 50%, #2b0938 100%);
+    --card-bg: rgba(23, 11, 44, 0.7);
+    --card-border: rgba(236, 72, 153, 0.5); /* Neon-Pink */
+    --text-color: #00f0ff; /* Neon-Cyan */
+    --accent-color: #ec4899;
+}
+
+.background-layer.cyberpunk {
+    background: var(--bg-gradient) !important;
+}
+
+/* Neon Grid am Boden */
+.cyberpunk-grid {
+    position: fixed;
+    bottom: -50px;
+    left: -50%;
+    width: 200%;
+    height: 300px;
+    background-image: 
+        linear-gradient(to right, rgba(0, 240, 255, 0.2) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 240, 255, 0.2) 1px, transparent 1px);
+    background-size: 40px 40px;
+    transform: perspective(300px) rotateX(60deg);
+    pointer-events: none;
+    z-index: -8;
+}
+
+/* Skyline Silhouette mit Neon-Effekt */
+.cyberpunk-skyline {
+    position: fixed;
+    bottom: 60px;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320"><path fill="%230f051d" d="M0,320 L0,180 L40,180 L40,120 L80,120 L80,180 L140,180 L140,80 L200,80 L200,320 L260,320 L260,150 L320,150 L320,320 L1200,320 Z"></path></svg>') no-repeat bottom center;
+    background-size: cover;
+    pointer-events: none;
+    z-index: -7;
+    filter: drop-shadow(0 -5px 10px rgba(236, 72, 153, 0.4));
+}
+
+/* Fallender Cyberpunk-Regen */
+.cyberpunk-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -6;
+}
+
+.rain-drop {
+    position: absolute;
+    top: -20px;
+    width: 1px;
+    height: 25px;
+    background: linear-gradient(180deg, transparent, #00f0ff);
+    opacity: 0.6;
+    animation: fallRain linear infinite;
+}
+
+@keyframes fallRain {
+    0% { transform: translateY(-20px); opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}

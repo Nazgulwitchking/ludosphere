@@ -1,6 +1,6 @@
 {
   "APP_TITLE": "Ludosphere",
-  "APP_DESCRIPTION": "Najlepsza darmowa aplikacja z grami imprezowymi dla przyjaciół, rodziny, szkoły, par i na imprezy",
+  "APP_DESCRIPTION": "Niezrównana darmowa aplikacja z grami imprezowymi dla przyjaciół, rodziny, szkoły, par i na imprezy",
   "INSTALL_ANDROID": "Zainstaluj aplikację",
   "FEATURE_PARTY_GAMES": "Setki gier imprezowych",
   "FEATURE_GROUP_PLAY": "Graj z dowolną grupą",
@@ -8,7 +8,7 @@
   "WELCOME_TITLE": "Witaj w Ludosphere",
   "WELCOME_TEXT": "Najlepsza, całkowicie darmowa aplikacja z grami imprezowymi. Odkryj ekscytujące gry, wyzwania i wiele więcej!",
   "CONTINUE": "Kontynuuj",
-  "PLAY_WITH_TITLE": "Z kim najczęściej grasz?",
+  "PLAY_WITH_TITLE": "Z kim zazwyczaj grasz?",
   "PLAY_WITH_DESCRIPTION": "Wybierz grupy, z którymi grasz najczęściej.",
   "OPTION_FRIENDS": "Przyjaciele",
   "OPTION_FAMILY": "Rodzina",
@@ -21,7 +21,7 @@
   "GENDER_FEMALE": "Kobieta",
   "GENDER_OTHER": "Inna",
   "SKIP": "Pomiń",
-  "LANGUAGE_TITLE": "Wybierz język",
+  "LANGUAGE_TITLE": "Wybierz swój język",
   "LANGUAGE_DESCRIPTION": "Wybierz język, którego chcesz używać w Ludosphere.",
   "FINISH": "Zakończ konfigurację",
   "APP_NAME_SHORT": "Ludosphere",
@@ -31,7 +31,21 @@
   "SETTINGS_TITLE": "Ustawienia",
   "CHANGE_LANGUAGE": "Zmień język",
   "APP_DESIGN": "Wygląd aplikacji",
+  "SELECT_THEME": "Wybierz wygląd aplikacji",
   "ACCOUNT_SETTINGS": "Konto",
+  "ACCOUNT_LINK": "Połącz konto",
   "RESET_PROFILE": "Zresetuj profil",
-  "CLOSE": "Zamknij"
+  "CLOSE": "Zamknij",
+  "THEME_NEUTRAL": "Neutralny",
+  "THEME_MIDNIGHT": "Północ",
+  "THEME_SUNNY": "Słoneczny",
+  "THEME_CYBERPUNK": "Cyberpunk",
+  "THEME_AURORA": "Zorza polarna",
+  "THEME_SAKURA": "Kwiat wiśni",
+  "THEME_GALAXY": "Galaktyka",
+  "THEME_LAVA": "Lawa",
+  "THEME_FOREST": "Magiczny las",
+  "THEME_WINTER": "Zima",
+  "THEME_ROYAL": "Królestwo"
 }
+
