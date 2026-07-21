@@ -1,21 +1,44 @@
-/* Zwingt den Browser-Hintergrund ganz oben an der Statusleiste auf das Hellblau */
-html, body {
-    background-color: #4f78db !important;
-    background-image: linear-gradient(180deg, #4f78db 0%, #66a5f7 50%, #78d2ff 100%) !important;
-    background-attachment: fixed !important;
+/* =========================================================
+   RESET & SAFARI SMOOTH GRADIENT FIX
+   ========================================================= */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* Dehnt die Background-Layer bis über den oberen Rand aus */
+html, body {
+    width: 100%;
+    min-height: 100%;
+    /* Statt fixed background vergeben wir eine feste Grundfarbe */
+    background-color: #4f78db !important;
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Der echte weiche Verlauf liegt in diesem fixierten Layer dahinter */
 .background-layer {
     position: fixed;
-    top: -100px; /* Zieht das Element weit nach oben über die Statusleiste hinaus */
+    top: -100px;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: -100px;
     z-index: -10;
-    background: var(--background-gradient);
+    
+    /* 1. Perfekt flüssiger Verlauf für Safari */
+    background: linear-gradient(
+        180deg,
+        #4f78db 0%,
+        #66a5f7 45%,
+        #78d2ff 100%
+    ) !important;
+
+    /* 2. Hardware-Beschleunigung erzwingen (behebt die harten Farbblöcke/Kanten auf iPhones) */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 
