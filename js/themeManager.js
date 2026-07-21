@@ -133,4 +133,46 @@ const ThemeManager = {
         container.appendChild(rainContainer);
     },
 
+    /* =========================================================
+       SETTINGS MODAL EVENT HANDLER & HELPER
+       ========================================================= */
+    setupModalEvents() {
+        const bindEvents = () => {
+            const settingsBtn = document.getElementById("settingsBtn");
+            const closeSettingsBtn = document.getElementById("closeSettingsBtn");
+            const settingsModal = document.getElementById("settingsModal");
+            const themeSelect = document.getElementById("themeSelect");
+
+            if (settingsBtn && settingsModal) {
+                settingsBtn.onclick = () => {
+                    if (themeSelect) {
+                        themeSelect.value = this.getCurrentTheme();
+                    }
+                    settingsModal.style.display = "flex";
+                };
+            }
+
+            if (closeSettingsBtn && settingsModal) {
+                closeSettingsBtn.onclick = () => {
+                    settingsModal.style.display = "none";
+                };
+            }
+
+            window.addEventListener("click", (event) => {
+                if (event.target === settingsModal) {
+                    settingsModal.style.display = "none";
+                }
+            });
+        };
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", bindEvents);
+        } else {
+            bindEvents();
+        }
+    },
+
+    getCurrentTheme() {
+        return this.currentTheme;
     }
+};
