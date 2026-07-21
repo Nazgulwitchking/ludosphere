@@ -25,25 +25,26 @@ const OnboardingManager = {
     =========================================================
     */
     init() {
+    // 1. ZUERST alle Event-Listener laden (damit Klicks immer funktionieren):
+    this.setupSelections();
+    this.setupButtons();
 
-        if (!InstallManager.isRunningAsApp()) {
-            document.getElementById("landing-page").style.display = "block";
-            document.getElementById("onboarding").style.display = "none";
-            document.getElementById("app").style.display = "none";
-            return;
-        }
+    // 2. Danach prüfen, welcher Screen gezeigt wird:
+    if (!InstallManager.isRunningAsApp()) {
+        document.getElementById("landing-page").style.display = "block";
+        document.getElementById("onboarding").style.display = "none";
+        document.getElementById("app").style.display = "none";
+        return;
+    }
 
-        if (StorageManager.isOnboardingDone()) {
-            this.showApp();
-            return;
-        }
+    if (StorageManager.isOnboardingDone()) {
+        this.showApp();
+        return;
+    }
 
-        this.setupSelections();
-        this.setupButtons();
-        this.showOnboarding();
-
-        console.log("[OnboardingManager] Initialized");
-    },
+    this.showOnboarding();
+    console.log("[OnboardingManager] Initialized");
+},
 
     /*
     =========================================================
@@ -94,10 +95,10 @@ const OnboardingManager = {
         this.showStep(next);
     },
 
-    /*
-    =========================================================
+        /*
+    ========================================================================
     BUTTONS
-    =========================================================
+    ========================================================================
     */
     setupButtons() {
         document.querySelectorAll(".next-step").forEach(button => {
@@ -115,27 +116,45 @@ const OnboardingManager = {
     },
 
     /*
-    =========================================================
+    ========================================================================
     SELECTIONS
-    =========================================================
+    ========================================================================
     */
     setupSelections() {
+        // --- 1. Gruppen-Auswahl (#group-step) ---
         document.querySelectorAll("#group-step .select-option").forEach(button => {
-            button.addEventListener("click", () => {
+            button.addEventListener("click", (e) => {
+                // Glow-Effekt: .selected bei anderen entfernen, bei diesem hinzufügen
+                document.querySelectorAll("#group-step .select-option").forEach(btn => btn.classList.remove("selected"));
+                e.currentTarget.classList.add("selected");
+
+                // Daten speichern
                 this.selectedGroup = button.dataset.value;
                 StorageManager.setPlayGroup(this.selectedGroup);
             });
         });
 
+        // --- 2. Geschlechts-Auswahl (#gender-step) ---
         document.querySelectorAll("#gender-step .select-option").forEach(button => {
-            button.addEventListener("click", () => {
+            button.addEventListener("click", (e) => {
+                // Glow-Effekt
+                document.querySelectorAll("#gender-step .select-option").forEach(btn => btn.classList.remove("selected"));
+                e.currentTarget.classList.add("selected");
+
+                // Daten speichern
                 this.selectedGender = button.dataset.value;
                 StorageManager.setGender(this.selectedGender);
             });
         });
 
+        // --- 3. Sprach-Auswahl ([data-lang]) ---
         document.querySelectorAll("[data-lang]").forEach(button => {
-            button.addEventListener("click", async () => {
+            button.addEventListener("click", async (e) => {
+                // Glow-Effekt
+                document.querySelectorAll("[data-lang]").forEach(btn => btn.classList.remove("selected"));
+                e.currentTarget.classList.add("selected");
+
+                // Sprache wechseln
                 this.selectedLanguage = button.dataset.lang;
                 await LanguageManager.changeLanguage(this.selectedLanguage);
             });

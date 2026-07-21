@@ -1,3 +1,16 @@
+/* Erstreckt den hellblauen Hintergrund über den gesamten Bildschirm inklusive Notch-Bereich */
+html {
+    background: var(--background-gradient) !important;
+    min-height: 100vh;
+}
+
+body {
+    background: transparent !important;
+    /* Nutzt den sicheren oberen Bereich des Smartphones, schiebt aber den Hintergrund nicht weg */
+    padding-top: env(safe-area-inset-top);
+}
+
+
 /* =========================================================
    PARTY APP CORE CSS & ROOT VARIABLES
    ========================================================= */
