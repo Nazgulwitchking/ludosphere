@@ -7,19 +7,23 @@
     --header-height: 120px;
     --nav-height: 80px;
 
+    /* Safe Area Insets für moderne Handys (Notch / Dynamic Island) */
+    --safe-top: env(safe-area-inset-top, 20px);
+    --safe-bottom: env(safe-area-inset-bottom, 20px);
+
     /* Colors */
     --primary-color: #4f7fff;
     --secondary-color: #7bb6ff;
     --surface-color: rgba(255,255,255,0.8);
-    --accent-color: #4f78db;
+    --accent-color: #00d2ff; /* Klares Highlight für ausgewählte Rahmen */
     
     --text-main: #ffffff;
     --text-secondary: rgba(255,255,255,.75);
 
     --glass-bg: rgba(255,255,255,.08);
-    --glass-bg-hover: rgba(255,255,255,.12);
-    --glass-border: rgba(255,255,255,.15);
-    --card-bg: rgba(255,255,255,.08);
+    --glass-bg-hover: rgba(255,255,255,.14);
+    --glass-border: rgba(255,255,255,.18);
+    --card-bg: rgba(255,255,255,.10);
     --search-bg: rgba(255,255,255,.10);
 
     /* Background Default */
@@ -33,33 +37,34 @@
     /* Blur & Shadows */
     --blur-strength: 18px;
     --shadow-soft: 0 10px 30px rgba(0,0,0,.15);
+    --glow-active: 0 0 15px rgba(0, 210, 255, 0.4);
 }
 
 /* =========================================================
-   RESET
+   RESET & FULLSCREEN FIX (VERHINDERT WEISSE RÄNDER)
    ========================================================= */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
-html,
+html {
+    min-height: 100%;
+    height: 100%;
+    background-color: #101820; /* Fallback */
+    background: var(--background-gradient);
+    background-attachment: fixed;
+}
+
 body {
     width: 100%;
-    min-height: 100%;
-    font-family: Inter, Arial, sans-serif;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Arial, sans-serif;
     color: var(--text-main);
     overflow-x: hidden;
-}
-
-/* =========================================================
-   BODY
-   ========================================================= */
-body {
-    /* WICHTIG FÜR PWA: Ein echter Hintergrund-Fallback, falls der Farbverlauf crasht */
-    background-color: #101820; 
-    background: var(--background-gradient);
+    background: transparent;
     position: relative;
 }
 
@@ -71,6 +76,8 @@ body {
     inset: 0;
     z-index: -10;
     overflow: hidden;
+    background: var(--background-gradient);
+    background-attachment: fixed;
 }
 
 .effects-layer {
@@ -94,18 +101,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px 20px;
+    padding: calc(var(--safe-top) + 20px) 20px 40px;
 }
 
 .landing-container {
     width: 100%;
-    max-width: 700px;
+    max-width: var(--app-max-width);
     text-align: center;
 }
 
 .landing-container h1 {
     font-size: 42px;
     margin-bottom: 20px;
+    font-weight: 800;
 }
 
 .landing-container p {
@@ -124,7 +132,7 @@ body {
     border-radius: 18px;
     background: var(--glass-bg);
     backdrop-filter: blur(var(--blur-strength));
-    -webkit-backdrop-filter: blur(var(--blur-strength)); /* Für ältere iOS-Versionen */
+    -webkit-backdrop-filter: blur(var(--blur-strength));
     border: 1px solid var(--glass-border);
 }
 
@@ -133,35 +141,42 @@ body {
    ========================================================= */
 .primary-btn {
     margin-top: 25px;
-    border: none;
+    width: 100%;
+    border: 1.5px solid var(--glass-border);
     border-radius: 30px;
     padding: 16px 28px;
     font-size: 16px;
+    font-weight: 700;
     cursor: pointer;
     background: var(--primary-color);
     color: white;
     box-shadow: var(--shadow-soft);
+    transition: all 0.2s ease;
 }
 
-.primary-btn:hover {
-    transform: translateY(-2px);
+.primary-btn:active {
+    transform: scale(0.97);
+    border-color: var(--accent-color);
+    box-shadow: var(--glow-active);
 }
 
 /* =========================================================
-   ONBOARDING
+   ONBOARDING & SELECTIONS (MIT LEUCHTENDEM RAHMEN)
    ========================================================= */
 .popup-screen {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 30px;
+    padding: calc(var(--safe-top) + 20px) 25px calc(var(--safe-bottom) + 20px);
     text-align: center;
+    background: transparent;
 }
 
 .popup-screen h2 {
     margin-bottom: 15px;
     font-size: 34px;
+    font-weight: 800;
 }
 
 .popup-screen p {
@@ -170,23 +185,40 @@ body {
 
 .selection-grid {
     display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     margin-top: 30px;
 }
 
 .select-option {
-    border: 1px solid var(--glass-border);
+    border: 2px solid var(--glass-border);
     background: var(--glass-bg);
     backdrop-filter: blur(var(--blur-strength));
     -webkit-backdrop-filter: blur(var(--blur-strength));
     color: white;
     border-radius: 20px;
     padding: 18px;
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .select-option:hover {
     background: var(--glass-bg-hover);
+}
+
+/* DEUTLICHER RAHMEN BEI AUSWAHL & KLICK */
+.select-option.selected,
+.select-option:active {
+    border: 2px solid var(--accent-color) !important;
+    background: rgba(255, 255, 255, 0.22) !important;
+    box-shadow: var(--glow-active);
+    transform: scale(0.97);
 }
 
 .placeholder-image {
@@ -204,50 +236,66 @@ body {
 }
 
 /* =========================================================
-   APP HEADER
+   APP HEADER (Titel mittig zentriert)
    ========================================================= */
 .app-header {
-    padding: env(safe-area-inset-top) 20px 15px;
+    padding: calc(var(--safe-top) + 10px) 20px 15px;
 }
 
 .header-top {
+    position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Zentriert Titel exakt */
     align-items: center;
+    min-height: 50px;
 }
 
 .header-top h1 {
-    font-size: 34px;
+    font-size: 28px;
     font-weight: 800;
+    letter-spacing: 0.5px;
+    text-align: center;
 }
 
-/* =========================================================
-   SETTINGS BUTTON
-   ========================================================= */
+/* SETTINGS BUTTON (Rechts fixiert) */
 #settingsBtn {
-    width: 50px;
-    height: 50px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
-    border: 1px solid var(--glass-border);
-    background: rgba(255,255,255,.08);
+    border: 1.5px solid var(--glass-border);
+    background: var(--glass-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     color: white;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.2s ease;
+}
+
+#settingsBtn:active {
+    transform: translateY(-50%) scale(0.9);
+    border-color: var(--accent-color);
 }
 
 /* =========================================================
    SEARCH BAR
    ========================================================= */
 .search-container {
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .search-container input {
     width: 100%;
-    height: 58px;
-    border-radius: 30px;
-    border: 1px solid var(--glass-border);
+    height: 54px;
+    border-radius: 28px;
+    border: 1.5px solid var(--glass-border);
     background: var(--search-bg);
     backdrop-filter: blur(var(--blur-strength));
     -webkit-backdrop-filter: blur(var(--blur-strength));
@@ -255,10 +303,16 @@ body {
     font-size: 16px;
     padding-left: 20px;
     outline: none;
+    transition: all 0.2s ease;
 }
 
 .search-container input::placeholder {
-    color: rgba(255,255,255,.65);
+    color: var(--text-secondary);
+}
+
+.search-container input:focus {
+    border-color: var(--accent-color);
+    box-shadow: var(--glow-active);
 }
 
 /* =========================================================
@@ -266,7 +320,7 @@ body {
    ========================================================= */
 .page {
     display: none;
-    padding: 20px 15px 120px;
+    padding: 15px 15px calc(var(--safe-bottom) + 100px);
 }
 
 .active-page {
@@ -274,30 +328,63 @@ body {
 }
 
 /* =========================================================
-   GAMES GRID
+   GAMES GRID (Moderne Widgets Optik)
    ========================================================= */
 #gamesGrid,
 #myGamesGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 16px;
 }
 
 .game-card {
-    min-height: 200px;
-    border-radius: 28px;
+    position: relative;
+    min-height: 190px;
+    border-radius: 24px;
     overflow: hidden;
     background: var(--card-bg);
-    border: 1px solid var(--glass-border);
+    border: 1.5px solid var(--glass-border);
     backdrop-filter: blur(var(--blur-strength));
     -webkit-backdrop-filter: blur(var(--blur-strength));
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.game-card:active {
+    transform: scale(0.95);
+    border-color: var(--accent-color);
+    box-shadow: var(--glow-active);
+}
+
+.game-image {
+    width: 100%;
+    height: 110px;
+    overflow: hidden;
+    background: rgba(0,0,0,0.15);
+}
+
+.game-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.game-title {
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-main);
 }
 
 /* =========================================================
    WIDGET AREA
    ========================================================= */
 .widget-area {
-    min-height: 200px;
+    min-height: 180px;
     margin-bottom: 20px;
 }
 
@@ -308,29 +395,37 @@ body {
     position: fixed;
     left: 20px;
     right: 20px;
-    bottom: 20px;
-    height: 70px;
+    bottom: calc(var(--safe-bottom) + 10px);
+    height: 65px;
     z-index: 1000;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background: rgba(255,255,255,.08);
-    border: 1px solid rgba(255,255,255,.15);
+    background: var(--glass-bg);
+    border: 1.5px solid var(--glass-border);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
-    border-radius: 40px;
+    border-radius: 35px;
+    box-shadow: var(--shadow-soft);
 }
 
 .nav-btn {
     background: none;
     border: none;
-    color: white;
-    font-size: 16px;
+    color: var(--text-secondary);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 18px;
     cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .nav-btn.active {
-    font-weight: 700;
+    color: var(--text-main);
+    font-weight: 800;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--glass-border);
 }
 
 /* =========================================================
@@ -342,7 +437,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(0,0,0,.5);
+    background: rgba(0,0,0,.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     z-index: 2000;
 }
 
@@ -350,10 +447,12 @@ body {
     width: 90%;
     max-width: 450px;
     padding: 25px;
-    border-radius: 24px;
-    background: rgba(255,255,255,.08);
+    border-radius: 28px;
+    background: var(--glass-bg);
+    border: 1.5px solid var(--glass-border);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
+    box-shadow: var(--shadow-soft);
 }
 
 /* =========================================================
@@ -391,6 +490,5 @@ body {
    ========================================================= */
 @media (max-width:768px) {
     .landing-container h1 { font-size: 34px; }
-    .header-top h1 { font-size: 28px; }
+    .header-top h1 { font-size: 24px; }
 }
-
