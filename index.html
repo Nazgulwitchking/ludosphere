@@ -16,6 +16,9 @@
     <meta name="theme-color"
           content="#4f78db">
 
+    <meta name="mobile-web-app-capable"
+          content="yes">
+
     <meta name="apple-mobile-web-app-capable"
           content="yes">
 
@@ -37,18 +40,23 @@
 <body>
 
     <div id="backgroundLayer"
-         class="background-layer"></div>
+         class="background-layer"
+         style="pointer-events: none;"></div>
 
-    <div id="themeOverlay"></div>
+    <div id="themeOverlay"
+         style="pointer-events: none;"></div>
 
     <div id="effectsLayer"
-         class="effects-layer"></div>
+         class="effects-layer"
+         style="pointer-events: none;"></div>
 
     <div id="widgetLayer"
-         class="widget-layer"></div>
+         class="widget-layer"
+         style="pointer-events: none;"></div>
 
 
-    <section id="landing-page">
+    <section id="landing-page"
+             style="position: relative; z-index: 10;">
 
         <div class="landing-container">
 
@@ -86,7 +94,8 @@
 
             <button id="installButton"
                     class="primary-btn"
-                    data-i18n="INSTALL_ANDROID">
+                    data-i18n="INSTALL_ANDROID"
+                    style="position: relative; z-index: 20; pointer-events: auto;">
             </button>
 
         </div>
@@ -397,6 +406,25 @@
     <script src="js/apiManager.js" defer></script>
     <script src="js/updateManager.js" defer></script>
     <script src="js/app.js" defer></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const btn = document.getElementById("installButton");
+            if (btn) {
+                btn.addEventListener("click", () => {
+                    if (typeof InstallManager !== "undefined" && InstallManager.deferredPrompt) {
+                        InstallManager.deferredPrompt.prompt();
+                    } else {
+                        alert(
+                            "Um die App zu installieren:\n\n" +
+                            "• iPhone/Safari: Tippe unten auf 'Teilen' (Quadrat mit Pfeil) ➔ 'Zum Home-Bildschirm'.\n" +
+                            "• Android/Chrome: Tippe oben rechts auf die 3 Punkte ➔ 'App installieren'."
+                        );
+                    }
+                });
+            }
+        });
+    </script>
 
 </body>
 
