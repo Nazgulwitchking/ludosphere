@@ -24,7 +24,8 @@ document.addEventListener(
         ApiManager.init();
 
         await LanguageManager.init();
-
+        LanguageManager.translatePage();
+        
         ThemeManager.init();
 
         InstallManager.init();

@@ -329,34 +329,18 @@ const OnboardingManager = {
     */
 
     showApp() {
+    const landing = document.getElementById("landing-page");
+    const onboarding = document.getElementById("onboarding");
+    const app = document.getElementById("app");
 
-        const landing =
-            document.getElementById(
-                "landing-page"
-            );
+    if (landing) landing.style.display = "none";
+    if (onboarding) onboarding.style.display = "none";
+    if (app) app.style.display = "block";
 
-        const onboarding =
-            document.getElementById(
-                "onboarding"
-            );
-
-        const app =
-            document.getElementById(
-                "app"
-            );
-
-        if (landing)
-            landing.style.display =
-                "none";
-
-        if (onboarding)
-            onboarding.style.display =
-                "none";
-
-        if (app)
-            app.style.display =
-                "block";
-
+    // HIER: Übersetzungen für die App jetzt frisch ausführen!
+    if (typeof LanguageManager !== "undefined") {
+        LanguageManager.translatePage();
     }
+}
 
-};
+}
