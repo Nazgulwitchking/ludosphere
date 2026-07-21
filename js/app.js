@@ -24,13 +24,10 @@ document.addEventListener(
         ApiManager.init();
 
         await LanguageManager.init();
-        LanguageManager.translatePage();
         
         ThemeManager.init();
 
         InstallManager.init();
-
-        OnboardingManager.init();
 
         NavigationManager.init();
 
@@ -41,6 +38,8 @@ document.addEventListener(
         UpdateManager.init();
 
         await GameManager.init();
+
+        OnboardingManager.init();
 
         console.log(
             "Ludosphere gestartet"
