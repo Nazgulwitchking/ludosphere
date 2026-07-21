@@ -1,3 +1,10 @@
+/* TEST-FLAGGE FÜR PWA */
+body {
+    background-color: red !important;
+}
+
+
+
 /* =========================================================
    PARTY APP CORE CSS & ROOT VARIABLES
    ========================================================= */
