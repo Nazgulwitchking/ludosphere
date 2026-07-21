@@ -3,7 +3,7 @@
   "short_name": "Ludosphere",
   "description": "Partyspiele und Gruppenspiele für jede Situation",
 
-  "start_url": "./index.html",
+  "start_url": "index.html",
 
   "display": "standalone",
 

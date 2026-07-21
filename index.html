@@ -10,8 +10,6 @@
 
     <title>Ludosphere</title>
 
-    <!-- PWA -->
-
     <link rel="manifest"
           href="manifest.json">
 
@@ -30,18 +28,13 @@
     <link rel="apple-touch-icon"
           href="assets/icons/icon-192.png">
 
-    <!-- CSS -->
-
     <link rel="stylesheet"
-          href="./css/core.css">
+          type="text/css"
+          href="css/core.css">
 
 </head>
 
 <body>
-
-    <!-- ===================================================== -->
-    <!-- THEME BACKGROUND SYSTEM -->
-    <!-- ===================================================== -->
 
     <div id="backgroundLayer"
          class="background-layer"></div>
@@ -52,10 +45,6 @@
     <div id="widgetLayer"
          class="widget-layer"></div>
 
-
-    <!-- ===================================================== -->
-    <!-- LANDING PAGE -->
-    <!-- ===================================================== -->
 
     <section id="landing-page">
 
@@ -103,14 +92,8 @@
     </section>
 
 
-    <!-- ===================================================== -->
-    <!-- ONBOARDING -->
-    <!-- ===================================================== -->
-
     <section id="onboarding"
              style="display:none;">
-
-        <!-- Welcome -->
 
         <div class="popup-screen"
              id="welcome-step">
@@ -135,8 +118,6 @@
 
         </div>
 
-
-        <!-- Play Group -->
 
         <div class="popup-screen"
              id="group-step"
@@ -199,8 +180,6 @@
         </div>
 
 
-        <!-- Gender -->
-
         <div class="popup-screen"
              id="gender-step"
              style="display:none;">
@@ -246,8 +225,6 @@
         </div>
 
 
-        <!-- Language -->
-
         <div class="popup-screen"
              id="language-step"
              style="display:none;">
@@ -281,10 +258,6 @@
     </section>
 
 
-    <!-- ===================================================== -->
-    <!-- MAIN APP -->
-    <!-- ===================================================== -->
-
     <section id="app"
              style="display:none;">
 
@@ -317,41 +290,29 @@
         </header>
 
 
-        <!-- Library -->
-
         <main id="libraryPage"
               class="page active-page">
 
             <div id="gamesGrid">
 
-                <!-- Games loaded by JS -->
-
-            </div>
+                </div>
 
         </main>
 
-
-        <!-- My Games -->
 
         <main id="myGamesPage"
               class="page">
 
             <div class="widget-area">
 
-                <!-- Future Widgets -->
-
-            </div>
+                </div>
 
             <div id="myGamesGrid">
 
-                <!-- Favorite Games -->
-
-            </div>
+                </div>
 
         </main>
 
-
-        <!-- Bottom Navigation -->
 
         <nav class="bottom-navigation">
 
@@ -369,10 +330,6 @@
 
     </section>
 
-
-    <!-- ===================================================== -->
-    <!-- SETTINGS -->
-    <!-- ===================================================== -->
 
     <div id="settingsModal"
          style="display:none;">
@@ -406,11 +363,7 @@
     </div>
 
 
-    <!-- ===================================================== -->
-    <!-- JAVASCRIPT -->
-    <!-- ===================================================== -->
-
-     <script src="js/config.js" defer></script>
+    <script src="js/config.js" defer></script>
     <script src="js/eventBus.js" defer></script>
     <script src="js/storageManager.js" defer></script>
     <script src="js/languageManager.js" defer></script>
@@ -424,7 +377,6 @@
     <script src="js/apiManager.js" defer></script>
     <script src="js/updateManager.js" defer></script>
     <script src="js/app.js" defer></script>
-
 
 </body>
 

@@ -8,7 +8,7 @@ document.addEventListener(
 ) {
 
     navigator.serviceWorker
-        .register("/sw.js")
+        .register("sw.js")
         .then(() => {
 
             console.log(
