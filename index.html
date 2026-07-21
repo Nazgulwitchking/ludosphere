@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
 
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+          content="width=device-width, initial-scale=1.0">
 
     <title>Ludosphere</title>
 
@@ -15,9 +15,6 @@
 
     <meta name="theme-color"
           content="#4f78db">
-
-    <meta name="mobile-web-app-capable"
-          content="yes">
 
     <meta name="apple-mobile-web-app-capable"
           content="yes">
@@ -33,7 +30,7 @@
 
     <link rel="stylesheet"
           type="text/css"
-          href="css/core.css?v=1.0.18">
+          href="css/core.css?v=1.0.15">
 
 </head>
 
@@ -273,8 +270,7 @@
                 <h1 data-i18n="APP_NAME_SHORT"></h1>
 
                 <button id="settingsBtn"
-                        aria-label="Settings"
-                        onclick="document.getElementById('settingsModal').style.display='flex'; if(typeof ThemeManager !== 'undefined' && document.getElementById('themeSelect')) { document.getElementById('themeSelect').value = ThemeManager.getCurrentTheme(); }">
+                        aria-label="Settings">
 
                     ⚙️
 
@@ -374,8 +370,7 @@
             </button>
 
             <button id="closeSettingsBtn"
-                    data-i18n="CLOSE"
-                    onclick="document.getElementById('settingsModal').style.display='none'">
+                    data-i18n="CLOSE">
             </button>
 
         </div>
