@@ -133,11 +133,11 @@ const ThemeManager = {
         container.appendChild(rainContainer);
     },
 
-    /* =========================================================
-       SETTINGS MODAL EVENT HANDLER
+      /* =========================================================
+       SETTINGS MODAL EVENT HANDLER (REPARIERT)
        ========================================================= */
     setupModalEvents() {
-        document.addEventListener("DOMContentLoaded", () => {
+        const bindEvents = () => {
             const settingsBtn = document.getElementById("settingsBtn");
             const closeSettingsBtn = document.getElementById("closeSettingsBtn");
             const settingsModal = document.getElementById("settingsModal");
@@ -145,19 +145,19 @@ const ThemeManager = {
 
             // Modal Öffnen bei Klick aufs Zahnrad ⚙️
             if (settingsBtn && settingsModal) {
-                settingsBtn.addEventListener("click", () => {
+                settingsBtn.onclick = () => {
                     if (themeSelect) {
                         themeSelect.value = this.getCurrentTheme();
                     }
                     settingsModal.style.display = "flex";
-                });
+                };
             }
 
             // Modal Schließen bei Klick auf "Schließen"
             if (closeSettingsBtn && settingsModal) {
-                closeSettingsBtn.addEventListener("click", () => {
+                closeSettingsBtn.onclick = () => {
                     settingsModal.style.display = "none";
-                });
+                };
             }
 
             // Modal Schließen bei Klick außerhalb der Box
@@ -166,10 +166,15 @@ const ThemeManager = {
                     settingsModal.style.display = "none";
                 }
             });
-        });
+        };
+
+        // Prüft, ob das DOM schon bereit ist oder noch lädt
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", bindEvents);
+        } else {
+            bindEvents();
+        }
+    
     },
 
-    getCurrentTheme() {
-        return this.currentTheme;
-    }
-};
+}
