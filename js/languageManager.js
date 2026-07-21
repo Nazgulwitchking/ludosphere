@@ -10,7 +10,7 @@ const LanguageManager = {
 
     /* ========================================================= INIT ========================================================= */
     async init() {
-        // Falls noch keine Sprache gespeichert ist (erster Start), nutzen wir "de" als Standard
+        // Falls noch keine Sprache gespeichert ist, nutzen wir "de" als Standard
         const savedLanguage = StorageManager.getLanguage() || "de";
         await this.loadLanguage(savedLanguage);
         console.log("[LanguageManager] Initialized");
@@ -19,7 +19,8 @@ const LanguageManager = {
     /* ========================================================= LOAD LANGUAGE ========================================================= */
     async loadLanguage(languageCode) {
         try {
-            const response = await fetch(`languages/${languageCode}.json`);
+            // Relativer Pfad explizit für iOS PWA abgesichert
+            const response = await fetch(`./languages/${languageCode}.json`);
             if (!response.ok) {
                 throw new Error(`Language file not found: languages/${languageCode}.json`);
             }
@@ -31,7 +32,7 @@ const LanguageManager = {
         } catch (error) {
             console.error("[LanguageManager] Error loading language:", error);
             
-            // Wenn das Laden fehlschlägt und es nicht schon "de" war, versuche "de" zu laden
+            // Fallback auf Deutsch, falls das Laden einer anderen Sprache fehlschlägt
             if (languageCode !== "de") {
                 console.log("[LanguageManager] Falling back to 'de'");
                 await this.loadLanguage("de");
@@ -41,21 +42,33 @@ const LanguageManager = {
 
     /* ========================================================= GET TRANSLATION ========================================================= */
     get(key) {
+        if (!this.translations || Object.keys(this.translations).length === 0) {
+            return key;
+        }
         return this.translations[key] || key;
     },
 
     /* ========================================================= TRANSLATE PAGE ========================================================= */
     translatePage() {
-        // 1. Normalen Text übersetzen ([data-i18n])
+        if (!this.translations || Object.keys(this.translations).length === 0) {
+            console.warn("[LanguageManager] keine Übersetzungen geladen!");
+            return;
+        }
+
+        // 1. Normalen Text übersetzen ([data-i18n]) - Nutzt direkt getAttribute
         document.querySelectorAll("[data-i18n]").forEach(element => {
-            const key = element.dataset.i18n;
-            element.textContent = this.get(key);
+            const key = element.getAttribute("data-i18n");
+            if (key) {
+                element.textContent = this.get(key);
+            }
         });
 
         // 2. Platzhalter in Suchfeldern übersetzen ([data-i18n-placeholder])
         document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
-            const key = element.dataset.i18nPlaceholder;
-            element.placeholder = this.get(key);
+            const key = element.getAttribute("data-i18n-placeholder");
+            if (key) {
+                element.placeholder = this.get(key);
+            }
         });
     },
 
