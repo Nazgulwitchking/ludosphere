@@ -50,11 +50,9 @@ const ThemeManager = {
     updateOverlay(themeName) {
         let overlay = document.getElementById("themeOverlay");
         
-        if (!overlay) {
-            overlay = document.createElement("div");
-            overlay.id = "themeOverlay";
-            document.body.appendChild(overlay);
-        }
+        // SICHERHEITS-FIX: Nicht am Ende des Bodys anfügen, da es sonst
+        // über der Landingpage liegt und Klicks/Install-Button blockiert!
+        if (!overlay) return;
 
         overlay.innerHTML = "";
 
