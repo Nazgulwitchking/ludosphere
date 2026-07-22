@@ -1,4 +1,26 @@
 /* =========================================================
+   PWA & MOBILE FIX (Verhindert Elastic-Bounce / Ziehen)
+   ========================================================= */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden; /* Sperrt das Scrollen/Ziehen der gesamten Seite */
+    overscroll-behavior: none; /* Deaktiviert das Gummi-Band-Ziehen */
+}
+
+/* Erlaubt das Scrollen für den App-Inhalt */
+.main-content,
+.page {
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+
+
+/* =========================================================
    PARTY APP CORE CSS & ROOT VARIABLES
    ========================================================= */
 :root {
