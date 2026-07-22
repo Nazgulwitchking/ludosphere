@@ -290,7 +290,7 @@ const CONFIG = {
 
         "galaxy",
 
-        "lava",
+        "inferno",
 
         "forest",
 
