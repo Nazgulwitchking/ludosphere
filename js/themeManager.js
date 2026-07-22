@@ -15,34 +15,42 @@ const ThemeManager = {
         console.log("[ThemeManager] Initialized");
     },
 
-    applyTheme(themeName) {
+     applyTheme(themeName) {
         if (!CONFIG.SUPPORTED_THEMES.includes(themeName)) {
             themeName = CONFIG.DEFAULT_THEME;
         }
 
-        document.body.classList.remove(
+        // WICHTIG: Auf document.documentElement (<html>) anwenden statt document.body!
+        document.documentElement.classList.remove(
             ...CONFIG.SUPPORTED_THEMES.map(theme => `theme-${theme}`)
         );
 
-        document.body.classList.add(`theme-${themeName}`);
+        document.documentElement.classList.add(`theme-${themeName}`);
         this.currentTheme = themeName;
         StorageManager.setTheme(themeName);
 
         this.updateBackground(themeName);
         this.updateOverlay(themeName);
         
-         const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+        // Dynamische Meta Theme-Farbe für die Statusleiste (Android/iOS)
+        const themeColorMeta = document.querySelector('meta[name="theme-color"]');
     
-         if (themeColorMeta) {
-       
-        const colors = {
-            neutral: "#4f78db",
-            midnight: "#050b14",
-            sunny: "#38bdf8",
-            cyberpunk: "#090514"
-        };
-        themeColorMeta.setAttribute("content", colors[themeName] || "#4f78db");
-    }
+        if (themeColorMeta) {
+            const colors = {
+                neutral: "#4f78db",
+                midnight: "#050b14",
+                sunny: "#38bdf8",
+                cyberpunk: "#090514",
+                aurora: "#0f2027",
+                sakura: "#ff758c",
+                galaxy: "#0d0121",
+                lava: "#2b0808",
+                forest: "#0b2b1a",
+                winter: "#1c3144",
+                royal: "#1a0933"
+            };
+            themeColorMeta.setAttribute("content", colors[themeName] || "#4f78db");
+        }
 
         // Dropdown-Wert im Modal mit aktuellem Theme synchronisieren
         const themeSelect = document.getElementById("themeSelect");
@@ -50,6 +58,7 @@ const ThemeManager = {
             themeSelect.value = themeName;
         }
     },
+
 
     updateBackground(themeName) {
         const background = document.getElementById("backgroundLayer");

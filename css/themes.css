@@ -246,23 +246,3 @@ body.theme-cyberpunk .background-layer,
     100% { transform: translateY(100vh); opacity: 0; }
 }
 
-/* =========================================================
-   5. WEITERE THEMES
-   ========================================================= */
-body.theme-aurora { --background-gradient: linear-gradient(180deg, #021a20, #06434e, #1eb87e); }
-body.theme-sakura { --background-gradient: linear-gradient(180deg, #ffc8e4, #ffe0ef, #fff5fb); --text-main: #4a2138; }
-body.theme-galaxy { --background-gradient: linear-gradient(180deg, #05010f, #140d3a, #371f7d); }
-body.theme-lava { --background-gradient: linear-gradient(180deg, #250000, #690000, #ff4a00); }
-body.theme-forest { --background-gradient: linear-gradient(180deg, #07120b, #10301a, #246f36); }
-body.theme-winter { --background-gradient: linear-gradient(180deg, #d5eeff, #bde4ff, #8ecfff); --text-main: #0c314c; }
-body.theme-royal { --background-gradient: linear-gradient(180deg, #332300, #806100, #d8ba43); }
-
-body.theme-aurora .background-layer,
-body.theme-sakura .background-layer,
-body.theme-galaxy .background-layer,
-body.theme-lava .background-layer,
-body.theme-forest .background-layer,
-body.theme-winter .background-layer,
-body.theme-royal .background-layer {
-    background: var(--background-gradient) !important;
-}
