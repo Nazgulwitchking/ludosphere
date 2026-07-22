@@ -15,14 +15,14 @@ const ThemeManager = {
         console.log("[ThemeManager] Initialized");
     },
 
-     applyTheme(themeName) {
+    applyTheme(themeName) {
         if (!CONFIG.SUPPORTED_THEMES.includes(themeName)) {
             themeName = CONFIG.DEFAULT_THEME;
         }
 
         const themeClasses = CONFIG.SUPPORTED_THEMES.map(theme => `theme-${theme}`);
 
-        // Setzt die Klasse sicherheitshalber auf html UND body
+        // Setzt die Klasse auf html UND body
         document.documentElement.classList.remove(...themeClasses);
         document.body.classList.remove(...themeClasses);
 
@@ -35,15 +35,16 @@ const ThemeManager = {
         this.updateBackground(themeName);
         this.updateOverlay(themeName);
         
+        // Dynamische Anpassung der Browser-Statusleiste
         const themeColorMeta = document.querySelector('meta[name="theme-color"]');
         if (themeColorMeta) {
             const colors = {
                 neutral: "#4f78db",
-                midnight: "#050b14",
+                midnight: "#081026",
                 sunny: "#38bdf8",
                 cyberpunk: "#090514"
             };
-            themeColorMeta.setAttribute("content", colors[themeName] || "#4f78db");
+            themeColorMeta.setAttribute("content", colors[themeName] || "#081026");
         }
 
         const themeSelect = document.getElementById("themeSelect");
@@ -52,8 +53,6 @@ const ThemeManager = {
         }
     },
 
-
-
     updateBackground(themeName) {
         const background = document.getElementById("backgroundLayer");
         if (!background) return;
@@ -61,16 +60,13 @@ const ThemeManager = {
     },
 
     /* =========================================================
-       OVERLAY STEUERUNG (ANIMATIONEN & SPEZIAL-ELEMENTE)
+       OVERLAY STEUERUNG (BEREINIGT FÜR HIGH-RES THEMES)
        ========================================================= */
     updateOverlay(themeName) {
         let overlay = document.getElementById("themeOverlay");
-        
-        // SICHERHEITS-FIX: Nicht am Ende des Bodys anfügen, da es sonst
-        // über der Landingpage liegt und Klicks/Install-Button blockiert!
         if (!overlay) return;
 
-        overlay.innerHTML = "";
+        overlay.innerHTML = ""; // Leert alte Elemente
 
         if (themeName === "midnight") {
             this.buildMidnightOverlay(overlay);
@@ -83,68 +79,18 @@ const ThemeManager = {
 
     /* ==================== 2. MIDNIGHT ==================== */
     buildMidnightOverlay(container) {
-        const moon = document.createElement("div");
-        moon.className = "midnight-moon";
-        container.appendChild(moon);
-
-        const castle = document.createElement("div");
-        castle.className = "midnight-castle";
-        container.appendChild(castle);
-
-        for (let i = 0; i < 3; i++) {
-            const bat = document.createElement("div");
-            bat.className = "animated-bat";
-            bat.style.top = `${20 + i * 15}%`;
-            bat.style.animationDelay = `${i * 4}s`;
-            bat.style.animationDuration = `${10 + i * 3}s`;
-            container.appendChild(bat);
-        }
-
-        const cloud = document.createElement("div");
-        cloud.className = "animated-cloud";
-        container.appendChild(cloud);
+        // Hintergrund wird vollständig via CSS (bg.PNG) geregelt.
+        // Hier folgen später die animierten Fledermäuse!
     },
 
     /* ==================== 3. SUNNY ==================== */
     buildSunnyOverlay(container) {
-        const sun = document.createElement("div");
-        sun.className = "sunny-sun";
-        container.appendChild(sun);
-
-        const beach = document.createElement("div");
-        beach.className = "sunny-beach";
-        container.appendChild(beach);
-
-        for (let i = 0; i < 2; i++) {
-            const seagull = document.createElement("div");
-            seagull.className = "animated-seagull";
-            seagull.style.top = `${15 + i * 20}%`;
-            seagull.style.animationDelay = `${i * 6}s`;
-            container.appendChild(seagull);
-        }
+        // Platzhalter für spätere Sunny-Animationen
     },
 
     /* ==================== 4. CYBERPUNK ==================== */
     buildCyberpunkOverlay(container) {
-        const grid = document.createElement("div");
-        grid.className = "cyberpunk-grid";
-        container.appendChild(grid);
-
-        const skyline = document.createElement("div");
-        skyline.className = "cyberpunk-skyline";
-        container.appendChild(skyline);
-
-        const rainContainer = document.createElement("div");
-        rainContainer.className = "cyberpunk-rain";
-        for (let i = 0; i < 15; i++) {
-            const drop = document.createElement("div");
-            drop.className = "rain-drop";
-            drop.style.left = `${Math.random() * 100}%`;
-            drop.style.animationDuration = `${0.6 + Math.random() * 0.5}s`;
-            drop.style.animationDelay = `${Math.random() * 2}s`;
-            rainContainer.appendChild(drop);
-        }
-        container.appendChild(rainContainer);
+        // Platzhalter für spätere Cyberpunk-Animationen
     },
 
     /* =========================================================
@@ -172,7 +118,6 @@ const ThemeManager = {
                 };
             }
 
-            // NEU: Reagiert SOFORT, sobald im Dropdown ein Theme ausgewählt wird
             if (themeSelect) {
                 themeSelect.onchange = (e) => {
                     this.applyTheme(e.target.value);
