@@ -230,71 +230,123 @@ body.theme-sunny {
 
 
 /* =========================================================
-   4. CYBERPUNK CITY 🌆
+   THEME: CYBERPUNK (Futuristische Neon-Stadt)
    ========================================================= */
-html.theme-cyberpunk, body.theme-cyberpunk {
-    --background-gradient: linear-gradient(180deg, #090514 0%, #170b2c 50%, #2b0938 100%);
-    --card-bg: rgba(23, 11, 44, 0.7);
-    --card-border: rgba(236, 72, 153, 0.5);
-    --text-main: #00f0ff;
-    --accent-color: #ec4899;
+
+/* Erzwingt Transparenz auf allen Inhalts-Containern */
+html.theme-cyberpunk #app,
+html.theme-cyberpunk .main-content,
+html.theme-cyberpunk .page {
+    background: transparent !important;
 }
 
-html.theme-cyberpunk .background-layer,
-body.theme-cyberpunk .background-layer,
+/* 1. Hintergrund-Bildverknüpfung */
+html.theme-cyberpunk,
+body.theme-cyberpunk {
+    background: #090014 url('../assets/themes/cyberpunk/bg.PNG') center center / cover no-repeat fixed !important;
+}
+
+/* 2. Verdeckende Layer im Cyberpunk-Theme ausblenden */
+.theme-cyberpunk #backgroundLayer,
+.theme-cyberpunk .background-layer,
+#backgroundLayer.cyberpunk,
 .background-layer.cyberpunk {
-    background: var(--background-gradient) !important;
+    background: transparent !important;
+    display: none !important;
 }
 
-.cyberpunk-grid {
-    position: fixed;
-    bottom: -50px;
-    left: -50%;
-    width: 200%;
-    height: 300px;
-    background-image: 
-        linear-gradient(to right, rgba(0, 240, 255, 0.2) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 240, 255, 0.2) 1px, transparent 1px);
-    background-size: 40px 40px;
-    transform: perspective(300px) rotateX(60deg);
-    pointer-events: none;
-    z-index: -8;
+/* 3. Header-Styling (LUDOSPHERE Titel mit Neon-Pink & Cyan Glow) */
+.theme-cyberpunk .header-top h1 {
+    font-weight: 900;
+    letter-spacing: 3px;
+    background: linear-gradient(180deg, #ffffff 0%, #ff00ff 60%, #00f0ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(255, 0, 255, 0.9)) drop-shadow(0 0 20px rgba(0, 240, 255, 0.7));
 }
 
-.cyberpunk-skyline {
-    position: fixed;
-    bottom: 60px;
-    left: 0;
-    width: 100%;
-    height: 120px;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320"><path fill="%230f051d" d="M0,320 L0,180 L40,180 L40,120 L80,120 L80,180 L140,180 L140,80 L200,80 L200,320 L260,320 L260,150 L320,150 L320,320 L1200,320 Z"></path></svg>') no-repeat bottom center;
-    background-size: cover;
-    pointer-events: none;
-    z-index: -7;
-    filter: drop-shadow(0 -5px 10px rgba(236, 72, 153, 0.4));
+/* Settings-Button (Cyber-Glas mit Pink/Violett-Neon) */
+.theme-cyberpunk #settingsBtn {
+    background: rgba(20, 0, 35, 0.6) !important;
+    border: 1.5px solid rgba(255, 0, 255, 0.5) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.3);
+    color: #ffffff !important;
 }
 
-.cyberpunk-rain {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -6;
+/* 4. Suchleiste im Futuristischen Cyber-Glow Look */
+.theme-cyberpunk .search-container input {
+    background: rgba(15, 2, 28, 0.65) !important;
+    border: 1.5px solid rgba(0, 240, 255, 0.4) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    box-shadow: inset 0 0 12px rgba(255, 0, 255, 0.2),
+                0 8px 25px rgba(0, 0, 0, 0.6);
+    color: #ffffff;
 }
 
-.rain-drop {
-    position: absolute;
-    top: -20px;
-    width: 1px;
-    height: 25px;
-    background: linear-gradient(180deg, transparent, #00f0ff);
-    opacity: 0.6;
-    animation: fallRain linear infinite;
+.theme-cyberpunk .search-container input::placeholder {
+    color: rgba(230, 180, 255, 0.75);
 }
+
+.theme-cyberpunk .search-container input:focus {
+    border-color: #ff00ff !important;
+    box-shadow: 0 0 22px rgba(255, 0, 255, 0.8), inset 0 0 10px rgba(0, 240, 255, 0.5) !important;
+}
+
+/* 5. Game-Cards (Cyber-Obsidian Glass mit doppelter Neon-Kante) */
+.theme-cyberpunk .game-card {
+    background: rgba(20, 4, 36, 0.6) !important;
+    border: 1.5px solid rgba(255, 0, 255, 0.4) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-radius: 24px !important;
+    box-shadow: 
+        0 0 15px rgba(180, 0, 255, 0.35),
+        0 8px 30px rgba(0, 0, 0, 0.7),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3) !important;
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.theme-cyberpunk .game-card:active {
+    transform: scale(0.96);
+    background: rgba(35, 5, 60, 0.75) !important;
+    border-color: #00f0ff !important;
+    box-shadow: 
+        0 0 25px rgba(0, 240, 255, 0.9),
+        inset 0 0 15px rgba(255, 0, 255, 0.6) !important;
+}
+
+.theme-cyberpunk .game-title {
+    color: #ffffff !important;
+    font-weight: 700;
+    text-shadow: 0 0 8px rgba(255, 0, 255, 0.8), 0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* 6. Bottom Navigation Bar */
+.theme-cyberpunk .bottom-navigation {
+    background: rgba(15, 2, 28, 0.7) !important;
+    border: 1.5px solid rgba(0, 240, 255, 0.4) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border-radius: 35px !important;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.8) !important;
+}
+
+.theme-cyberpunk .nav-btn {
+    color: rgba(230, 180, 255, 0.8) !important;
+}
+
+.theme-cyberpunk .nav-btn.active {
+    background: rgba(255, 0, 255, 0.25) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(0, 240, 255, 0.7) !important;
+    box-shadow: 0 0 18px rgba(0, 240, 255, 0.8), inset 0 0 8px rgba(255, 0, 255, 0.5) !important;
+}
+
 /* =========================================================
-   THEME: INFERNO / LAVA (Glühende Vulkanlandschaft)
+   THEME: LAVA (Glühende Vulkanlandschaft)
    ========================================================= */
 
 /* Erzwingt Transparenz auf allen Inhalts-Containern bei Lava */
