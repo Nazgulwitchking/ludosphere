@@ -156,6 +156,13 @@ const ThemeManager = {
                 };
             }
 
+            // NEU: Reagiert SOFORT, sobald im Dropdown ein Theme ausgewählt wird
+            if (themeSelect) {
+                themeSelect.onchange = (e) => {
+                    this.applyTheme(e.target.value);
+                };
+            }
+
             window.addEventListener("click", (event) => {
                 if (event.target === settingsModal) {
                     settingsModal.style.display = "none";
