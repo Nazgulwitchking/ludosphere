@@ -309,7 +309,7 @@ html.theme-lava .page {
 /* Stelle sicher, dass das Bild unter assets/themes/lava/bg.png (oder .jpg) liegt! */
 html.theme-lava,
 body.theme-lava {
-    background: #1a0500 url('../assets/themes/lava/bg.png') center center / cover no-repeat fixed !important;
+    background: #1a0500 url('../assets/themes/lava/bg.PNG') center center / cover no-repeat fixed !important;
 }
 
 /* 2. Verdeckende Layer im Lava-Theme ausblenden */
