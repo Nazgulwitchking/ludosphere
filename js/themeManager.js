@@ -30,6 +30,19 @@ const ThemeManager = {
 
         this.updateBackground(themeName);
         this.updateOverlay(themeName);
+        
+         const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    
+         if (themeColorMeta) {
+       
+        const colors = {
+            neutral: "#4f78db",
+            midnight: "#050b14",
+            sunny: "#38bdf8",
+            cyberpunk: "#090514"
+        };
+        themeColorMeta.setAttribute("content", colors[themeName] || "#4f78db");
+    }
 
         // Dropdown-Wert im Modal mit aktuellem Theme synchronisieren
         const themeSelect = document.getElementById("themeSelect");
