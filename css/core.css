@@ -52,27 +52,40 @@
 
 html {
     width: 100%;
-    min-height: 100%;
-    background: var(--background-gradient) no-repeat center center fixed !important;
-    background-size: cover !important;
-    overscroll-behavior: none; /* Verhindert weißes Bouncen beim Scrollen */
+    height: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    /* Nutzt die Theme-Variable direkt auf Root-Ebene für nahtlosen Hintergrund */
+    background: var(--background-gradient, #0b1d3a) !important;
+    background-attachment: fixed;
+    overflow-x: hidden;
 }
 
 body {
     width: 100%;
     min-height: 100vh;
-    min-height: 100dvh;
+    min-height: -webkit-fill-available;
     background: transparent !important;
     color: var(--text-main);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Arial, sans-serif;
     overflow-x: hidden;
     position: relative;
-    touch-action: pan-x pan-y;
+    touch-action: pan-x pan-y; /* Verhindert Pinch-To-Zoom */
 }
 
-/* Background Layer deaktivieren, da der Hintergrund jetzt direkt auf html liegt */
+/* Der echte weiche Verlauf liegt in diesem fixierten Layer dahinter */
 .background-layer {
-    display: none !important;
+    position: fixed;
+    top: -100px;
+    left: -100px;
+    right: -100px;
+    bottom: -100px;
+    z-index: -10;
+    background: var(--background-gradient);
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
+    pointer-events: none !important;
 }
 
 .effects-layer {
@@ -97,7 +110,6 @@ body {
     z-index: 10;
 }
 
-
 /* =========================================================
    LANDING PAGE & FEATURE CARDS
    ========================================================= */
@@ -105,7 +117,6 @@ body {
     position: relative;
     z-index: 10;
     min-height: 100vh;
-    min-height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -190,7 +201,6 @@ body {
    ========================================================= */
 .popup-screen {
     min-height: 100vh;
-    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -250,7 +260,7 @@ body {
    APP HEADER
    ========================================================= */
 .app-header {
-    padding-top: calc(var(--safe-top) + 10px);
+    padding-top: calc(12px + env(safe-area-inset-top, 20px));
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 15px;
