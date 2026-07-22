@@ -293,6 +293,115 @@ body.theme-cyberpunk .background-layer,
     opacity: 0.6;
     animation: fallRain linear infinite;
 }
+/* =========================================================
+   THEME: INFERNO / LAVA (Glühende Vulkanlandschaft)
+   ========================================================= */
+
+/* 1. Hintergrund-Bildverknüpfung */
+/* Stelle sicher, dass das Bild unter assets/themes/inferno/bg.png (oder .jpg) liegt! */
+html.theme-inferno,
+body.theme-inferno {
+    background: #1a0500 url('../assets/themes/lava/bg.png') center center / cover no-repeat fixed !important;
+}
+
+/* 2. Verdeckende Layer im Inferno-Theme ausblenden */
+.theme-inferno #backgroundLayer,
+.theme-inferno .background-layer,
+#backgroundLayer.inferno,
+.background-layer.inferno {
+    background: transparent !important;
+    display: none !important;
+}
+
+/* 3. Header-Styling (LUDOSPHERE Titel mit feurigem Magma-Glow) */
+.theme-inferno .header-top h1 {
+    font-weight: 900;
+    letter-spacing: 2px;
+    background: linear-gradient(180deg, #ffffff 0%, #ffaa00 50%, #ff3300 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 14px rgba(255, 68, 0, 0.8));
+}
+
+/* Settings-Button (Obsidian-Look mit Lava-Rand) */
+.theme-inferno #settingsBtn {
+    background: rgba(20, 5, 2, 0.5) !important;
+    border: 1.5px solid rgba(255, 102, 0, 0.4) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), 0 0 10px rgba(255, 68, 0, 0.2);
+    color: #ffffff !important;
+}
+
+/* 4. Suchleiste im Vulkan-Glas-Look */
+.theme-inferno .search-container input {
+    background: rgba(15, 3, 0, 0.55) !important;
+    border: 1.5px solid rgba(255, 85, 0, 0.35) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    box-shadow: inset 0 1px 2px rgba(255, 150, 0, 0.25),
+                0 8px 25px rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+}
+
+.theme-inferno .search-container input::placeholder {
+    color: rgba(255, 200, 170, 0.7);
+}
+
+.theme-inferno .search-container input:focus {
+    border-color: #ff4400 !important;
+    box-shadow: 0 0 20px rgba(255, 68, 0, 0.7), inset 0 1px 2px rgba(255, 200, 0, 0.4) !important;
+}
+
+/* 5. Game-Cards (Obsidian Frosted Glass mit glutrotem Leuchten) */
+.theme-inferno .game-card {
+    background: rgba(20, 5, 2, 0.5) !important;
+    border: 1.5px solid rgba(255, 85, 0, 0.35) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-radius: 24px !important;
+    box-shadow: 
+        0 -2px 10px rgba(255, 100, 0, 0.3),
+        0 2px 10px rgba(255, 30, 0, 0.25),
+        inset 0 1px 2px rgba(255, 150, 50, 0.3),
+        0 10px 30px rgba(0, 0, 0, 0.6) !important;
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.theme-inferno .game-card:active {
+    transform: scale(0.96);
+    background: rgba(40, 10, 4, 0.65) !important;
+    box-shadow: 
+        0 0 22px rgba(255, 68, 0, 0.9),
+        inset 0 1px 3px rgba(255, 200, 0, 0.6) !important;
+}
+
+.theme-inferno .game-title {
+    color: #ffffff !important;
+    font-weight: 700;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9), 0 0 8px rgba(255, 68, 0, 0.5);
+}
+
+/* 6. Bottom Navigation Bar */
+.theme-inferno .bottom-navigation {
+    background: rgba(15, 3, 0, 0.6) !important;
+    border: 1.5px solid rgba(255, 85, 0, 0.35) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border-radius: 35px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 120, 0, 0.25) !important;
+}
+
+.theme-inferno .nav-btn {
+    color: rgba(255, 200, 170, 0.75) !important;
+}
+
+.theme-inferno .nav-btn.active {
+    background: rgba(255, 68, 0, 0.25) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 102, 0, 0.6) !important;
+    box-shadow: 0 0 16px rgba(255, 68, 0, 0.6), inset 0 1px 2px rgba(255, 200, 0, 0.4) !important;
+}
 
 @keyframes fallRain {
     0% { transform: translateY(-20px); opacity: 0; }

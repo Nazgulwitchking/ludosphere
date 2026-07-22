@@ -74,6 +74,8 @@ const ThemeManager = {
             this.buildSunnyOverlay(overlay);
         } else if (themeName === "cyberpunk") {
             this.buildCyberpunkOverlay(overlay);
+        } else if (themeName === "inferno")  {
+            this.buildInfernoOverlay(overlay);
         }
     },
 
@@ -91,6 +93,11 @@ const ThemeManager = {
     /* ==================== 4. CYBERPUNK ==================== */
     buildCyberpunkOverlay(container) {
         // Platzhalter für spätere Cyberpunk-Animationen
+    },
+
+    /* ==================== 5. INFERNO ======================= */
+    buildInfernoOverlay(container) {
+        // Platzhalter für spätere Inferno-Animationen
     },
 
     /* =========================================================
