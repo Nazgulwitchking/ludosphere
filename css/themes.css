@@ -252,3 +252,7 @@ body.theme-cyberpunk .background-layer,
     50% { opacity: 0.8; }
     100% { transform: translateY(100vh); opacity: 0; }
 }
+/* Erfwingt das Midnight-Hintergrundbild für alle Zustände */
+html, body {
+    background: #081026 url('../assets/themes/midnight/bg.PNG') center center / cover no-repeat fixed !important;
+}
