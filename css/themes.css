@@ -297,6 +297,14 @@ body.theme-cyberpunk .background-layer,
    THEME: INFERNO / LAVA (Glühende Vulkanlandschaft)
    ========================================================= */
 
+/* Erzwingt Transparenz auf allen Inhalts-Containern bei Lava */
+html.theme-lava #app,
+html.theme-lava .main-content,
+html.theme-lava .page {
+    background: transparent !important;
+}
+
+
 /* 1. Hintergrund-Bildverknüpfung */
 /* Stelle sicher, dass das Bild unter assets/themes/lava/bg.png (oder .jpg) liegt! */
 html.theme-lava,
