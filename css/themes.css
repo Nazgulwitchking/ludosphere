@@ -27,11 +27,11 @@ body.theme-neutral .background-layer,
     --text-secondary: rgba(255, 255, 255, 0.7);
 }
 
-.theme-midnight html {
+html.theme-midnight  {
     background: #081026 url('../assets/themes/midnight/bg.PNG') center center / cover no-repeat fixed !important;
 }
 
-.theme-midnight body {
+body.theme-midnight  {
     background: transparent !important;
 }
 
