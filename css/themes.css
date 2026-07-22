@@ -1,7 +1,7 @@
 /* =========================================================
    1. NEUTRAL / STANDARD THEME
    ========================================================= */
-body.theme-neutral, body {
+html.theme-neutral, body.theme-neutral, html, body {
     --background-gradient: linear-gradient(180deg, #4f78db 0%, #66a5f7 50%, #78d2ff 100%);
     --card-bg: rgba(255, 255, 255, 0.25);
     --card-border: rgba(255, 255, 255, 0.4);
@@ -9,6 +9,7 @@ body.theme-neutral, body {
     --accent-color: #4f78db;
 }
 
+html.theme-neutral .background-layer,
 body.theme-neutral .background-layer,
 .background-layer.neutral {
     background: var(--background-gradient) !important;
@@ -18,7 +19,7 @@ body.theme-neutral .background-layer,
 /* =========================================================
    2. MITTERNACHTS-STIMMUNG 🌙
    ========================================================= */
-body.theme-midnight {
+html.theme-midnight, body.theme-midnight {
     --background-gradient: linear-gradient(180deg, #050b14 0%, #0a192f 60%, #112240 100%);
     --card-bg: rgba(16, 30, 54, 0.55);
     --card-border: rgba(64, 153, 255, 0.25);
@@ -26,6 +27,7 @@ body.theme-midnight {
     --accent-color: #64ffda;
 }
 
+html.theme-midnight .background-layer,
 body.theme-midnight .background-layer,
 .background-layer.midnight {
     background: var(--background-gradient) !important;
@@ -119,7 +121,7 @@ body.theme-midnight .background-layer,
 /* =========================================================
    3. SUNNY STIMMUNG ☀️
    ========================================================= */
-body.theme-sunny {
+html.theme-sunny, body.theme-sunny {
     --background-gradient: linear-gradient(180deg, #38bdf8 0%, #0284c7 45%, #fde047 85%, #fef08a 100%);
     --card-bg: rgba(255, 255, 255, 0.35);
     --card-border: rgba(255, 255, 255, 0.6);
@@ -127,6 +129,7 @@ body.theme-sunny {
     --accent-color: #0284c7;
 }
 
+html.theme-sunny .background-layer,
 body.theme-sunny .background-layer,
 .background-layer.sunny {
     background: var(--background-gradient) !important;
@@ -179,7 +182,7 @@ body.theme-sunny .background-layer,
 /* =========================================================
    4. CYBERPUNK CITY 🌆
    ========================================================= */
-body.theme-cyberpunk {
+html.theme-cyberpunk, body.theme-cyberpunk {
     --background-gradient: linear-gradient(180deg, #090514 0%, #170b2c 50%, #2b0938 100%);
     --card-bg: rgba(23, 11, 44, 0.7);
     --card-border: rgba(236, 72, 153, 0.5);
@@ -187,6 +190,7 @@ body.theme-cyberpunk {
     --accent-color: #ec4899;
 }
 
+html.theme-cyberpunk .background-layer,
 body.theme-cyberpunk .background-layer,
 .background-layer.cyberpunk {
     background: var(--background-gradient) !important;
@@ -245,4 +249,3 @@ body.theme-cyberpunk .background-layer,
     50% { opacity: 0.8; }
     100% { transform: translateY(100vh); opacity: 0; }
 }
-
