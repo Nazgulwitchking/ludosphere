@@ -76,6 +76,8 @@ const ThemeManager = {
             this.buildCyberpunkOverlay(overlay);
         } else if (themeName === "lava")  {
             this.buildInfernoOverlay(overlay);
+        } else if (themeName === "royal") {
+            this.buildRoyalOverlay(overlay);
         }
     },
 
@@ -98,6 +100,11 @@ const ThemeManager = {
     /* ==================== 5. Lava ======================= */
     buildLavaOverlay(container) {
         // Platzhalter für spätere Lava-Animationen
+    },
+
+    /* ==================== 6. Royal ====================== */
+    buildRoyalOverlay(container) {
+        // Platzhalter für spätere Royal-Animationen
     },
 
     /* =========================================================

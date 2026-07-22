@@ -462,6 +462,121 @@ body.theme-lava {
     border: 1px solid rgba(255, 102, 0, 0.6) !important;
     box-shadow: 0 0 16px rgba(255, 68, 0, 0.6), inset 0 1px 2px rgba(255, 200, 0, 0.4) !important;
 }
+/* =========================================================
+   THEME: ROYAL (Königlicher Prunk & Saphir-Gold)
+   ========================================================= */
+
+/* Transparenz auf App-Containern erzwingen */
+html.theme-royal #app,
+html.theme-royal .main-content,
+html.theme-royal .page {
+    background: transparent !important;
+}
+
+/* 1. Hintergrund-Bildverknüpfung */
+html.theme-royal,
+body.theme-royal {
+    background: #020b1e url('../assets/themes/royal/bg.PNG') center center / cover no-repeat fixed !important;
+}
+
+/* 2. Verdeckende Layer ausblenden */
+.theme-royal #backgroundLayer,
+.theme-royal .background-layer,
+#backgroundLayer.royal,
+.background-layer.royal {
+    background: transparent !important;
+    display: none !important;
+}
+
+/* 3. Header-Styling (LUDOSPHERE Titel in flüssigem Gold-Look) */
+.theme-royal .header-top h1 {
+    font-weight: 900;
+    letter-spacing: 3px;
+    background: linear-gradient(180deg, #ffffff 0%, #ffe89c 40%, #cca625 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
+}
+
+/* Settings-Button (Königliches Glas mit Goldrahmen) */
+.theme-royal #settingsBtn {
+    background: rgba(4, 20, 50, 0.5) !important;
+    border: 1.5px solid rgba(255, 215, 0, 0.6) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 215, 0, 0.3);
+    color: #ffffff !important;
+}
+
+/* 4. Suchleiste im edlen Saphir-Gold Look */
+.theme-royal .search-container input {
+    background: rgba(3, 15, 38, 0.6) !important;
+    border: 1.5px solid rgba(255, 215, 0, 0.45) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    box-shadow: inset 0 1px 3px rgba(255, 230, 150, 0.3),
+                0 8px 25px rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+}
+
+.theme-royal .search-container input::placeholder {
+    color: rgba(220, 235, 255, 0.75);
+}
+
+.theme-royal .search-container input:focus {
+    border-color: #ffd700 !important;
+    box-shadow: 0 0 22px rgba(255, 215, 0, 0.8), inset 0 1px 3px rgba(255, 255, 255, 0.5) !important;
+}
+
+/* 5. Game-Cards (Prunkvolle Saphir-Karten mit goldenem Kanten-Glow) */
+.theme-royal .game-card {
+    background: rgba(5, 22, 54, 0.55) !important;
+    border: 1.5px solid rgba(255, 215, 0, 0.5) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-radius: 24px !important;
+    box-shadow: 
+        0 0 15px rgba(255, 215, 0, 0.25),
+        0 10px 30px rgba(0, 0, 0, 0.7),
+        inset 0 1px 2px rgba(255, 235, 170, 0.4) !important;
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.theme-royal .game-card:active {
+    transform: scale(0.96);
+    background: rgba(10, 35, 80, 0.7) !important;
+    border-color: #ffe680 !important;
+    box-shadow: 
+        0 0 25px rgba(255, 215, 0, 0.9),
+        inset 0 1px 4px rgba(255, 255, 255, 0.7) !important;
+}
+
+.theme-royal .game-title {
+    color: #ffffff !important;
+    font-weight: 700;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.6), 0 2px 5px rgba(0, 0, 0, 0.9);
+}
+
+/* 6. Bottom Navigation Bar */
+.theme-royal .bottom-navigation {
+    background: rgba(3, 15, 38, 0.65) !important;
+    border: 1.5px solid rgba(255, 215, 0, 0.5) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border-radius: 35px !important;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.25), 0 10px 30px rgba(0, 0, 0, 0.8) !important;
+}
+
+.theme-royal .nav-btn {
+    color: rgba(220, 235, 255, 0.8) !important;
+}
+
+.theme-royal .nav-btn.active {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.35) 0%, rgba(180, 130, 0, 0.2) 100%) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 230, 130, 0.8) !important;
+    box-shadow: 0 0 18px rgba(255, 215, 0, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.5) !important;
+}
 
 @keyframes fallRain {
     0% { transform: translateY(-20px); opacity: 0; }
