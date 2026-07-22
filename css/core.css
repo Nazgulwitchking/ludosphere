@@ -41,7 +41,7 @@
 }
 
 /* =========================================================
-   RESET & SAFARI DYNAMISCHES THEME-CANVAS
+   RESET & SAFARI NAHTLOSER BACKGROUND FIX
    ========================================================= */
 * {
     box-sizing: border-box;
@@ -52,32 +52,49 @@
 
 html {
     width: 100%;
-    height: 100%;
-    /* Zwingt den Safari-Canvas dynamisch auf die primäre Hintergrundfarbe des aktuellen Themes */
-    background-color: var(--primary-color) !important;
+    min-height: 100%;
     background: var(--background-gradient) no-repeat center center fixed !important;
     background-size: cover !important;
-    overflow: hidden;
+    overscroll-behavior: none; /* Verhindert weißes Bouncen beim Scrollen */
 }
 
 body {
     width: 100%;
-    height: 100dvh;
-    /* Nutzt ebenfalls die Theme-Variable als Fallback */
-    background-color: inherit !important;
+    min-height: 100vh;
+    min-height: 100dvh;
     background: transparent !important;
     color: var(--text-main);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Arial, sans-serif;
-    overflow-y: auto;
     overflow-x: hidden;
     position: relative;
-    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x pan-y;
 }
 
-/* WICHTIG: Entferne den festen background-layer, 
-   da er als fixer Sub-Layer die GPU-Verschiebung erzeugt */
+/* Background Layer deaktivieren, da der Hintergrund jetzt direkt auf html liegt */
 .background-layer {
     display: none !important;
+}
+
+.effects-layer {
+    position: fixed;
+    inset: 0;
+    z-index: -5;
+    overflow: hidden;
+    pointer-events: none !important;
+}
+
+#themeOverlay,
+.widget-layer {
+    pointer-events: none !important;
+}
+
+.widget-layer * {
+    pointer-events: auto;
+}
+
+.content-layer {
+    position: relative;
+    z-index: 10;
 }
 
 
