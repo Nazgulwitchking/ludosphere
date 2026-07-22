@@ -1,42 +1,17 @@
 /* =========================================================
-    Themes Flächendeckend
-    ========================================================= */
-
-/* Stellt sicher, dass das Theme bis an den alleräußersten Rand reicht */
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100vh;
-    min-height: -webkit-fill-available; /* Wichtig für iOS Safari */
-    background-color: transparent;
-}
-
-/* Lässt den Hintergrund-Layer den gesamten Bildschirm abdecken */
-.background-layer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    height: 100dvh; /* Dynamische Viewport-Höhe für mobile Browser */
-    z-index: -10;
-}
-
-
-/* =========================================================
    1. NEUTRAL / STANDARD THEME
    ========================================================= */
 body.theme-neutral, body {
-    --bg-gradient: linear-gradient(180deg, #4f78db 0%, #66a5f7 50%, #78d2ff 100%);
+    --background-gradient: linear-gradient(180deg, #4f78db 0%, #66a5f7 50%, #78d2ff 100%);
     --card-bg: rgba(255, 255, 255, 0.25);
     --card-border: rgba(255, 255, 255, 0.4);
-    --text-color: #ffffff;
+    --text-main: #ffffff;
     --accent-color: #4f78db;
 }
 
+body.theme-neutral .background-layer,
 .background-layer.neutral {
-    background: var(--bg-gradient) !important;
+    background: var(--background-gradient) !important;
 }
 
 
@@ -44,18 +19,18 @@ body.theme-neutral, body {
    2. MITTERNACHTS-STIMMUNG 🌙
    ========================================================= */
 body.theme-midnight {
-    --bg-gradient: linear-gradient(180deg, #050b14 0%, #0a192f 60%, #112240 100%);
+    --background-gradient: linear-gradient(180deg, #050b14 0%, #0a192f 60%, #112240 100%);
     --card-bg: rgba(16, 30, 54, 0.55);
     --card-border: rgba(64, 153, 255, 0.25);
-    --text-color: #e6f1ff;
+    --text-main: #e6f1ff;
     --accent-color: #64ffda;
 }
 
+body.theme-midnight .background-layer,
 .background-layer.midnight {
-    background: var(--bg-gradient) !important;
+    background: var(--background-gradient) !important;
 }
 
-/* Sternenhimmel-Effekt via Radial-Gradients */
 .background-layer.midnight::before {
     content: '';
     position: absolute;
@@ -76,7 +51,6 @@ body.theme-midnight {
     100% { opacity: 0.8; }
 }
 
-/* Vollmond */
 .midnight-moon {
     position: fixed;
     top: 40px;
@@ -90,7 +64,6 @@ body.theme-midnight {
     z-index: -8;
 }
 
-/* Schloss-Silhouette unten */
 .midnight-castle {
     position: fixed;
     bottom: 0;
@@ -104,7 +77,6 @@ body.theme-midnight {
     opacity: 0.85;
 }
 
-/* Fliegende Fledermaus */
 .animated-bat {
     position: fixed;
     left: -60px;
@@ -124,7 +96,6 @@ body.theme-midnight {
     100% { transform: translateX(110vw) translateY(-40px); opacity: 0; }
 }
 
-/* Vorbeiziehende Wolke */
 .animated-cloud {
     position: fixed;
     top: 60px;
@@ -144,22 +115,23 @@ body.theme-midnight {
     0% { transform: translateX(0); }
     100% { transform: translateX(-120vw); }
 }
+
 /* =========================================================
    3. SUNNY STIMMUNG ☀️
    ========================================================= */
 body.theme-sunny {
-    --bg-gradient: linear-gradient(180deg, #38bdf8 0%, #0284c7 45%, #fde047 85%, #fef08a 100%);
+    --background-gradient: linear-gradient(180deg, #38bdf8 0%, #0284c7 45%, #fde047 85%, #fef08a 100%);
     --card-bg: rgba(255, 255, 255, 0.35);
     --card-border: rgba(255, 255, 255, 0.6);
-    --text-color: #0f172a;
+    --text-main: #0f172a;
     --accent-color: #0284c7;
 }
 
+body.theme-sunny .background-layer,
 .background-layer.sunny {
-    background: var(--bg-gradient) !important;
+    background: var(--background-gradient) !important;
 }
 
-/* Strahlende Sonne */
 .sunny-sun {
     position: fixed;
     top: 30px;
@@ -173,7 +145,6 @@ body.theme-sunny {
     z-index: -8;
 }
 
-/* Palmen-Silhouette unten */
 .sunny-beach {
     position: fixed;
     bottom: 0;
@@ -186,7 +157,6 @@ body.theme-sunny {
     z-index: -7;
 }
 
-/* Vorbeiziehende Möwe */
 .animated-seagull {
     position: fixed;
     left: -50px;
@@ -206,23 +176,22 @@ body.theme-sunny {
     100% { transform: translateX(110vw) translateY(-20px); opacity: 0; }
 }
 
-
 /* =========================================================
    4. CYBERPUNK CITY 🌆
    ========================================================= */
 body.theme-cyberpunk {
-    --bg-gradient: linear-gradient(180deg, #090514 0%, #170b2c 50%, #2b0938 100%);
+    --background-gradient: linear-gradient(180deg, #090514 0%, #170b2c 50%, #2b0938 100%);
     --card-bg: rgba(23, 11, 44, 0.7);
-    --card-border: rgba(236, 72, 153, 0.5); /* Neon-Pink */
-    --text-color: #00f0ff; /* Neon-Cyan */
+    --card-border: rgba(236, 72, 153, 0.5);
+    --text-main: #00f0ff;
     --accent-color: #ec4899;
 }
 
+body.theme-cyberpunk .background-layer,
 .background-layer.cyberpunk {
-    background: var(--bg-gradient) !important;
+    background: var(--background-gradient) !important;
 }
 
-/* Neon Grid am Boden */
 .cyberpunk-grid {
     position: fixed;
     bottom: -50px;
@@ -238,7 +207,6 @@ body.theme-cyberpunk {
     z-index: -8;
 }
 
-/* Skyline Silhouette mit Neon-Effekt */
 .cyberpunk-skyline {
     position: fixed;
     bottom: 60px;
@@ -252,7 +220,6 @@ body.theme-cyberpunk {
     filter: drop-shadow(0 -5px 10px rgba(236, 72, 153, 0.4));
 }
 
-/* Fallender Cyberpunk-Regen */
 .cyberpunk-rain {
     position: fixed;
     top: 0;
@@ -277,4 +244,25 @@ body.theme-cyberpunk {
     0% { transform: translateY(-20px); opacity: 0; }
     50% { opacity: 0.8; }
     100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* =========================================================
+   5. WEITERE THEMES
+   ========================================================= */
+body.theme-aurora { --background-gradient: linear-gradient(180deg, #021a20, #06434e, #1eb87e); }
+body.theme-sakura { --background-gradient: linear-gradient(180deg, #ffc8e4, #ffe0ef, #fff5fb); --text-main: #4a2138; }
+body.theme-galaxy { --background-gradient: linear-gradient(180deg, #05010f, #140d3a, #371f7d); }
+body.theme-lava { --background-gradient: linear-gradient(180deg, #250000, #690000, #ff4a00); }
+body.theme-forest { --background-gradient: linear-gradient(180deg, #07120b, #10301a, #246f36); }
+body.theme-winter { --background-gradient: linear-gradient(180deg, #d5eeff, #bde4ff, #8ecfff); --text-main: #0c314c; }
+body.theme-royal { --background-gradient: linear-gradient(180deg, #332300, #806100, #d8ba43); }
+
+body.theme-aurora .background-layer,
+body.theme-sakura .background-layer,
+body.theme-galaxy .background-layer,
+body.theme-lava .background-layer,
+body.theme-forest .background-layer,
+body.theme-winter .background-layer,
+body.theme-royal .background-layer {
+    background: var(--background-gradient) !important;
 }
