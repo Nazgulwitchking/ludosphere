@@ -17,25 +17,25 @@ body.theme-neutral .background-layer,
 
 
 /* =========================================================
-   THEME: MITTERNACHT (Fotorealistisch & Frosted Glass UI)
+   THEME: MIDNIGHT (Fotorealistisch mit Schloss & Mond)
    ========================================================= */
 
-/* 1. Hintergrund-Bildverknüpfung */
-.theme-midnight {
-    --primary-color: #0b1d3a;
-    --text-main: #ffffff;
-    --text-secondary: rgba(255, 255, 255, 0.7);
-}
-
-html.theme-midnight  {
+/* 1. Hintergrund-Bildverknüpfung NUR für Midnight */
+html.theme-midnight,
+body.theme-midnight {
     background: #081026 url('../assets/themes/midnight/bg.PNG') center center / cover no-repeat fixed !important;
 }
 
-body.theme-midnight  {
+/* 2. Verdeckende Layer im Midnight-Theme ausblenden */
+.theme-midnight #backgroundLayer,
+.theme-midnight .background-layer,
+#backgroundLayer.midnight,
+.background-layer.midnight {
     background: transparent !important;
+    display: none !important;
 }
 
-/* 2. Header-Styling (LUDOSPHERE Titel mit Stein-/Licht-Textur) */
+/* 3. Header-Styling (LUDOSPHERE Titel) */
 .theme-midnight .header-top h1 {
     font-weight: 900;
     letter-spacing: 2px;
@@ -47,78 +47,75 @@ body.theme-midnight  {
 
 /* Settings-Button */
 .theme-midnight #settingsBtn {
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
-/* 3. Suchleiste im Glas-Look */
+/* 4. Suchleiste im Glas-Look */
 .theme-midnight .search-container input {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1.5px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
     box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2),
                 0 8px 25px rgba(0, 0, 0, 0.3);
     color: #ffffff;
 }
 
 .theme-midnight .search-container input:focus {
-    border-color: #00d2ff;
-    box-shadow: 0 0 15px rgba(0, 210, 255, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    border-color: #00d2ff !important;
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.3) !important;
 }
 
-/* 4. Game-Cards (Frosted Glass mit kühlem blauen Leuchten an den Kanten) */
+/* 5. Game-Cards (Frosted Glass mit kühlem Leuchten an den Kanten) */
 .theme-midnight .game-card {
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border-radius: 24px;
-    
-    /* Der magische blaue Edge-Glow oben und unten */
+    background: rgba(255, 255, 255, 0.07) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border-radius: 24px !important;
     box-shadow: 
-        0 -2px 10px rgba(0, 210, 255, 0.35),   /* Blauer Schein oben */
-        0 2px 10px rgba(0, 210, 255, 0.25),    /* Blauer Schein unten */
-        inset 0 1px 1px rgba(255, 255, 255, 0.3), /* Innere Lichtkante */
-        0 10px 30px rgba(0, 0, 0, 0.4);          /* Tiefenschatten */
-        
+        0 -2px 10px rgba(0, 210, 255, 0.35),
+        0 2px 10px rgba(0, 210, 255, 0.25),
+        inset 0 1px 1px rgba(255, 255, 255, 0.3),
+        0 10px 30px rgba(0, 0, 0, 0.4) !important;
     transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .theme-midnight .game-card:active {
     transform: scale(0.96);
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.12) !important;
     box-shadow: 
         0 0 20px rgba(0, 210, 255, 0.6),
-        inset 0 1px 2px rgba(255, 255, 255, 0.5);
+        inset 0 1px 2px rgba(255, 255, 255, 0.5) !important;
 }
 
 .theme-midnight .game-title {
-    color: #ffffff;
+    color: #ffffff !important;
     font-weight: 700;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
-/* 5. Bottom Navigation Bar */
+/* 6. Bottom Navigation Bar */
 .theme-midnight .bottom-navigation {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1.5px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border-radius: 35px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(30px) !important;
+    -webkit-backdrop-filter: blur(30px) !important;
+    border-radius: 35px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
 }
 
-/* Aktiver Tab-Button in der Navigation */
 .theme-midnight .nav-btn.active {
-    background: rgba(255, 255, 255, 0.18);
-    color: #ffffff;
-    border: 1px solid rgba(0, 210, 255, 0.5);
-    box-shadow: 0 0 12px rgba(0, 210, 255, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.18) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(0, 210, 255, 0.5) !important;
+    box-shadow: 0 0 12px rgba(0, 210, 255, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.3) !important;
 }
+
 
 
 /* =========================================================
@@ -251,8 +248,4 @@ body.theme-cyberpunk .background-layer,
     0% { transform: translateY(-20px); opacity: 0; }
     50% { opacity: 0.8; }
     100% { transform: translateY(100vh); opacity: 0; }
-}
-/* Erfwingt das Midnight-Hintergrundbild für alle Zustände */
-html, body {
-    background: #081026 url('../assets/themes/midnight/bg.PNG') center center / cover no-repeat fixed !important;
 }
