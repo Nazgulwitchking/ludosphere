@@ -46,5 +46,17 @@
   "THEME_LAVA": "Lave",
   "THEME_FOREST": "Forêt magique",
   "THEME_WINTER": "Hiver",
-  "THEME_ROYAL": "Royaume"
+  "THEME_ROYAL": "Royaume",
+  "PROFILE_SETTINGS": "Paramètres du profil",
+  "LINK_ACCOUNT": "Lier un compte",
+  "ACCOUNT_TITLE": "Compte",
+  "AUTH_HEADING": "Se connecter ou s'inscrire",
+  "LOGIN_WITH_GOOGLE": "Se connecter avec Google",
+  "OR_EMAIL": "ou par e-mail",
+  "EMAIL_PLACEHOLDER": "Adresse e-mail",
+  "PASSWORD_PLACEHOLDER": "Mot de passe",
+  "BTN_LOGIN": "Se connecter",
+  "BTN_REGISTER": "S'inscrire",
+  "LOGGED_IN_AS": "Connecté en tant que :",
+  "BTN_LOGOUT": "Se déconnecter"
 }

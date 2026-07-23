@@ -46,5 +46,17 @@
   "THEME_LAVA": "Lav",
   "THEME_FOREST": "Büyülü Orman",
   "THEME_WINTER": "Kış",
-  "THEME_ROYAL": "Krallık"
+  "THEME_ROYAL": "Krallık",
+  "PROFILE_SETTINGS": "Profil Ayarları",
+  "LINK_ACCOUNT": "Hesabı Bağla",
+  "ACCOUNT_TITLE": "Hesap",
+  "AUTH_HEADING": "Giriş Yap veya Kaydol",
+  "LOGIN_WITH_GOOGLE": "Google ile Giriş Yap",
+  "OR_EMAIL": "veya e-posta ile",
+  "EMAIL_PLACEHOLDER": "E-posta Adresi",
+  "PASSWORD_PLACEHOLDER": "Şifre",
+  "BTN_LOGIN": "Giriş Yap",
+  "BTN_REGISTER": "Kaydol",
+  "LOGGED_IN_AS": "Giriş yapan kullanıcı:",
+  "BTN_LOGOUT": "Çıkış Yap"
 }

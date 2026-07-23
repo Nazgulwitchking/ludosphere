@@ -46,5 +46,17 @@
   "THEME_LAVA": "Лава",
   "THEME_FOREST": "Вошебный лес",
   "THEME_WINTER": "Зима",
-  "THEME_ROYAL": "Королевство"
+  "THEME_ROYAL": "Королевство",
+  "PROFILE_SETTINGS": "Настройки профиля",
+  "LINK_ACCOUNT": "Привязать аккаунт",
+  "ACCOUNT_TITLE": "Аккаунт",
+  "AUTH_HEADING": "Войти или зарегистрироваться",
+  "LOGIN_WITH_GOOGLE": "Войти через Google",
+  "OR_EMAIL": "или по электронной почте",
+  "EMAIL_PLACEHOLDER": "Электронная почта",
+  "PASSWORD_PLACEHOLDER": "Пароль",
+  "BTN_LOGIN": "Войти",
+  "BTN_REGISTER": "Регистрация",
+  "LOGGED_IN_AS": "Вы вошли как:",
+  "BTN_LOGOUT": "Выйти"
 }

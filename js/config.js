@@ -27,6 +27,9 @@ const CONFIG = {
 
     DEBUG_MODE: true,
 
+    /* SUPABASE BACKEND */
+    supabaseUrl: "https://bwxuopknccekrbcctork.supabase.co",
+    supabaseKey: "sb_publishable_IiprMj_mDxtE2cvQ_WlZvg_aFx2rAe0=",
 
     /*
     =========================================================

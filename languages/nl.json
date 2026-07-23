@@ -46,6 +46,18 @@
   "THEME_LAVA": "Lava",
   "THEME_FOREST": "Betoverd bos",
   "THEME_WINTER": "Winter",
-  "THEME_ROYAL": "Koninkrijk"
+  "THEME_ROYAL": "Koninkrijk",
+  "PROFILE_SETTINGS": "Profielinstellingen",
+  "LINK_ACCOUNT": "Account koppelen",
+  "ACCOUNT_TITLE": "Account",
+  "AUTH_HEADING": "Inloggen of registreren",
+  "LOGIN_WITH_GOOGLE": "Inloggen met Google",
+  "OR_EMAIL": "of via e-mail",
+  "EMAIL_PLACEHOLDER": "E-mailadres",
+  "PASSWORD_PLACEHOLDER": "Wachtwoord",
+  "BTN_LOGIN": "Inloggen",
+  "BTN_REGISTER": "Registreren",
+  "LOGGED_IN_AS": "Ingelogd als:",
+  "BTN_LOGOUT": "Uitloggen"
 }
 

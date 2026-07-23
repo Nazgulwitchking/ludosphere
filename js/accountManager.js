@@ -1,135 +1,203 @@
-const AccountManager = {
+/*
+=========================================================
+LUDOSPHERE ACCOUNT MANAGER (Supabase + Google Login)
+=========================================================
+*/
 
+const AccountManager = {
+    supabase: null,
     currentUser: null,
 
     init() {
-
-        console.log(
-            "[AccountManager] Initialized"
-        );
-
-        this.loadLocalUser();
-
-    },
-
-    loadLocalUser() {
-
-        this.currentUser =
-            StorageManager.get(
-                "user",
-                null
+        if (typeof supabase !== "undefined" && window.supabase) {
+            this.supabase = window.supabase.createClient(
+                CONFIG.supabaseUrl,
+                CONFIG.supabaseKey
             );
-
-    },
-
-    isLoggedIn() {
-
-        return this.currentUser !== null;
-
-    },
-
-    getUser() {
-
-        return this.currentUser;
-
-    },
-
-    login(userData) {
-
-        this.currentUser = {
-
-            id: userData.id,
-
-            name: userData.name,
-
-            email: userData.email,
-
-            provider: userData.provider,
-
-            createdAt: Date.now()
-
-        };
-
-        StorageManager.set(
-            "user",
-            this.currentUser
-        );
-
-        console.log(
-            "[AccountManager] Login successful"
-        );
-
-    },
-
-    logout() {
-
-        this.currentUser = null;
-
-        StorageManager.remove(
-            "user"
-        );
-
-        console.log(
-            "[AccountManager] Logout"
-        );
-
-    },
-
-    saveCloudData() {
-
-        if(!this.isLoggedIn()) {
-
-            return;
-
+            console.log("[AccountManager] Supabase Client initialized");
+            
+            this.checkSession();
+            this.listenToAuthChanges();
+        } else {
+            console.error("[AccountManager] Supabase SDK nicht geladen!");
         }
 
-        const cloudData = {
+        this.setupUIEvents();
+    },
 
-            settings:
-                StorageManager.get(
-                    "settings",
-                    {}
-                ),
+    async checkSession() {
+        if (!this.supabase) return;
 
-            myGames:
-                StorageManager.get(
-                    "myGames",
-                    []
-                ),
+        const { data: { session }, error } = await this.supabase.auth.getSession();
+        if (error) {
+            console.error("[AccountManager] Fehler beim Laden der Session:", error.message);
+            return;
+        }
 
-            language:
-                StorageManager.get(
-                    "language",
-                    APP_CONFIG.defaultLanguage
-                ),
+        if (session) {
+            this.currentUser = session.user;
+            this.updateUILoggedIn(session.user);
+        } else {
+            this.updateUILoggedOut();
+        }
+    },
 
-            theme:
-                StorageManager.get(
-                    "theme",
-                    APP_CONFIG.defaultTheme
-                )
+    listenToAuthChanges() {
+        if (!this.supabase) return;
 
-        };
-
-        console.log(
-            "[AccountManager] Cloud Sync",
-            cloudData
-        );
-
-        /*
-        Später:
-
-        fetch(
-            API_URL + "/sync",
-            {
-                method: "POST",
-                body: JSON.stringify(
-                    cloudData
-                )
+        this.supabase.auth.onAuthStateChange((event, session) => {
+            if (event === "SIGNED_IN" && session) {
+                this.currentUser = session.user;
+                this.updateUILoggedIn(session.user);
+            } else if (event === "SIGNED_OUT") {
+                this.currentUser = null;
+                this.updateUILoggedOut();
             }
-        )
-        */
+        });
+    },
 
+    // 🔴 Google-Login Funktion
+    async signInWithGoogle() {
+        if (!this.supabase) return;
+
+        const { data, error } = await this.supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                redirectTo: window.location.origin
+            }
+        });
+
+        if (error) {
+            alert("Google-Login fehlgeschlagen: " + error.message);
+        }
+    },
+
+    // Registrierung per E-Mail & Passwort
+    async signUp(email, password) {
+        if (!this.supabase) return;
+
+        const { data, error } = await this.supabase.auth.signUp({
+            email: email,
+            password: password
+        });
+
+        if (error) {
+            alert("Registrierung fehlgeschlagen: " + error.message);
+            return;
+        }
+
+        alert("Registrierung erfolgreich! Bitte überprüfe deine E-Mails zur Bestätigung.");
+    },
+
+    // Login per E-Mail & Passwort
+    async signIn(email, password) {
+        if (!this.supabase) return;
+
+        const { data, error } = await this.supabase.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+
+        if (error) {
+            alert("Login fehlgeschlagen: " + error.message);
+            return;
+        }
+
+        this.closeAccountOverlay();
+    },
+
+    // Abmelden
+    async signOut() {
+        if (!this.supabase) return;
+
+        const { error } = await this.supabase.auth.signOut();
+        if (error) {
+            alert("Fehler beim Abmelden: " + error.message);
+        } else {
+            this.closeAccountOverlay();
+        }
+    },
+
+    setupUIEvents() {
+        const linkAccountBtn = document.getElementById("linkAccountBtn");
+        const accountOverlay = document.getElementById("accountOverlayModal");
+        const backFromAccountBtn = document.getElementById("backFromAccountBtn");
+
+        if (linkAccountBtn && accountOverlay) {
+            linkAccountBtn.addEventListener("click", () => {
+                accountOverlay.classList.remove("hidden");
+            });
+        }
+
+        if (backFromAccountBtn && accountOverlay) {
+            backFromAccountBtn.addEventListener("click", () => {
+                this.closeAccountOverlay();
+            });
+        }
+
+        // Event listener für Google-Button
+        const googleBtn = document.getElementById("googleLoginBtn");
+        if (googleBtn) {
+            googleBtn.addEventListener("click", () => {
+                this.signInWithGoogle();
+            });
+        }
+
+        // Formular-Submit: Login & Registrierung
+        const authForm = document.getElementById("authForm");
+        if (authForm) {
+            authForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const email = document.getElementById("authEmail").value;
+                const password = document.getElementById("authPassword").value;
+                const action = e.submitter ? e.submitter.value : "login";
+
+                if (action === "register") {
+                    this.signUp(email, password);
+                } else {
+                    this.signIn(email, password);
+                }
+            });
+        }
+
+        const logoutBtn = document.getElementById("logoutBtn");
+        if (logoutBtn) {
+            logoutBtn.addEventListener("click", () => {
+                this.signOut();
+            });
+        }
+    },
+
+    closeAccountOverlay() {
+        const accountOverlay = document.getElementById("accountOverlayModal");
+        if (accountOverlay) {
+            accountOverlay.classList.add("hidden");
+        }
+    },
+
+    updateUILoggedIn(user) {
+        const accountStatusText = document.getElementById("accountStatusText");
+        const authSection = document.getElementById("authSection");
+        const userSection = document.getElementById("userSection");
+        const userEmailDisplay = document.getElementById("userEmailDisplay");
+
+        if (accountStatusText) accountStatusText.textContent = "Aktiv";
+        if (authSection) authSection.style.display = "none";
+        if (userSection) userSection.style.display = "block";
+        if (userEmailDisplay) userEmailDisplay.textContent = user.email;
+    },
+
+    updateUILoggedOut() {
+        const accountStatusText = document.getElementById("accountStatusText");
+        const authSection = document.getElementById("authSection");
+        const userSection = document.getElementById("userSection");
+
+        if (accountStatusText) accountStatusText.textContent = "Nicht verknüpft";
+        if (authSection) authSection.style.display = "block";
+        if (userSection) userSection.style.display = "none";
     }
-
 };
+
+document.addEventListener("DOMContentLoaded", () => {
+    AccountManager.init();
+});
