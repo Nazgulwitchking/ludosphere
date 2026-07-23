@@ -1,6 +1,6 @@
-const CACHE_NAME = "ludosphere-cache-v2";
+// ACHTUNG: Bei jedem neuen Release diesen Cache-Namen hochzählen! (z.B. v3, v4...)
+const CACHE_NAME = "ludosphere-cache-v3";
 
-// Exakt die gleichen Pfade wie in der index.html (OHNE ./ oder /)
 const CORE_FILES = [
     "index.html",
     "css/core.css",
@@ -23,13 +23,11 @@ const CORE_FILES = [
     "languages/en.json"
 ];
 
-// INSTALL
+// INSTALL (Nicht sofort skipWaiting rufen, sondern auf Signal warten!)
 self.addEventListener("install", event => {
-    console.log("[PWA] Service Worker installiert");
-    self.skipWaiting();
+    console.log("[PWA] Service Worker installiert new version");
     event.waitUntil(
         caches.open(CACHE_NAME).then(cache => {
-            // Caches alle Dateien einzeln abfangen, damit nicht ein einzelner Fehler alles abbricht
             return Promise.allSettled(
                 CORE_FILES.map(file => cache.add(file))
             );
@@ -37,8 +35,16 @@ self.addEventListener("install", event => {
     );
 });
 
+// MESSAGES (Signale vom UpdateManager empfangen)
+self.addEventListener("message", event => {
+    if (event.data && event.data.type === "SKIP_WAITING") {
+        self.skipWaiting();
+    }
+});
+
 // AKTIVIEREN + ALTE CACHES LÖSCHEN
 self.addEventListener("activate", event => {
+    console.log("[PWA] Service Worker aktiviert");
     event.waitUntil(
         caches.keys().then(cacheNames => {
             return Promise.all(
@@ -50,13 +56,11 @@ self.addEventListener("activate", event => {
                 })
             );
         })
-    );
-    self.clients.claim();
+    ).then(() => self.clients.claim());
 });
 
 // FETCH SYSTEM (Cache First, dann Network Fallback)
 self.addEventListener("fetch", event => {
-    // Nur GET-Anfragen cachen
     if (event.request.method !== "GET") return;
 
     event.respondWith(
@@ -66,6 +70,8 @@ self.addEventListener("fetch", event => {
             }
             return fetch(event.request).then(networkResponse => {
                 return networkResponse;
+            }).catch(() => {
+                // Offline-Handling falls Netzwerk fehlschlägt
             });
         })
     );
