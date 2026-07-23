@@ -41,7 +41,7 @@
 
 </head>
 
-<body >
+<body>
 
     <div id="backgroundLayer"
          class="background-layer"
@@ -346,23 +346,24 @@
     </section>
 
 
-    <div id="settingsOverlay" class="full-overlay hidden">
-        <div class="overlay-header">
-            <h2 class="overlay-title" data-i18n="SETTINGS_TITLE">Einstellungen</h2>
-            <button id="closeSettingsBtn" class="overlay-close-btn" aria-label="Schließen">&times;</button>
+    <div id="settingsOverlay" class="full-overlay hidden" style="background-color: #121214 !important; backdrop-filter: none !important;">
+        <div class="overlay-header" style="display: flex; align-items: center; justify-content: space-between; position: relative;">
+            <div style="width: 40px;"></div>
+            <h2 class="overlay-title" data-i18n="SETTINGS_TITLE" style="font-size: 22px; font-weight: 700; text-align: center; margin: 0; flex-grow: 1;">Einstellungen</h2>
+            <button id="closeSettingsBtn" class="overlay-close-btn" aria-label="Schließen" style="width: 40px; font-size: 24px;">&times;</button>
         </div>
 
         <div class="overlay-body">
             <div class="profile-avatar-container">
-                <div class="profile-avatar-placeholder">
+                <div class="profile-avatar-placeholder" style="background-color: #2c2c2e;">
                     <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
-                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                     </svg>
                 </div>
             </div>
 
             <div class="settings-menu-group">
-                <button class="settings-menu-item disabled">
+                <button class="settings-menu-item disabled" style="background-color: #1c1c1e !important; border: 1px solid #2c2c2e !important; color: #ffffff !important;">
                     <div class="item-left">
                         <span class="item-icon">👤</span>
                         <span class="item-label" data-i18n="PROFILE_SETTINGS">Profil Einstellungen</span>
@@ -370,7 +371,7 @@
                     <span class="chevron">›</span>
                 </button>
 
-                <button class="settings-menu-item disabled">
+                <button class="settings-menu-item disabled" style="background-color: #1c1c1e !important; border: 1px solid #2c2c2e !important; color: #ffffff !important;">
                     <div class="item-left">
                         <span class="item-icon">🔗</span>
                         <span class="item-label" data-i18n="LINK_ACCOUNT">Konto verknüpfen</span>
@@ -378,7 +379,7 @@
                     <span class="chevron">›</span>
                 </button>
 
-                <button id="languageOptionBtn" class="settings-menu-item">
+                <button id="languageOptionBtn" class="settings-menu-item" style="background-color: #1c1c1e !important; border: 1px solid #2c2c2e !important; color: #ffffff !important;">
                     <div class="item-left">
                         <span class="item-icon">🌐</span>
                         <span class="item-label" data-i18n="CHANGE_LANGUAGE">Sprache wechseln</span>
@@ -389,7 +390,7 @@
                     </div>
                 </button>
 
-                <button id="themeOptionBtn" class="settings-menu-item">
+                <button id="themeOptionBtn" class="settings-menu-item" style="background-color: #1c1c1e !important; border: 1px solid #2c2c2e !important; color: #ffffff !important;">
                     <div class="item-left">
                         <span class="item-icon">🎨</span>
                         <span class="item-label" data-i18n="APP_DESIGN">App Design</span>
@@ -403,89 +404,109 @@
         </div>
     </div>
 
-    <div id="languageOverlayModal" class="full-overlay hidden">
-        <div class="overlay-header">
-            <button id="backFromLanguagesBtn" class="overlay-back-btn">‹ Zurück</button>
-            <h2 class="overlay-title" data-i18n="CHANGE_LANGUAGE">Sprache wählen</h2>
+    <div id="languageOverlayModal" class="full-overlay hidden" style="background-color: #121214 !important; backdrop-filter: none !important;">
+        <div class="overlay-header" style="display: flex; align-items: center; justify-content: space-between; position: relative;">
+            <button id="backFromLanguagesBtn" class="overlay-back-btn" style="width: auto; font-size: 16px;">‹ Zurück</button>
+            <h2 class="overlay-title" data-i18n="CHANGE_LANGUAGE" style="font-size: 22px; font-weight: 700; text-align: center; margin: 0; flex-grow: 1;">Sprache wählen</h2>
             <div style="width: 60px;"></div>
         </div>
 
         <div class="overlay-body">
             <div class="option-list">
-                <button class="select-option-btn active" data-lang="de">
+                <button class="select-option-btn lang-option-btn active" data-lang="de" style="background-color: #1c1c1e; border: 1px solid #2c2c2e; color: #ffffff;">
                     <span>Deutsch</span>
                     <span class="check-icon">✓</span>
                 </button>
-                <button class="select-option-btn" data-lang="en">
+                <button class="select-option-btn lang-option-btn" data-lang="en" style="background-color: #1c1c1e; border: 1px solid #2c2c2e; color: #ffffff;">
                     <span>English</span>
                     <span class="check-icon">✓</span>
                 </button>
-                <button class="select-option-btn" data-lang="es">
+                <button class="select-option-btn lang-option-btn" data-lang="es" style="background-color: #1c1c1e; border: 1px solid #2c2c2e; color: #ffffff;">
                     <span>Español</span>
                     <span class="check-icon">✓</span>
                 </button>
-                <button class="select-option-btn" data-lang="fr">
+                <button class="select-option-btn lang-option-btn" data-lang="fr" style="background-color: #1c1c1e; border: 1px solid #2c2c2e; color: #ffffff;">
                     <span>Français</span>
                     <span class="check-icon">✓</span>
                 </button>
-                <button class="select-option-btn" data-lang="it">
+                <button class="select-option-btn lang-option-btn" data-lang="it" style="background-color: #1c1c1e; border: 1px solid #2c2c2e; color: #ffffff;">
                     <span>Italiano</span>
+                    <span class="check-icon">✓</span>
+                </button>
+                <button class="select-option-btn lang-option-btn" data-lang="nl" style="background-color: #1c1c1e; border: 1px solid #2c2c2e; color: #ffffff;">
+                    <span>Nederlands</span>
+                    <span class="check-icon">✓</span>
+                </button>
+                <button class="select-option-btn lang-option-btn" data-lang="pl" style="background-color: #1c1c1e; border: 1px solid #2c2c2e; color: #ffffff;">
+                    <span>Polski</span>
+                    <span class="check-icon">✓</span>
+                </button>
+                <button class="select-option-btn lang-option-btn" data-lang="pt" style="background-color: #1c1c1e; border: 1px solid #2c2c2e; color: #ffffff;">
+                    <span>Português</span>
+                    <span class="check-icon">✓</span>
+                </button>
+                <button class="select-option-btn lang-option-btn" data-lang="ru" style="background-color: #1c1c1e; border: 1px solid #2c2c2e; color: #ffffff;">
+                    <span>Русский</span>
+                    <span class="check-icon">✓</span>
+                </button>
+                <button class="select-option-btn lang-option-btn" data-lang="tr" style="background-color: #1c1c1e; border: 1px solid #2c2c2e; color: #ffffff;">
+                    <span>Türkçe</span>
                     <span class="check-icon">✓</span>
                 </button>
             </div>
         </div>
     </div>
 
-    <div id="themeOverlayModal" class="full-overlay hidden">
-        <div class="overlay-header">
-            <button id="backFromThemesBtn" class="overlay-back-btn">‹ Zurück</button>
-            <h2 class="overlay-title" data-i18n="APP_DESIGN">App Design</h2>
+    <div id="themeOverlayModal" class="full-overlay hidden" style="background-color: #121214 !important; backdrop-filter: none !important;">
+        <div class="overlay-header" style="display: flex; align-items: center; justify-content: space-between; position: relative;">
+            <button id="backFromThemesBtn" class="overlay-back-btn" style="width: auto; font-size: 16px;">‹ Zurück</button>
+            <h2 class="overlay-title" data-i18n="APP_DESIGN" style="font-size: 22px; font-weight: 700; text-align: center; margin: 0; flex-grow: 1;">App Design</h2>
             <div style="width: 60px;"></div>
         </div>
 
         <div class="overlay-body">
             <div class="option-list">
-                <button class="select-option-btn theme-option-btn active" data-theme="neutral">
+                <button class="select-option-btn theme-option-btn active" data-theme="neutral" style="background-color: #1c1c1e; border: 1px solid #2c2c2e; color: #ffffff;">
                     <span data-i18n="THEME_NEUTRAL">Standard (Neutral)</span>
                     <span class="check-icon">✓</span>
                 </button>
-                <button class="select-option-btn theme-option-btn" data-theme="midnight">
+                <button class="select-option-btn theme-option-btn" data-theme="midnight" style="background-color: #1c1c1e; border: 1px solid #2c2c2e; color: #ffffff;">
                     <span data-i18n="THEME_MIDNIGHT">Mitternacht</span>
                     <span class="check-icon">✓</span>
                 </button>
-                <button class="select-option-btn theme-option-btn" data-theme="sunny">
+                <button class="select-option-btn theme-option-btn" data-theme="sunny" style="background-color: #1c1c1e; border: 1px solid #2c2c2e; color: #ffffff;">
                     <span data-i18n="THEME_SUNNY">Sonnig</span>
                     <span class="check-icon">✓</span>
                 </button>
-                <button class="select-option-btn theme-option-btn" data-theme="cyberpunk">
+                <button class="select-option-btn theme-option-btn" data-theme="cyberpunk" style="background-color: #1c1c1e; border: 1px solid #2c2c2e; color: #ffffff;">
                     <span data-i18n="THEME_CYBERPUNK">Cyberpunk</span>
                     <span class="check-icon">✓</span>
                 </button>
-                <button class="select-option-btn theme-option-btn" data-theme="aurora">
+                <button class="select-option-btn theme-option-btn" data-theme="aurora" style="background-color: #1c1c1e; border: 1px solid #2c2c2e; color: #ffffff;">
                     <span data-i18n="THEME_AURORA">Polarlicht</span>
                     <span class="check-icon">✓</span>
                 </button>
-                <button class="select-option-btn theme-option-btn" data-theme="sakura">
+                <button class="select-option-btn theme-option-btn" data-theme="sakura" style="background-color: #1c1c1e; border: 1px solid #2c2c2e; color: #ffffff;">
                     <span data-i18n="THEME_SAKURA">Kirschblüte</span>
                     <span class="check-icon">✓</span>
                 </button>
-                <button class="select-option-btn theme-option-btn" data-theme="galaxy">
+                <button class="select-option-btn theme-option-btn" data-theme="galaxy" style="background-color: #1c1c1e; border: 1px solid #2c2c2e; color: #ffffff;">
                     <span data-i18n="THEME_GALAXY">Galaxie</span>
                     <span class="check-icon">✓</span>
                 </button>
-                <button class="select-option-btn theme-option-btn" data-theme="lava">
+                <button class="select-option-btn theme-option-btn" data-theme="lava" style="background-color: #1c1c1e; border: 1px solid #2c2c2e; color: #ffffff;">
                     <span data-i18n="THEME_LAVA">Lava</span>
                     <span class="check-icon">✓</span>
                 </button>
-                <button class="select-option-btn theme-option-btn" data-theme="forest">
+                <button class="select-option-btn theme-option-btn" data-theme="forest" style="background-color: #1c1c1e; border: 1px solid #2c2c2e; color: #ffffff;">
                     <span data-i18n="THEME_FOREST">Zauberwald</span>
                     <span class="check-icon">✓</span>
                 </button>
-                <button class="select-option-btn theme-option-btn" data-theme="winter">
+                <button class="select-option-btn theme-option-btn" data-theme="winter" style="background-color: #1c1c1e; border: 1px solid #2c2c2e; color: #ffffff;">
                     <span data-i18n="THEME_WINTER">Winter</span>
                     <span class="check-icon">✓</span>
                 </button>
-                <button class="select-option-btn theme-option-btn" data-theme="royal">
+                <button class="select-option-btn theme-option-btn" data-theme="royal" style="background-color: #1c1c1e; border: 1px solid #2c2c2e; color: #ffffff;">
                     <span data-i18n="THEME_ROYAL">Königreich</span>
                     <span class="check-icon">✓</span>
                 </button>
