@@ -10,40 +10,32 @@ permissions:
   pages: write
   id-token: write
 
+# Verhindert, dass sich zwei Builds überschneiden
 concurrency:
   group: "pages"
   cancel-in-progress: true
 
 jobs:
-  # JOB 1: Erhöht die Version
-  bump-version:
-    # Verhindert Endlosschleifen, falls der Commit von der Action selbst stammt
-    if: "!contains(github.event.head_commit.message, 'skip ci') && !contains(github.event.head_commit.message, 'bump version')"
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Bump Version
+      # Erhöht die Version in der Laufzeit für das Deployment
+      - name: Bump Version (Build Only)
         uses: phips28/gh-action-bump-version@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          minor-wording: 'add,refs,feat'
-          major-wording: 'MAJOR,cut'
-          patch-wording: 'fix,patch'
-          rc-wording: 'RELEASE,alpha'
-          commit-message: 'chore(release): bump version [skip ci]'
-
-  # JOB 2: Deploy auf GitHub Pages
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+          skip-tag: 'true'
+          skip-push: 'true'
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
