@@ -3,8 +3,6 @@ name: Version and Deploy
 on:
   push:
     branches: ["main"]
-
-  # Erlaubt das manuelle Starten über GitHub
   workflow_dispatch:
 
 permissions:
@@ -14,17 +12,20 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
-  # JOB 1: Auto-Versionierung
+  # JOB 1: Erhöht die Version
   bump-version:
+    # Verhindert Endlosschleifen, falls der Commit von der Action selbst stammt
+    if: "!contains(github.event.head_commit.message, 'skip ci') && !contains(github.event.head_commit.message, 'bump version')"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Bump Version
         uses: phips28/gh-action-bump-version@master
@@ -35,13 +36,10 @@ jobs:
           major-wording: 'MAJOR,cut'
           patch-wording: 'fix,patch'
           rc-wording: 'RELEASE,alpha'
+          commit-message: 'chore(release): bump version [skip ci]'
 
-  # JOB 2: Deployment zu GitHub Pages (Startet ERST nach der Versionierung)
+  # JOB 2: Deploy auf GitHub Pages
   deploy:
-    needs: bump-version
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
