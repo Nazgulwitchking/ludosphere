@@ -201,3 +201,50 @@ const AccountManager = {
 document.addEventListener("DOMContentLoaded", () => {
     AccountManager.init();
 });
+
+// UI-Steuerung für die Auswahl zwischen Login und Registrierung
+document.addEventListener("DOMContentLoaded", () => {
+    const choiceStep = document.getElementById("authChoiceStep");
+    const formStep = document.getElementById("authFormStep");
+    
+    const showLoginBtn = document.getElementById("showLoginChoiceBtn");
+    const showRegisterBtn = document.getElementById("showRegisterChoiceBtn");
+    const backToChoiceBtn = document.getElementById("backToAuthChoiceBtn");
+    
+    const authSubmitBtn = document.getElementById("authSubmitBtn");
+    const authFormTitle = document.getElementById("authFormTitle");
+
+    // Wechsel zu Anmelden Formular
+    if (showLoginBtn) {
+        showLoginBtn.addEventListener("click", () => {
+            choiceStep.style.display = "none";
+            formStep.style.display = "block";
+            
+            authSubmitBtn.value = "login";
+            authSubmitBtn.textContent = "Anmelden";
+            authSubmitBtn.style.backgroundColor = "#34c759";
+            if (authFormTitle) authFormTitle.textContent = "Anmelden";
+        });
+    }
+
+    // Wechsel zu Registrieren Formular
+    if (showRegisterBtn) {
+        showRegisterBtn.addEventListener("click", () => {
+            choiceStep.style.display = "none";
+            formStep.style.display = "block";
+            
+            authSubmitBtn.value = "register";
+            authSubmitBtn.textContent = "Registrieren";
+            authSubmitBtn.style.backgroundColor = "#0a84ff";
+            if (authFormTitle) authFormTitle.textContent = "Registrieren";
+        });
+    }
+
+    // Zurück zur Auswahl
+    if (backToChoiceBtn) {
+        backToChoiceBtn.addEventListener("click", () => {
+            formStep.style.display = "none";
+            choiceStep.style.display = "flex";
+        });
+    }
+});

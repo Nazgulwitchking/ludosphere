@@ -409,39 +409,64 @@
 
    <div id="accountOverlayModal" class="full-overlay hidden" style="background-color: #121214; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; overflow-y: auto;">
     
-    <div class="overlay-header" style="display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid #1c1c1e;">
-        <button id="backFromAccountBtn" style="background: none; border: none; color: #0a84ff; font-size: 17px; font-weight: 500; cursor: pointer; padding: 0;">‹ Zurück</button>
-        <h2 data-i18n="ACCOUNT_TITLE" style="font-size: 18px; font-weight: 600; margin: 0; text-align: center; flex-grow: 1;">Konto</h2>
-        <div style="width: 50px;"></div> </div>
+    <div class="overlay-header" style="display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid #1c1c1e;">
+        <button id="backFromAccountBtn" style="background: none; border: none; color: #0a84ff; font-size: 18px; font-weight: 500; cursor: pointer; padding: 0;">‹ Zurück</button>
+        <h2 data-i18n="ACCOUNT_TITLE" style="font-size: 20px; font-weight: 600; margin: 0; text-align: center; flex-grow: 1;">Konto</h2>
+        <div style="width: 60px;"></div>
+    </div>
 
-    <div class="overlay-body" style="padding: 24px 20px; max-width: 400px; margin: 0 auto; box-sizing: border-box;">
+    <div class="overlay-body" style="padding: 36px 24px; max-width: 520px; margin: 0 auto; box-sizing: border-box;">
         
         <div id="authSection">
-            <h3 data-i18n="AUTH_HEADING" style="margin: 0 0 20px 0; font-size: 20px; font-weight: 700; text-align: center; color: #ffffff;">Anmelden oder Registrieren</h3>
+            <h3 data-i18n="AUTH_HEADING" style="margin: 0 0 28px 0; font-size: 24px; font-weight: 700; text-align: center; color: #ffffff;">Willkommen</h3>
 
-            <button id="googleLoginBtn" type="button" style="width: 100%; height: 50px; background-color: #ffffff; color: #000000; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 24px; cursor: pointer;">
-                <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="20" height="20" alt="Google">
-                <span data-i18n="LOGIN_WITH_GOOGLE">Mit Google anmelden</span>
-            </button>
+            <div id="authChoiceStep" style="display: flex; flex-direction: column; gap: 16px;">
+                <button id="showLoginChoiceBtn" type="button" style="width: 100%; height: 56px; background-color: #34c759; color: #ffffff; border: none; border-radius: 14px; font-size: 18px; font-weight: 600; cursor: pointer;">
+                    Anmelden
+                </button>
+                <button id="showRegisterChoiceBtn" type="button" style="width: 100%; height: 56px; background-color: #0a84ff; color: #ffffff; border: none; border-radius: 14px; font-size: 18px; font-weight: 600; cursor: pointer;">
+                    Registrieren
+                </button>
 
-            <div style="display: flex; align-items: center; margin-bottom: 24px;">
-                <div style="flex: 1; height: 1px; background: #2c2c2e;"></div>
-                <span data-i18n="OR_EMAIL" style="padding: 0 12px; color: #8e8e93; font-size: 13px; text-transform: uppercase;">oder per E-Mail</span>
-                <div style="flex: 1; height: 1px; background: #2c2c2e;"></div>
+                <div style="display: flex; align-items: center; margin: 12px 0;">
+                    <div style="flex: 1; height: 1px; background: #2c2c2e;"></div>
+                    <span data-i18n="OR_LABEL" style="padding: 0 16px; color: #8e8e93; font-size: 14px; text-transform: uppercase;">oder</span>
+                    <div style="flex: 1; height: 1px; background: #2c2c2e;"></div>
+                </div>
+
+                <button id="googleLoginBtn" type="button" style="width: 100%; height: 56px; background-color: #ffffff; color: #000000; border: none; border-radius: 14px; font-size: 17px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 12px; cursor: pointer;">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="22" height="22" alt="Google">
+                    <span data-i18n="LOGIN_WITH_GOOGLE">Mit Google fortfahren</span>
+                </button>
             </div>
 
-            <form id="authForm" style="display: flex; flex-direction: column; gap: 14px;">
-                <input type="email" id="authEmail" placeholder="E-Mail Adresse" data-i18n-placeholder="EMAIL_PLACEHOLDER" required style="width: 100%; height: 50px; padding: 0 16px; border-radius: 12px; border: 1px solid #2c2c2e; background: #1c1c1e; color: #ffffff; font-size: 16px; outline: none; box-sizing: border-box;">
-                
-                <input type="password" id="authPassword" placeholder="Passwort" data-i18n-placeholder="PASSWORD_PLACEHOLDER" required style="width: 100%; height: 50px; padding: 0 16px; border-radius: 12px; border: 1px solid #2c2c2e; background: #1c1c1e; color: #ffffff; font-size: 16px; outline: none; box-sizing: border-box;">
-                
-                <div style="display: flex; gap: 12px; margin-top: 10px;">
-                    <button type="submit" name="action" value="login" data-i18n="BTN_LOGIN" style="flex: 1; height: 48px; background-color: #34c759; color: #ffffff; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer;">Anmelden</button>
-                    <button type="submit" name="action" value="register" data-i18n="BTN_REGISTER" style="flex: 1; height: 48px; background-color: #0a84ff; color: #ffffff; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer;">Registrieren</button>
+            <div id="authFormStep" style="display: none;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+                    <button id="backToAuthChoiceBtn" type="button" style="background: none; border: none; color: #0a84ff; font-size: 16px; font-weight: 500; cursor: pointer; padding: 0;">‹ Option wählen</button>
+                    <span id="authFormTitle" style="font-size: 16px; font-weight: 600; color: #8e8e93;">Anmelden</span>
                 </div>
-            </form>
+
+                <form id="authForm" style="display: flex; flex-direction: column; gap: 16px;">
+                    <input type="email" id="authEmail" placeholder="E-Mail Adresse" data-i18n-placeholder="EMAIL_PLACEHOLDER" required style="width: 100%; height: 56px; padding: 0 18px; border-radius: 14px; border: 1px solid #2c2c2e; background: #1c1c1e; color: #ffffff; font-size: 17px; outline: none; box-sizing: border-box;">
+                    
+                    <input type="password" id="authPassword" placeholder="Passwort" data-i18n-placeholder="PASSWORD_PLACEHOLDER" required style="width: 100%; height: 56px; padding: 0 18px; border-radius: 14px; border: 1px solid #2c2c2e; background: #1c1c1e; color: #ffffff; font-size: 17px; outline: none; box-sizing: border-box;">
+                    
+                    <button type="submit" id="authSubmitBtn" name="action" value="login" style="width: 100%; height: 56px; background-color: #34c759; color: #ffffff; border: none; border-radius: 14px; font-size: 18px; font-weight: 600; cursor: pointer; margin-top: 8px;">
+                        Anmelden
+                    </button>
+                </form>
+            </div>
+
         </div>
 
+        <div id="userSection" style="display: none; text-align: center; padding-top: 20px;">
+            <p data-i18n="LOGGED_IN_AS" style="color: #8e8e93; font-size: 16px; margin-bottom: 8px;">Eingeloggt als:</p>
+            <p id="userEmailDisplay" style="font-size: 20px; font-weight: 700; color: #34c759; margin: 0 0 32px 0; word-break: break-all;"></p>
+            <button id="logoutBtn" data-i18n="BTN_LOGOUT" style="width: 100%; height: 56px; background-color: #ff453a; color: #ffffff; border: none; border-radius: 14px; font-size: 18px; font-weight: 600; cursor: pointer;">Abmelden</button>
+        </div>
+
+    </div>
+</div>
         <div id="userSection" style="display: none; text-align: center; padding-top: 20px;">
             <p data-i18n="LOGGED_IN_AS" style="color: #8e8e93; font-size: 15px; margin-bottom: 8px;">Eingeloggt als:</p>
             <p id="userEmailDisplay" style="font-size: 18px; font-weight: 700; color: #34c759; margin: 0 0 30px 0; word-break: break-all;"></p>
