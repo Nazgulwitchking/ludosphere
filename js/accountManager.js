@@ -6,195 +6,168 @@ LUDOSPHERE ACCOUNT MANAGER (Supabase + Google Login)
 
 const AccountManager = {
     supabase: null,
-    currentUser: null,
+    currentMode: 'login', // 'login' oder 'register'
 
     init() {
-        if (typeof supabase !== "undefined" && window.supabase) {
-            this.supabase = window.supabase.createClient(
-                CONFIG.supabaseUrl,
-                CONFIG.supabaseKey
-            );
-            console.log("[AccountManager] Supabase Client initialized");
-            
+        if (typeof supabase !== 'undefined' && typeof CONFIG !== 'undefined' && CONFIG.SUPABASE_URL && CONFIG.SUPABASE_ANON_KEY) {
+            this.supabase = supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
             this.checkSession();
-            this.listenToAuthChanges();
         } else {
-            console.error("[AccountManager] Supabase SDK nicht geladen!");
+            console.warn("Supabase SDK oder Konfiguration in config.js fehlt.");
         }
 
-        this.setupUIEvents();
+        this.bindEvents();
+    },
+
+    bindEvents() {
+        const linkBtn = document.getElementById("linkAccountBtn");
+        const accountOverlay = document.getElementById("accountOverlayModal");
+        const backBtn = document.getElementById("backFromAccountBtn");
+
+        const authChoiceSection = document.getElementById("authChoiceSection");
+        const emailFormSection = document.getElementById("emailFormSection");
+        const showRegisterBtn = document.getElementById("showEmailRegisterBtn");
+        const showLoginBtn = document.getElementById("showEmailLoginBtn");
+        const cancelEmailBtn = document.getElementById("cancelEmailModeBtn");
+
+        const formTitle = document.getElementById("formTitle");
+        const formSubtitle = document.getElementById("formSubtitle");
+        const submitAuthBtn = document.getElementById("submitAuthBtn");
+        const authForm = document.getElementById("authForm");
+
+        const googleBtn = document.getElementById("googleLoginBtn");
+        const appleBtn = document.getElementById("appleLoginBtn");
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        // Overlay öffnen/schließen
+        if (linkBtn && accountOverlay) {
+            linkBtn.addEventListener("click", () => accountOverlay.classList.remove("hidden"));
+        }
+        if (backBtn && accountOverlay) {
+            backBtn.addEventListener("click", () => {
+                this.resetToChoice();
+                accountOverlay.classList.add("hidden");
+            });
+        }
+
+        // Wechsel zu E-Mail Registrierung
+        if (showRegisterBtn) {
+            showRegisterBtn.addEventListener("click", () => {
+                this.currentMode = 'register';
+                formTitle.textContent = "Konto erstellen";
+                formSubtitle.textContent = "Erstelle ein neues Konto mit deiner E-Mail-Adresse.";
+                submitAuthBtn.textContent = "Registrieren";
+                submitAuthBtn.style.backgroundColor = "#0a84ff";
+                
+                authChoiceSection.style.display = "none";
+                emailFormSection.style.display = "block";
+            });
+        }
+
+        // Wechsel zu E-Mail Login
+        if (showLoginBtn) {
+            showLoginBtn.addEventListener("click", () => {
+                this.currentMode = 'login';
+                formTitle.textContent = "Anmelden";
+                formSubtitle.textContent = "Melde dich mit deinen Zugangsdaten an.";
+                submitAuthBtn.textContent = "Anmelden";
+                submitAuthBtn.style.backgroundColor = "#34c759";
+
+                authChoiceSection.style.display = "none";
+                emailFormSection.style.display = "block";
+            });
+        }
+
+        // Zurück zur Auswahl
+        if (cancelEmailBtn) {
+            cancelEmailBtn.addEventListener("click", () => this.resetToChoice());
+        }
+
+        // Formular Absenden
+        if (authForm) {
+            authForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                const email = document.getElementById("authEmail").value;
+                const password = document.getElementById("authPassword").value;
+
+                if (!this.supabase) {
+                    alert("Supabase ist noch nicht in config.js konfiguriert.");
+                    return;
+                }
+
+                if (this.currentMode === 'register') {
+                    const { data, error } = await this.supabase.auth.signUp({ email, password });
+                    if (error) {
+                        alert("Registrierungsfehler: " + error.message);
+                    } else {
+                        alert("Registrierung erfolgreich! Falls nötig, wende dich an dein Postfach zur E-Mail-Bestätigung.");
+                        this.checkSession();
+                    }
+                } else {
+                    const { data, error } = await this.supabase.auth.signInWithPassword({ email, password });
+                    if (error) {
+                        alert("Login-Fehler: " + error.message);
+                    } else {
+                        this.checkSession();
+                    }
+                }
+            });
+        }
+
+        // Social Logins
+        if (googleBtn) {
+            googleBtn.addEventListener("click", async () => {
+                if (!this.supabase) return alert("Supabase-Verbindung fehlt.");
+                await this.supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.href } });
+            });
+        }
+
+        if (appleBtn) {
+            appleBtn.addEventListener("click", async () => {
+                if (!this.supabase) return alert("Supabase-Verbindung fehlt.");
+                await this.supabase.auth.signInWithOAuth({ provider: 'apple', options: { redirectTo: window.location.href } });
+            });
+        }
+
+        // Logout
+        if (logoutBtn) {
+            logoutBtn.addEventListener("click", async () => {
+                if (!this.supabase) return;
+                await this.supabase.auth.signOut();
+                this.resetToChoice();
+                this.checkSession();
+            });
+        }
+    },
+
+    resetToChoice() {
+        const authChoiceSection = document.getElementById("authChoiceSection");
+        const emailFormSection = document.getElementById("emailFormSection");
+        if (authChoiceSection) authChoiceSection.style.display = "block";
+        if (emailFormSection) emailFormSection.style.display = "none";
     },
 
     async checkSession() {
         if (!this.supabase) return;
 
-        const { data: { session }, error } = await this.supabase.auth.getSession();
-        if (error) {
-            console.error("[AccountManager] Fehler beim Laden der Session:", error.message);
-            return;
-        }
-
-        if (session) {
-            this.currentUser = session.user;
-            this.updateUILoggedIn(session.user);
-        } else {
-            this.updateUILoggedOut();
-        }
-    },
-
-    listenToAuthChanges() {
-        if (!this.supabase) return;
-
-        this.supabase.auth.onAuthStateChange((event, session) => {
-            if (event === "SIGNED_IN" && session) {
-                this.currentUser = session.user;
-                this.updateUILoggedIn(session.user);
-            } else if (event === "SIGNED_OUT") {
-                this.currentUser = null;
-                this.updateUILoggedOut();
-            }
-        });
-    },
-
-    // 🔴 Google-Login Funktion
-    async signInWithGoogle() {
-        if (!this.supabase) return;
-
-        const { data, error } = await this.supabase.auth.signInWithOAuth({
-            provider: 'google',
-            options: {
-                redirectTo: window.location.origin
-            }
-        });
-
-        if (error) {
-            alert("Google-Login fehlgeschlagen: " + error.message);
-        }
-    },
-
-    // Registrierung per E-Mail & Passwort
-    async signUp(email, password) {
-        if (!this.supabase) return;
-
-        const { data, error } = await this.supabase.auth.signUp({
-            email: email,
-            password: password
-        });
-
-        if (error) {
-            alert("Registrierung fehlgeschlagen: " + error.message);
-            return;
-        }
-
-        alert("Registrierung erfolgreich! Bitte überprüfe deine E-Mails zur Bestätigung.");
-    },
-
-    // Login per E-Mail & Passwort
-    async signIn(email, password) {
-        if (!this.supabase) return;
-
-        const { data, error } = await this.supabase.auth.signInWithPassword({
-            email: email,
-            password: password
-        });
-
-        if (error) {
-            alert("Login fehlgeschlagen: " + error.message);
-            return;
-        }
-
-        this.closeAccountOverlay();
-    },
-
-    // Abmelden
-    async signOut() {
-        if (!this.supabase) return;
-
-        const { error } = await this.supabase.auth.signOut();
-        if (error) {
-            alert("Fehler beim Abmelden: " + error.message);
-        } else {
-            this.closeAccountOverlay();
-        }
-    },
-
-    setupUIEvents() {
-        const linkAccountBtn = document.getElementById("linkAccountBtn");
-        const accountOverlay = document.getElementById("accountOverlayModal");
-        const backFromAccountBtn = document.getElementById("backFromAccountBtn");
-
-        if (linkAccountBtn && accountOverlay) {
-            linkAccountBtn.addEventListener("click", () => {
-                accountOverlay.classList.remove("hidden");
-            });
-        }
-
-        if (backFromAccountBtn && accountOverlay) {
-            backFromAccountBtn.addEventListener("click", () => {
-                this.closeAccountOverlay();
-            });
-        }
-
-        // Event listener für Google-Button
-        const googleBtn = document.getElementById("googleLoginBtn");
-        if (googleBtn) {
-            googleBtn.addEventListener("click", () => {
-                this.signInWithGoogle();
-            });
-        }
-
-        // Formular-Submit: Login & Registrierung
-        const authForm = document.getElementById("authForm");
-        if (authForm) {
-            authForm.addEventListener("submit", (e) => {
-                e.preventDefault();
-                const email = document.getElementById("authEmail").value;
-                const password = document.getElementById("authPassword").value;
-                const action = e.submitter ? e.submitter.value : "login";
-
-                if (action === "register") {
-                    this.signUp(email, password);
-                } else {
-                    this.signIn(email, password);
-                }
-            });
-        }
-
-        const logoutBtn = document.getElementById("logoutBtn");
-        if (logoutBtn) {
-            logoutBtn.addEventListener("click", () => {
-                this.signOut();
-            });
-        }
-    },
-
-    closeAccountOverlay() {
-        const accountOverlay = document.getElementById("accountOverlayModal");
-        if (accountOverlay) {
-            accountOverlay.classList.add("hidden");
-        }
-    },
-
-    updateUILoggedIn(user) {
-        const accountStatusText = document.getElementById("accountStatusText");
-        const authSection = document.getElementById("authSection");
+        const { data: { session } } = await this.supabase.auth.getSession();
+        const authChoiceSection = document.getElementById("authChoiceSection");
+        const emailFormSection = document.getElementById("emailFormSection");
         const userSection = document.getElementById("userSection");
         const userEmailDisplay = document.getElementById("userEmailDisplay");
+        const statusText = document.getElementById("accountStatusText");
 
-        if (accountStatusText) accountStatusText.textContent = "Aktiv";
-        if (authSection) authSection.style.display = "none";
-        if (userSection) userSection.style.display = "block";
-        if (userEmailDisplay) userEmailDisplay.textContent = user.email;
-    },
-
-    updateUILoggedOut() {
-        const accountStatusText = document.getElementById("accountStatusText");
-        const authSection = document.getElementById("authSection");
-        const userSection = document.getElementById("userSection");
-
-        if (accountStatusText) accountStatusText.textContent = "Nicht verknüpft";
-        if (authSection) authSection.style.display = "block";
-        if (userSection) userSection.style.display = "none";
+        if (session && session.user) {
+            if (authChoiceSection) authChoiceSection.style.display = "none";
+            if (emailFormSection) emailFormSection.style.display = "none";
+            if (userSection) userSection.style.display = "block";
+            if (userEmailDisplay) userEmailDisplay.textContent = session.user.email;
+            if (statusText) statusText.textContent = session.user.email;
+        } else {
+            if (userSection) userSection.style.display = "none";
+            if (statusText) statusText.textContent = "Nicht verknüpft";
+            this.resetToChoice();
+        }
     }
 };
 
