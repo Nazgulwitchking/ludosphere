@@ -417,46 +417,47 @@
 
     <div class="overlay-body" style="padding: 36px 24px; max-width: 520px; margin: 0 auto; box-sizing: border-box;">
         
-       <div id="authSection" style="width: 100%; box-sizing: border-box;">
-    <h3 data-i18n="AUTH_HEADING" style="margin: 0 0 28px 0; font-size: 24px; font-weight: 700; text-align: center; color: #ffffff; width: 100%;">Willkommen</h3>
+        <div id="authSection">
+            <h3 data-i18n="AUTH_HEADING" style="margin: 0 0 28px 0; font-size: 24px; font-weight: 700; text-align: center; color: #ffffff;">Willkommen</h3>
 
-    <div id="authChoiceStep" style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
-        <button id="showLoginChoiceBtn" type="button" data-i18n="BTN_LOGIN" style="width: 100%; height: 56px; background-color: #34c759; color: #ffffff; border: none; border-radius: 14px; font-size: 18px; font-weight: 600; cursor: pointer; box-sizing: border-box;">
-            Anmelden
-        </button>
-        <button id="showRegisterChoiceBtn" type="button" data-i18n="BTN_REGISTER" style="width: 100%; height: 56px; background-color: #0a84ff; color: #ffffff; border: none; border-radius: 14px; font-size: 18px; font-weight: 600; cursor: pointer; box-sizing: border-box;">
-            Registrieren
-        </button>
+            <div id="authChoiceStep" style="display: flex; flex-direction: column; gap: 16px;">
+                <button id="showLoginChoiceBtn" type="button" style="width: 100%; height: 56px; background-color: #34c759; color: #ffffff; border: none; border-radius: 14px; font-size: 18px; font-weight: 600; cursor: pointer;">
+                    Anmelden
+                </button>
+                <button id="showRegisterChoiceBtn" type="button" style="width: 100%; height: 56px; background-color: #0a84ff; color: #ffffff; border: none; border-radius: 14px; font-size: 18px; font-weight: 600; cursor: pointer;">
+                    Registrieren
+                </button>
 
-        <div style="display: flex; align-items: center; margin: 12px 0; width: 100%;">
-            <div style="flex: 1; height: 1px; background: #2c2c2e;"></div>
-            <span data-i18n="OR_LABEL" style="padding: 0 16px; color: #8e8e93; font-size: 14px; text-transform: uppercase;">oder</span>
-            <div style="flex: 1; height: 1px; background: #2c2c2e;"></div>
+                <div style="display: flex; align-items: center; margin: 12px 0;">
+                    <div style="flex: 1; height: 1px; background: #2c2c2e;"></div>
+                    <span data-i18n="OR_LABEL" style="padding: 0 16px; color: #8e8e93; font-size: 14px; text-transform: uppercase;">oder</span>
+                    <div style="flex: 1; height: 1px; background: #2c2c2e;"></div>
+                </div>
+
+                <button id="googleLoginBtn" type="button" style="width: 100%; height: 56px; background-color: #ffffff; color: #000000; border: none; border-radius: 14px; font-size: 17px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 12px; cursor: pointer;">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="22" height="22" alt="Google">
+                    <span data-i18n="LOGIN_WITH_GOOGLE">Mit Google fortfahren</span>
+                </button>
+            </div>
+
+            <div id="authFormStep" style="display: none;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+                    <button id="backToAuthChoiceBtn" type="button" style="background: none; border: none; color: #0a84ff; font-size: 16px; font-weight: 500; cursor: pointer; padding: 0;">‹ Option wählen</button>
+                    <span id="authFormTitle" style="font-size: 16px; font-weight: 600; color: #8e8e93;">Anmelden</span>
+                </div>
+
+                <form id="authForm" style="display: flex; flex-direction: column; gap: 16px;">
+                    <input type="email" id="authEmail" placeholder="E-Mail Adresse" data-i18n-placeholder="EMAIL_PLACEHOLDER" required style="width: 100%; height: 56px; padding: 0 18px; border-radius: 14px; border: 1px solid #2c2c2e; background: #1c1c1e; color: #ffffff; font-size: 17px; outline: none; box-sizing: border-box;">
+                    
+                    <input type="password" id="authPassword" placeholder="Passwort" data-i18n-placeholder="PASSWORD_PLACEHOLDER" required style="width: 100%; height: 56px; padding: 0 18px; border-radius: 14px; border: 1px solid #2c2c2e; background: #1c1c1e; color: #ffffff; font-size: 17px; outline: none; box-sizing: border-box;">
+                    
+                    <button type="submit" id="authSubmitBtn" name="action" value="login" style="width: 100%; height: 56px; background-color: #34c759; color: #ffffff; border: none; border-radius: 14px; font-size: 18px; font-weight: 600; cursor: pointer; margin-top: 8px;">
+                        Anmelden
+                    </button>
+                </form>
+            </div>
+
         </div>
-
-        <button id="googleLoginBtn" type="button" style="width: 100%; height: 56px; background-color: #ffffff; color: #000000; border: none; border-radius: 14px; font-size: 17px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 12px; cursor: pointer; box-sizing: border-box;">
-            <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="22" height="22" alt="Google">
-            <span data-i18n="LOGIN_WITH_GOOGLE">Mit Google fortfahren</span>
-        </button>
-    </div>
-
-    <div id="authFormStep" style="display: none; width: 100%;">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; width: 100%;">
-            <button id="backToAuthChoiceBtn" type="button" style="background: none; border: none; color: #0a84ff; font-size: 16px; font-weight: 500; cursor: pointer; padding: 0;">‹ Option wählen</button>
-            <span id="authFormTitle" data-i18n="BTN_LOGIN" style="font-size: 16px; font-weight: 600; color: #8e8e93;">Anmelden</span>
-        </div>
-
-        <form id="authForm" style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
-            <input type="email" id="authEmail" placeholder="E-Mail Adresse" data-i18n-placeholder="EMAIL_PLACEHOLDER" required style="width: 100%; height: 56px; padding: 0 18px; border-radius: 14px; border: 1px solid #2c2c2e; background: #1c1c1e; color: #ffffff; font-size: 17px; outline: none; box-sizing: border-box;">
-            
-            <input type="password" id="authPassword" placeholder="Passwort" data-i18n-placeholder="PASSWORD_PLACEHOLDER" required style="width: 100%; height: 56px; padding: 0 18px; border-radius: 14px; border: 1px solid #2c2c2e; background: #1c1c1e; color: #ffffff; font-size: 17px; outline: none; box-sizing: border-box;">
-            
-            <button type="submit" id="authSubmitBtn" name="action" value="login" data-i18n="BTN_LOGIN" style="width: 100%; height: 56px; background-color: #34c759; color: #ffffff; border: none; border-radius: 14px; font-size: 18px; font-weight: 600; cursor: pointer; margin-top: 8px; box-sizing: border-box;">
-                Anmelden
-            </button>
-        </form>
-    </div>
-</div>
 
         <div id="userSection" style="display: none; text-align: center; padding-top: 20px;">
             <p data-i18n="LOGGED_IN_AS" style="color: #8e8e93; font-size: 16px; margin-bottom: 8px;">Eingeloggt als:</p>
