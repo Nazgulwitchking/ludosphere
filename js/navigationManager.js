@@ -8,10 +8,25 @@ const NavigationManager = {
 
     currentPage: "library",
 
+    // Mapping für schöne Sprach-Namen im Label
+    langNames: {
+        de: "Deutsch",
+        en: "English",
+        es: "Español",
+        fr: "Français",
+        it: "Italiano",
+        nl: "Nederlands",
+        pl: "Polski",
+        pt: "Português",
+        ru: "Русский",
+        tr: "Türkçe"
+    },
+
     init() {
         this.setupNavigation();
         this.setupOverlayNavigation();
         this.setupLanguageSelectionEvents();
+        this.setupThemeSelectionEvents();
 
         this.showPage("library");
 
@@ -90,17 +105,50 @@ const NavigationManager = {
 
     setupLanguageSelectionEvents() {
         const langBtns = document.querySelectorAll(".lang-option-btn");
+        const currentLangLabel = document.getElementById("currentLangLabel");
+
         langBtns.forEach(btn => {
             btn.addEventListener("click", () => {
                 const selectedLang = btn.getAttribute("data-lang");
                 
-                // Sprach-Klassen umschalten (Grüner Rahmen & Haken)
+                // Active-Klasse für Grünen Rahmen/Haken setzen
                 langBtns.forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
 
-                // Falls LanguageManager vorhanden ist, Sprache wechseln
+                // Label-Vorschau im Hauptmenü direkt aktualisieren
+                if (currentLangLabel && this.langNames[selectedLang]) {
+                    currentLangLabel.textContent = this.langNames[selectedLang];
+                }
+
+                // Sprache über LanguageManager anwenden
                 if (typeof LanguageManager !== "undefined" && LanguageManager.setLanguage) {
                     LanguageManager.setLanguage(selectedLang);
+                }
+            });
+        });
+    },
+
+    setupThemeSelectionEvents() {
+        const themeBtns = document.querySelectorAll(".theme-option-btn");
+        const currentThemeBadge = document.getElementById("currentThemeBadge");
+
+        themeBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const selectedTheme = btn.getAttribute("data-theme");
+
+                // Active-Klasse umschalten
+                themeBtns.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+
+                // Text des ausgewählten Themes holen & Badge aktualisieren
+                const themeNameSpan = btn.querySelector("span[data-i18n]");
+                if (currentThemeBadge && themeNameSpan) {
+                    currentThemeBadge.textContent = themeNameSpan.textContent;
+                }
+
+                // Theme über ThemeManager anwenden
+                if (typeof ThemeManager !== "undefined" && ThemeManager.setTheme) {
+                    ThemeManager.setTheme(selectedTheme);
                 }
             });
         });
