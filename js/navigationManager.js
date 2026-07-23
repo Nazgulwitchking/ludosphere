@@ -51,54 +51,79 @@ const NavigationManager = {
     },
 
     setupOverlayNavigation() {
+        // IDs korrigiert für HTML Match
         const settingsBtn = document.getElementById("settingsBtn");
-        const settingsOverlay = document.getElementById("settingsOverlay");
+        const settingsOverlay = document.getElementById("settingsOverlayModal"); // Korrigiert!
         const closeSettingsBtn = document.getElementById("closeSettingsBtn");
 
-        const themeOptionBtn = document.getElementById("themeOptionBtn");
+        const linkAccountBtn = document.getElementById("linkAccountBtn");
+        const accountOverlayModal = document.getElementById("accountOverlayModal");
+
+        const themeOptionBtn = document.getElementById("openThemeBtn"); // Korrigiert!
         const themeOverlayModal = document.getElementById("themeOverlayModal");
         const backFromThemesBtn = document.getElementById("backFromThemesBtn");
 
-        const languageOptionBtn = document.getElementById("languageOptionBtn");
+        const languageOptionBtn = document.getElementById("openLanguageBtn"); // Korrigiert!
         const languageOverlayModal = document.getElementById("languageOverlayModal");
         const backFromLanguagesBtn = document.getElementById("backFromLanguagesBtn");
 
-        // Settings öffnen / schließen
+        // Settings öffnen / schließen (Zahnrad)
         if (settingsBtn && settingsOverlay) {
-            settingsBtn.addEventListener("click", () => {
+            settingsBtn.addEventListener("click", (e) => {
+                e.preventDefault();
                 settingsOverlay.classList.remove("hidden");
+                settingsOverlay.style.setProperty("display", "block", "important");
             });
         }
 
         if (closeSettingsBtn && settingsOverlay) {
-            closeSettingsBtn.addEventListener("click", () => {
+            closeSettingsBtn.addEventListener("click", (e) => {
+                e.preventDefault();
                 settingsOverlay.classList.add("hidden");
+                settingsOverlay.style.setProperty("display", "none", "important");
+            });
+        }
+
+        // Konto-Overlay öffnen
+        if (linkAccountBtn && accountOverlayModal) {
+            linkAccountBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                accountOverlayModal.classList.remove("hidden");
+                accountOverlayModal.style.setProperty("display", "block", "important");
             });
         }
 
         // Theme-Overlay öffnen / zurück
         if (themeOptionBtn && themeOverlayModal) {
-            themeOptionBtn.addEventListener("click", () => {
+            themeOptionBtn.addEventListener("click", (e) => {
+                e.preventDefault();
                 themeOverlayModal.classList.remove("hidden");
+                themeOverlayModal.style.setProperty("display", "block", "important");
             });
         }
 
         if (backFromThemesBtn && themeOverlayModal) {
-            backFromThemesBtn.addEventListener("click", () => {
+            backFromThemesBtn.addEventListener("click", (e) => {
+                e.preventDefault();
                 themeOverlayModal.classList.add("hidden");
+                themeOverlayModal.style.setProperty("display", "none", "important");
             });
         }
 
         // Sprach-Overlay öffnen / zurück
         if (languageOptionBtn && languageOverlayModal) {
-            languageOptionBtn.addEventListener("click", () => {
+            languageOptionBtn.addEventListener("click", (e) => {
+                e.preventDefault();
                 languageOverlayModal.classList.remove("hidden");
+                languageOverlayModal.style.setProperty("display", "block", "important");
             });
         }
 
         if (backFromLanguagesBtn && languageOverlayModal) {
-            backFromLanguagesBtn.addEventListener("click", () => {
+            backFromLanguagesBtn.addEventListener("click", (e) => {
+                e.preventDefault();
                 languageOverlayModal.classList.add("hidden");
+                languageOverlayModal.style.setProperty("display", "none", "important");
             });
         }
     },
