@@ -78,6 +78,16 @@ const ThemeManager = {
             this.buildInfernoOverlay(overlay);
         } else if (themeName === "royal") {
             this.buildRoyalOverlay(overlay);
+        } else if (themeName === "aurora") {
+            this.buildAuroraOverlay(overlay);
+        } else if (themeName === "sakura") {
+            this.buildSakuraOverlay(overlay);
+        } else if (themeName === "galaxy") {
+            this.buildGalaxyOverlay(overlay);
+        } else if (themeName === "forest") {
+            this.buildForestOverlay(overlay);
+        } else if (themeName === "winter") {
+            this.buildWinterOverlay(overlay);
         }
     },
 
@@ -105,6 +115,31 @@ const ThemeManager = {
     /* ==================== 6. Royal ====================== */
     buildRoyalOverlay(container) {
         // Platzhalter für spätere Royal-Animationen
+    },
+    
+    /* ==================== 7. Aurora ==================== */
+    buildAuroraOverlay(container) {
+        // Platzhalter für spätere Aurora-Animationen
+    },
+
+    /* ==================== 8. Sakura ==================== */
+    buildSakuraOverlay(container) {
+        // Platzhalter für spätere Sakura-Animationen
+    },
+
+    /* ==================== 9. Galaxy ==================== */
+    buildGalaxyOverlay(container) {
+        // Platzhalter für spätere Galaxy-Animationen
+    },
+
+    /* ==================== 10. Forest =================== */
+    buildForestOverlay(container) {
+        // Platzhalter für spätere Forest-Animationen
+    },
+
+    /* ==================== 11. Winter =================== */
+    buildWinterOverlay(container) {
+        // Platzhalter für spätere Winter-Animationen
     },
 
     /* =========================================================

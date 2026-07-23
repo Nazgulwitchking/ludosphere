@@ -577,6 +577,123 @@ body.theme-royal {
     border: 1px solid rgba(255, 230, 130, 0.8) !important;
     box-shadow: 0 0 18px rgba(255, 215, 0, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.5) !important;
 }
+/* =========================================================
+   THEME: AURORA (Polarlichter & Arktisches Eis)
+   ========================================================= */
+
+/* Transparenz auf allen App-Containern erzwingen */
+html.theme-aurora #app,
+html.theme-aurora .main-content,
+html.theme-aurora .page {
+    background: transparent !important;
+}
+
+/* 1. Hintergrund-Bildverknüpfung */
+/* Achte darauf, ob dein Bild als bg.png, bg.PNG oder bg.jpg im Ordner liegt! */
+html.theme-aurora,
+body.theme-aurora {
+    background: #030d1a url('../assets/themes/aurora/bg.png') center center / cover no-repeat fixed !important;
+}
+
+/* 2. Verdeckende Layer im Aurora-Theme ausblenden */
+.theme-aurora #backgroundLayer,
+.theme-aurora .background-layer,
+#backgroundLayer.aurora,
+.background-layer.aurora {
+    background: transparent !important;
+    display: none !important;
+}
+
+/* 3. Header-Styling (LUDOSPHERE Titel mit Polarlicht-Gradient) */
+.theme-aurora .header-top h1 {
+    font-weight: 900;
+    letter-spacing: 3px;
+    background: linear-gradient(180deg, #ffffff 0%, #00ffcc 50%, #b84dff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 12px rgba(0, 255, 204, 0.8)) drop-shadow(0 0 22px rgba(184, 77, 255, 0.5));
+}
+
+/* Settings-Button (Frosted Ice Glass mit Smaragd-Glow) */
+.theme-aurora #settingsBtn {
+    background: rgba(8, 28, 48, 0.5) !important;
+    border: 1.5px solid rgba(0, 255, 204, 0.5) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), 0 0 12px rgba(0, 255, 204, 0.35);
+    color: #ffffff !important;
+}
+
+/* 4. Suchleiste im Polarlicht-Eis Look */
+.theme-aurora .search-container input {
+    background: rgba(5, 20, 38, 0.6) !important;
+    border: 1.5px solid rgba(0, 255, 204, 0.4) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.3),
+                0 8px 25px rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+}
+
+.theme-aurora .search-container input::placeholder {
+    color: rgba(200, 245, 255, 0.75);
+}
+
+.theme-aurora .search-container input:focus {
+    border-color: #00ffcc !important;
+    box-shadow: 0 0 22px rgba(0, 255, 204, 0.8), inset 0 1px 3px rgba(255, 255, 255, 0.5) !important;
+}
+
+/* 5. Game-Cards (Frosted Ice Cards mit Cyan/Magenta Schimmer) */
+.theme-aurora .game-card {
+    background: rgba(6, 25, 48, 0.55) !important;
+    border: 1.5px solid rgba(0, 255, 204, 0.4) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-radius: 24px !important;
+    box-shadow: 
+        0 0 15px rgba(0, 255, 204, 0.25),
+        0 10px 30px rgba(0, 0, 0, 0.7),
+        inset 0 1px 2px rgba(255, 255, 255, 0.4) !important;
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.theme-aurora .game-card:active {
+    transform: scale(0.96);
+    background: rgba(12, 40, 75, 0.75) !important;
+    border-color: #b84dff !important;
+    box-shadow: 
+        0 0 25px rgba(184, 77, 255, 0.9),
+        inset 0 1px 4px rgba(255, 255, 255, 0.7) !important;
+}
+
+.theme-aurora .game-title {
+    color: #ffffff !important;
+    font-weight: 700;
+    text-shadow: 0 0 8px rgba(0, 255, 204, 0.7), 0 2px 5px rgba(0, 0, 0, 0.9);
+}
+
+/* 6. Bottom Navigation Bar */
+.theme-aurora .bottom-navigation {
+    background: rgba(5, 20, 38, 0.65) !important;
+    border: 1.5px solid rgba(0, 255, 204, 0.45) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border-radius: 35px !important;
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.3), 0 10px 30px rgba(0, 0, 0, 0.8) !important;
+}
+
+.theme-aurora .nav-btn {
+    color: rgba(200, 245, 255, 0.8) !important;
+}
+
+.theme-aurora .nav-btn.active {
+    background: linear-gradient(135deg, rgba(0, 255, 204, 0.3) 0%, rgba(184, 77, 255, 0.25) 100%) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(0, 255, 204, 0.8) !important;
+    box-shadow: 0 0 18px rgba(0, 255, 204, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.5) !important;
+}
+
 
 @keyframes fallRain {
     0% { transform: translateY(-20px); opacity: 0; }
