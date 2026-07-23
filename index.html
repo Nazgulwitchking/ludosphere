@@ -346,145 +346,110 @@
     </section>
 
 
-    <div id="accountOverlayModal" class="full-overlay hidden" style="background-color: #121214 !important; color: #ffffff !important; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; position: fixed !important; top: 0 !important; left: 0 !important; width: 100vw !important; height: 100vh !important; z-index: 99999 !important; overflow-y: auto !important;">
-    
-    <div class="overlay-header" style="display: flex !important; align-items: center !important; justify-content: space-between !important; padding: 18px 20px !important; border-bottom: 1px solid #1c1c1e !important;">
-        <button id="backFromAccountBtn" style="background: none !important; border: none !important; color: #0a84ff !important; font-size: 17px !important; font-weight: 500 !important; cursor: pointer !important; padding: 0 !important;">‹ Zurück</button>
-        <h2 id="accountHeaderTitle" data-i18n="ACCOUNT_TITLE" style="font-size: 18px !important; font-weight: 600 !important; margin: 0 !important; color: #ffffff !important; text-align: center !important; flex-grow: 1 !important;">Konto</h2>
-        <div style="width: 50px !important;"></div>
+    <div id="settingsOverlay" class="full-overlay hidden" style="background-color: #121214 !important; backdrop-filter: none !important;">
+        <div class="overlay-header" style="display: flex; align-items: center; justify-content: space-between; position: relative;">
+            <div style="width: 40px;"></div>
+            <h2 class="overlay-title" data-i18n="SETTINGS_TITLE" style="font-size: 22px; font-weight: 700; text-align: center; margin: 0; flex-grow: 1;">Einstellungen</h2>
+            <button id="closeSettingsBtn" class="overlay-close-btn" aria-label="Schließen" style="width: 40px; font-size: 24px;">&times;</button>
+        </div>
+
+        <div class="overlay-body">
+            <div class="profile-avatar-container">
+                <div class="profile-avatar-placeholder" style="background-color: #2c2c2e; border-radius: 50%; width: 90px; height: 90px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;">
+                    <svg viewBox="0 0 24 24" fill="#8e8e93" width="56" height="56">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="settings-menu-group">
+                <button class="settings-menu-item disabled" style="background-color: #1c1c1e !important; border: 1px solid #2c2c2e !important; color: #ffffff !important;">
+                    <div class="item-left">
+                        <span class="item-icon">👤</span>
+                        <span class="item-label" data-i18n="PROFILE_SETTINGS">Profil Einstellungen</span>
+                    </div>
+                    <span class="chevron">›</span>
+                </button>
+
+                <button id="linkAccountBtn" class="settings-menu-item" style="background-color: #1c1c1e !important; border: 1px solid #2c2c2e !important; color: #ffffff !important;">
+                    <div class="item-left">
+                        <span class="item-icon">🔗</span>
+                        <span class="item-label" data-i18n="LINK_ACCOUNT">Konto verknüpfen</span>
+                    </div>
+                    <div class="item-right">
+                        <span id="accountStatusText" class="current-badge">Nicht verknüpft</span>
+                        <span class="chevron">›</span>
+                    </div>
+                </button>
+
+                <button id="languageOptionBtn" class="settings-menu-item" style="background-color: #1c1c1e !important; border: 1px solid #2c2c2e !important; color: #ffffff !important;">
+                    <div class="item-left">
+                        <span class="item-icon">🌐</span>
+                        <span class="item-label" data-i18n="CHANGE_LANGUAGE">Sprache wechseln</span>
+                    </div>
+                    <div class="item-right">
+                        <span id="currentLangLabel" class="current-badge">Deutsch</span>
+                        <span class="chevron">›</span>
+                    </div>
+                </button>
+
+                <button id="themeOptionBtn" class="settings-menu-item" style="background-color: #1c1c1e !important; border: 1px solid #2c2c2e !important; color: #ffffff !important;">
+                    <div class="item-left">
+                        <span class="item-icon">🎨</span>
+                        <span class="item-label" data-i18n="APP_DESIGN">App Design</span>
+                    </div>
+                    <div class="item-right">
+                        <span id="currentThemeBadge" class="current-badge" data-i18n="THEME_NEUTRAL">Standard (Neutral)</span>
+                        <span class="chevron">›</span>
+                    </div>
+                </button>
+            </div>
+        </div>
     </div>
-
-    <div class="overlay-body" style="padding: 32px 24px !important; max-width: 420px !important; margin: 0 auto !important; box-sizing: border-box !important;">
-        
-        <div id="authChoiceSection">
-            <h3 data-i18n="AUTH_HEADING" style="margin: 0 0 28px 0 !important; font-size: 22px !important; font-weight: 700 !important; text-align: center !important; color: #ffffff !important;">Anmelden oder Registrieren</h3>
-
-            <div style="display: flex !important; flex-direction: column !important; gap: 14px !important; margin-bottom: 30px !important;">
-                <button id="googleLoginBtn" type="button" style="width: 100% !important; height: 54px !important; background-color: #ffffff !important; color: #000000 !important; border: none !important; border-radius: 14px !important; font-size: 16px !important; font-weight: 600 !important; display: flex !important; align-items: center !important; justify-content: center !important; gap: 12px !important; cursor: pointer !important;">
-                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="22" height="22" alt="Google">
-                    <span data-i18n="LOGIN_WITH_GOOGLE">Mit Google anmelden</span>
-                </button>
-
-                <button id="appleLoginBtn" type="button" style="width: 100% !important; height: 54px !important; background-color: #000000 !important; color: #ffffff !important; border: 1px solid #3a3a3c !important; border-radius: 14px !important; font-size: 16px !important; font-weight: 600 !important; display: flex !important; align-items: center !important; justify-content: center !important; gap: 12px !important; cursor: pointer !important;">
-                    <svg width="20" height="22" viewBox="0 0 170 170" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-5.01.12-9.87-1.93-14.58-6.14-3.32-2.92-7.23-7.61-11.74-14.07-6.23-8.93-11.12-18.73-14.67-29.41-3.55-10.68-5.33-20.91-5.33-30.68 0-14.86 3.82-27.23 11.46-37.12 7.64-9.89 17.29-14.89 28.94-15 4.81 0 10.05 1.18 15.73 3.55 5.68 2.37 9.42 3.55 11.22 3.55 1.45 0 5.25-1.24 11.41-3.73 6.16-2.49 11.21-3.62 15.15-3.38 12.35.97 22.18 5.75 29.5 14.34-11.03 6.67-16.42 16.02-16.17 28.06.25 9.42 3.82 17.29 10.72 23.6 6.9 6.31 15.15 9.8 24.75 10.47-2.31 6.89-5.32 13.68-9.03 20.37zM119.22 31.84c0-7.38 2.65-14.35 7.95-20.92 5.3-6.57 11.97-10.42 20.02-11.55.25 1.09.37 2.06.37 2.92 0 7.25-2.73 14.32-8.19 21.2-5.46 6.88-12.18 10.73-20.15 11.55-.12-.85-.18-1.91-.18-3.2z"/></svg>
-                    <span>Mit Apple anmelden</span>
-                </button>
-            </div>
-
-            <div style="display: flex !important; align-items: center !important; margin-bottom: 30px !important;">
-                <div style="flex: 1 !important; height: 1px !important; background: #2c2c2e !important;"></div>
-                <span style="padding: 0 14px !important; color: #8e8e93 !important; font-size: 13px !important; font-weight: 500 !important; text-transform: uppercase !important;">E-Mail Option</span>
-                <div style="flex: 1 !important; height: 1px !important; background: #2c2c2e !important;"></div>
-            </div>
-
-            <div style="display: flex !important; flex-direction: column !important; gap: 14px !important;">
-                <button id="showEmailRegisterBtn" type="button" style="width: 100% !important; height: 52px !important; background-color: #0a84ff !important; color: #ffffff !important; border: none !important; border-radius: 14px !important; font-size: 16px !important; font-weight: 600 !important; cursor: pointer !important;">
-                    Mit E-Mail registrieren
-                </button>
-                <button id="showEmailLoginBtn" type="button" style="width: 100% !important; height: 52px !important; background-color: #1c1c1e !important; color: #ffffff !important; border: 1px solid #3a3a3c !important; border-radius: 14px !important; font-size: 16px !important; font-weight: 600 !important; cursor: pointer !important;">
-                    Ich habe bereits ein Konto (Anmelden)
-                </button>
-            </div>
-        </div>
-
-        <div id="emailFormSection" style="display: none !important;">
-            <h3 id="formTitle" style="margin: 0 0 8px 0 !important; font-size: 22px !important; font-weight: 700 !important; text-align: center !important; color: #ffffff !important;">Anmelden</h3>
-            <p id="formSubtitle" style="margin: 0 0 24px 0 !important; font-size: 14px !important; color: #8e8e93 !important; text-align: center !important;">Gib deine Daten ein, um fortzufahren.</p>
-
-            <form id="authForm" style="display: flex !important; flex-direction: column !important; gap: 16px !important;">
-                <input type="email" id="authEmail" placeholder="E-Mail Adresse" required style="width: 100% !important; height: 52px !important; padding: 0 16px !important; border-radius: 14px !important; border: 1px solid #2c2c2e !important; background: #1c1c1e !important; color: #ffffff !important; font-size: 16px !important; outline: none !important; box-sizing: border-box !important;">
-                
-                <input type="password" id="authPassword" placeholder="Passwort" required style="width: 100% !important; height: 52px !important; padding: 0 16px !important; border-radius: 14px !important; border: 1px solid #2c2c2e !important; background: #1c1c1e !important; color: #ffffff !important; font-size: 16px !important; outline: none !important; box-sizing: border-box !important;">
-                
-                <button id="submitAuthBtn" type="submit" style="width: 100% !important; height: 52px !important; background-color: #34c759 !important; color: #ffffff !important; border: none !important; border-radius: 14px !important; font-size: 16px !important; font-weight: 600 !important; cursor: pointer !important; margin-top: 10px !important;">
-                    Absenden
-                </button>
-
-                <button id="cancelEmailModeBtn" type="button" style="width: 100% !important; background: none !important; border: none !important; color: #0a84ff !important; font-size: 15px !important; margin-top: 12px !important; cursor: pointer !important;">
-                    ‹ Zurück zur Auswahl
-                </button>
-            </form>
-        </div>
-
-        <div id="userSection" style="display: none !important; text-align: center !important; padding-top: 20px !important;">
-            <p data-i18n="LOGGED_IN_AS" style="color: #8e8e93 !important; font-size: 15px !important; margin-bottom: 8px !important;">Eingeloggt als:</p>
-            <p id="userEmailDisplay" style="font-size: 18px !important; font-weight: 700 !important; color: #34c759 !important; margin: 0 0 30px 0 !important; word-break: break-all !important;"></p>
-            <button id="logoutBtn" data-i18n="BTN_LOGOUT" style="width: 100% !important; height: 52px !important; background-color: #ff453a !important; color: #ffffff !important; border: none !important; border-radius: 14px !important; font-size: 16px !important; font-weight: 600 !important; cursor: pointer !important;">Abmelden</button>
-        </div>
-
-    </div>
-</div>
-
 
    <div id="accountOverlayModal" class="full-overlay hidden" style="background-color: #121214; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; overflow-y: auto;">
     
-    <div class="overlay-header" style="display: flex; align-items: center; justify-content: space-between; padding: 18px 20px; border-bottom: 1px solid #1c1c1e;">
+    <div class="overlay-header" style="display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid #1c1c1e;">
         <button id="backFromAccountBtn" style="background: none; border: none; color: #0a84ff; font-size: 17px; font-weight: 500; cursor: pointer; padding: 0;">‹ Zurück</button>
-        <h2 id="accountHeaderTitle" data-i18n="ACCOUNT_TITLE" style="font-size: 18px; font-weight: 600; margin: 0; text-align: center; flex-grow: 1;">Konto</h2>
-        <div style="width: 50px;"></div>
-    </div>
+        <h2 data-i18n="ACCOUNT_TITLE" style="font-size: 18px; font-weight: 600; margin: 0; text-align: center; flex-grow: 1;">Konto</h2>
+        <div style="width: 50px;"></div> </div>
 
-    <div class="overlay-body" style="padding: 32px 24px; max-width: 420px; margin: 0 auto; box-sizing: border-box;">
+    <div class="overlay-body" style="padding: 24px 20px; max-width: 400px; margin: 0 auto; box-sizing: border-box;">
         
-        <div id="authChoiceSection">
-            <h3 data-i18n="AUTH_HEADING" style="margin: 0 0 28px 0; font-size: 22px; font-weight: 700; text-align: center; color: #ffffff;">Anmelden oder Registrieren</h3>
+        <div id="authSection">
+            <h3 data-i18n="AUTH_HEADING" style="margin: 0 0 20px 0; font-size: 20px; font-weight: 700; text-align: center; color: #ffffff;">Anmelden oder Registrieren</h3>
 
-            <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px;">
-                <button id="googleLoginBtn" type="button" style="width: 100%; height: 54px; background-color: #ffffff; color: #000000; border: none; border-radius: 14px; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 12px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="22" height="22" alt="Google">
-                    <span data-i18n="LOGIN_WITH_GOOGLE">Mit Google anmelden</span>
-                </button>
+            <button id="googleLoginBtn" type="button" style="width: 100%; height: 50px; background-color: #ffffff; color: #000000; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 24px; cursor: pointer;">
+                <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="20" height="20" alt="Google">
+                <span data-i18n="LOGIN_WITH_GOOGLE">Mit Google anmelden</span>
+            </button>
 
-                <button id="appleLoginBtn" type="button" style="width: 100%; height: 54px; background-color: #000000; color: #ffffff; border: 1px solid #3a3a3c; border-radius: 14px; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 12px; cursor: pointer;">
-                    <svg width="20" height="22" viewBox="0 0 170 170" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-5.01.12-9.87-1.93-14.58-6.14-3.32-2.92-7.23-7.61-11.74-14.07-6.23-8.93-11.12-18.73-14.67-29.41-3.55-10.68-5.33-20.91-5.33-30.68 0-14.86 3.82-27.23 11.46-37.12 7.64-9.89 17.29-14.89 28.94-15 4.81 0 10.05 1.18 15.73 3.55 5.68 2.37 9.42 3.55 11.22 3.55 1.45 0 5.25-1.24 11.41-3.73 6.16-2.49 11.21-3.62 15.15-3.38 12.35.97 22.18 5.75 29.5 14.34-11.03 6.67-16.42 16.02-16.17 28.06.25 9.42 3.82 17.29 10.72 23.6 6.9 6.31 15.15 9.8 24.75 10.47-2.31 6.89-5.32 13.68-9.03 20.37zM119.22 31.84c0-7.38 2.65-14.35 7.95-20.92 5.3-6.57 11.97-10.42 20.02-11.55.25 1.09.37 2.06.37 2.92 0 7.25-2.73 14.32-8.19 21.2-5.46 6.88-12.18 10.73-20.15 11.55-.12-.85-.18-1.91-.18-3.2z"/></svg>
-                    <span>Mit Apple anmelden</span>
-                </button>
-            </div>
-
-            <div style="display: flex; align-items: center; margin-bottom: 30px;">
+            <div style="display: flex; align-items: center; margin-bottom: 24px;">
                 <div style="flex: 1; height: 1px; background: #2c2c2e;"></div>
-                <span style="padding: 0 14px; color: #8e8e93; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">E-Mail Option</span>
+                <span data-i18n="OR_EMAIL" style="padding: 0 12px; color: #8e8e93; font-size: 13px; text-transform: uppercase;">oder per E-Mail</span>
                 <div style="flex: 1; height: 1px; background: #2c2c2e;"></div>
             </div>
 
-            <div style="display: flex; flex-direction: column; gap: 14px;">
-                <button id="showEmailRegisterBtn" type="button" style="width: 100%; height: 52px; background-color: #0a84ff; color: #ffffff; border: none; border-radius: 14px; font-size: 16px; font-weight: 600; cursor: pointer;">
-                    Mit E-Mail registrieren
-                </button>
-                <button id="showEmailLoginBtn" type="button" style="width: 100%; height: 52px; background-color: #1c1c1e; color: #ffffff; border: 1px solid #3a3a3c; border-radius: 14px; font-size: 16px; font-weight: 600; cursor: pointer;">
-                    Ich habe bereits ein Konto (Anmelden)
-                </button>
-            </div>
-        </div>
-
-        <div id="emailFormSection" style="display: none;">
-            <h3 id="formTitle" style="margin: 0 0 8px 0; font-size: 22px; font-weight: 700; text-align: center; color: #ffffff;">Anmelden</h3>
-            <p id="formSubtitle" style="margin: 0 0 24px 0; font-size: 14px; color: #8e8e93; text-align: center;">Gib deine Daten ein, um fortzufahren.</p>
-
-            <form id="authForm" style="display: flex; flex-direction: column; gap: 16px;">
-                <input type="email" id="authEmail" placeholder="E-Mail Adresse" data-i18n-placeholder="EMAIL_PLACEHOLDER" required style="width: 100%; height: 52px; padding: 0 16px; border-radius: 14px; border: 1px solid #2c2c2e; background: #1c1c1e; color: #ffffff; font-size: 16px; outline: none; box-sizing: border-box;">
+            <form id="authForm" style="display: flex; flex-direction: column; gap: 14px;">
+                <input type="email" id="authEmail" placeholder="E-Mail Adresse" data-i18n-placeholder="EMAIL_PLACEHOLDER" required style="width: 100%; height: 50px; padding: 0 16px; border-radius: 12px; border: 1px solid #2c2c2e; background: #1c1c1e; color: #ffffff; font-size: 16px; outline: none; box-sizing: border-box;">
                 
-                <input type="password" id="authPassword" placeholder="Passwort" data-i18n-placeholder="PASSWORD_PLACEHOLDER" required style="width: 100%; height: 52px; padding: 0 16px; border-radius: 14px; border: 1px solid #2c2c2e; background: #1c1c1e; color: #ffffff; font-size: 16px; outline: none; box-sizing: border-box;">
+                <input type="password" id="authPassword" placeholder="Passwort" data-i18n-placeholder="PASSWORD_PLACEHOLDER" required style="width: 100%; height: 50px; padding: 0 16px; border-radius: 12px; border: 1px solid #2c2c2e; background: #1c1c1e; color: #ffffff; font-size: 16px; outline: none; box-sizing: border-box;">
                 
-                <button id="submitAuthBtn" type="submit" style="width: 100%; height: 52px; background-color: #34c759; color: #ffffff; border: none; border-radius: 14px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 10px;">
-                    Absenden
-                </button>
-
-                <button id="cancelEmailModeBtn" type="button" style="width: 100%; background: none; border: none; color: #0a84ff; font-size: 15px; margin-top: 12px; cursor: pointer;">
-                    ‹ Zurück zur Auswahl
-                </button>
+                <div style="display: flex; gap: 12px; margin-top: 10px;">
+                    <button type="submit" name="action" value="login" data-i18n="BTN_LOGIN" style="flex: 1; height: 48px; background-color: #34c759; color: #ffffff; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer;">Anmelden</button>
+                    <button type="submit" name="action" value="register" data-i18n="BTN_REGISTER" style="flex: 1; height: 48px; background-color: #0a84ff; color: #ffffff; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer;">Registrieren</button>
+                </div>
             </form>
         </div>
 
         <div id="userSection" style="display: none; text-align: center; padding-top: 20px;">
             <p data-i18n="LOGGED_IN_AS" style="color: #8e8e93; font-size: 15px; margin-bottom: 8px;">Eingeloggt als:</p>
             <p id="userEmailDisplay" style="font-size: 18px; font-weight: 700; color: #34c759; margin: 0 0 30px 0; word-break: break-all;"></p>
-            <button id="logoutBtn" data-i18n="BTN_LOGOUT" style="width: 100%; height: 52px; background-color: #ff453a; color: #ffffff; border: none; border-radius: 14px; font-size: 16px; font-weight: 600; cursor: pointer;">Abmelden</button>
+            <button id="logoutBtn" data-i18n="BTN_LOGOUT" style="width: 100%; height: 50px; background-color: #ff453a; color: #ffffff; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer;">Abmelden</button>
         </div>
 
     </div>
-</div>
-
+</div>  
 
     <div id="languageOverlayModal" class="full-overlay hidden" style="background-color: #121214 !important; backdrop-filter: none !important;">
         <div class="overlay-header" style="display: flex; align-items: center; justify-content: space-between; position: relative;">
