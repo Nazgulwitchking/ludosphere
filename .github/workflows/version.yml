@@ -1,4 +1,4 @@
-name: Version and Deploy
+name: Deploy to Pages
 
 on:
   push:
@@ -6,36 +6,20 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
-# Verhindert, dass sich zwei Builds überschneiden
 concurrency:
   group: "pages"
   cancel-in-progress: true
 
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Code
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      # Erhöht die Version in der Laufzeit für das Deployment
-      - name: Bump Version (Build Only)
-        uses: phips28/gh-action-bump-version@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          skip-tag: 'true'
-          skip-push: 'true'
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
