@@ -823,7 +823,7 @@ html.theme-galaxy .page {
 /* 1. Hintergrund-Bildverknüpfung */
 html.theme-galaxy,
 body.theme-galaxy {
-    background: #04020a url('../assets/themes/galaxy/bg.png') center center / cover no-repeat fixed !important;
+    background: #04020a url('../assets/themes/galaxy/bg.PNG') center center / cover no-repeat fixed !important;
 }
 
 /* 2. Verdeckende Layer im Galaxy-Theme ausblenden */
