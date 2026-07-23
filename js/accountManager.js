@@ -221,9 +221,17 @@ document.addEventListener("DOMContentLoaded", () => {
             formStep.style.display = "block";
             
             authSubmitBtn.value = "login";
-            authSubmitBtn.textContent = "Anmelden";
+            authSubmitBtn.setAttribute("data-i18n", "BTN_LOGIN");
             authSubmitBtn.style.backgroundColor = "#34c759";
-            if (authFormTitle) authFormTitle.textContent = "Anmelden";
+
+            if (authFormTitle) {
+                authFormTitle.setAttribute("data-i18n", "BTN_LOGIN");
+            }
+
+            // Sprach-Update für das Formular auslösen, falls LanguageManager geladen ist
+            if (typeof LanguageManager !== "undefined" && LanguageManager.updateUI) {
+                LanguageManager.updateUI();
+            }
         });
     }
 
@@ -234,9 +242,17 @@ document.addEventListener("DOMContentLoaded", () => {
             formStep.style.display = "block";
             
             authSubmitBtn.value = "register";
-            authSubmitBtn.textContent = "Registrieren";
+            authSubmitBtn.setAttribute("data-i18n", "BTN_REGISTER");
             authSubmitBtn.style.backgroundColor = "#0a84ff";
-            if (authFormTitle) authFormTitle.textContent = "Registrieren";
+
+            if (authFormTitle) {
+                authFormTitle.setAttribute("data-i18n", "BTN_REGISTER");
+            }
+
+            // Sprach-Update für das Formular auslösen, falls LanguageManager geladen ist
+            if (typeof LanguageManager !== "undefined" && LanguageManager.updateUI) {
+                LanguageManager.updateUI();
+            }
         });
     }
 
