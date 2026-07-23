@@ -11,7 +11,7 @@ const ThemeManager = {
     init() {
         const savedTheme = StorageManager.getTheme();
         this.applyTheme(savedTheme);
-        this.setupModalEvents(); // Initialisiert die Klick-Events für das Settings-Modal
+        this.setupThemeSelectionEvents(); // Initialisiert Klick-Events für die Theme-Buttons im Overlay
         console.log("[ThemeManager] Initialized");
     },
 
@@ -34,6 +34,7 @@ const ThemeManager = {
 
         this.updateBackground(themeName);
         this.updateOverlay(themeName);
+        this.updateUISelection(themeName); // Aktualisiert Badges & Häkchen im Overlay
         
         // Dynamische Anpassung der Browser-Statusleiste
         const themeColorMeta = document.querySelector('meta[name="theme-color"]');
@@ -42,14 +43,10 @@ const ThemeManager = {
                 neutral: "#4f78db",
                 midnight: "#081026",
                 sunny: "#38bdf8",
-                cyberpunk: "#090514"
+                cyberpunk: "#090514",
+                lava: "#1a0500"
             };
             themeColorMeta.setAttribute("content", colors[themeName] || "#081026");
-        }
-
-        const themeSelect = document.getElementById("themeSelect");
-        if (themeSelect) {
-            themeSelect.value = themeName;
         }
     },
 
@@ -75,7 +72,7 @@ const ThemeManager = {
         } else if (themeName === "cyberpunk") {
             this.buildCyberpunkOverlay(overlay);
         } else if (themeName === "lava")  {
-            this.buildInfernoOverlay(overlay);
+            this.buildLavaOverlay(overlay);
         } else if (themeName === "royal") {
             this.buildRoyalOverlay(overlay);
         } else if (themeName === "aurora") {
@@ -143,48 +140,36 @@ const ThemeManager = {
     },
 
     /* =========================================================
-       SETTINGS MODAL EVENT HANDLER & HELPER
+       THEME SELECTION EVENT HANDLER & UI UPDATE
        ========================================================= */
-    setupModalEvents() {
-        const bindEvents = () => {
-            const settingsBtn = document.getElementById("settingsBtn");
-            const closeSettingsBtn = document.getElementById("closeSettingsBtn");
-            const settingsModal = document.getElementById("settingsModal");
-            const themeSelect = document.getElementById("themeSelect");
-
-            if (settingsBtn && settingsModal) {
-                settingsBtn.onclick = () => {
-                    if (themeSelect) {
-                        themeSelect.value = this.getCurrentTheme();
-                    }
-                    settingsModal.style.display = "flex";
-                };
-            }
-
-            if (closeSettingsBtn && settingsModal) {
-                closeSettingsBtn.onclick = () => {
-                    settingsModal.style.display = "none";
-                };
-            }
-
-            if (themeSelect) {
-                themeSelect.onchange = (e) => {
-                    this.applyTheme(e.target.value);
-                };
-            }
-
-            window.addEventListener("click", (event) => {
-                if (event.target === settingsModal) {
-                    settingsModal.style.display = "none";
+    setupThemeSelectionEvents() {
+        const themeOptionBtns = document.querySelectorAll(".theme-option-btn");
+        themeOptionBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const selectedTheme = btn.getAttribute("data-theme");
+                if (selectedTheme) {
+                    this.applyTheme(selectedTheme);
                 }
             });
-        };
+        });
+    },
 
-        if (document.readyState === "loading") {
-            document.addEventListener("DOMContentLoaded", bindEvents);
-        } else {
-            bindEvents();
+    updateUISelection(themeName) {
+        // 1. Text-Badge auf der Haupt-Einstellungsseite aktualisieren
+        const currentThemeBadge = document.getElementById("currentThemeBadge");
+        if (currentThemeBadge) {
+            currentThemeBadge.textContent = themeName;
         }
+
+        // 2. Aktiven Button im Theme-Overlay hervorheben
+        const themeOptionBtns = document.querySelectorAll(".theme-option-btn");
+        themeOptionBtns.forEach(btn => {
+            if (btn.getAttribute("data-theme") === themeName) {
+                btn.classList.add("active");
+            } else {
+                btn.classList.remove("active");
+            }
+        });
     },
 
     getCurrentTheme() {

@@ -19,6 +19,7 @@ const NavigationManager = {
     init() {
 
         this.setupNavigation();
+        this.setupOverlayNavigation(); // Event-Listener für das neue Overlay-System
 
         this.showPage(
             "library"
@@ -84,6 +85,64 @@ const NavigationManager = {
 
         }
 
+    },
+
+    /*
+    =========================================================
+    OVERLAY NAVIGATION (SETTINGS, THEMES, LANGUAGES)
+    =========================================================
+    */
+    setupOverlayNavigation() {
+        const settingsBtn = document.getElementById("settingsBtn");
+        const settingsOverlay = document.getElementById("settingsOverlay");
+        const closeSettingsBtn = document.getElementById("closeSettingsBtn");
+
+        const themeOptionBtn = document.getElementById("themeOptionBtn");
+        const themeOverlayModal = document.getElementById("themeOverlayModal");
+        const backFromThemesBtn = document.getElementById("backFromThemesBtn");
+
+        const languageOptionBtn = document.getElementById("languageOptionBtn");
+        const languageOverlayModal = document.getElementById("languageOverlayModal");
+        const backFromLanguagesBtn = document.getElementById("backFromLanguagesBtn");
+
+        // Settings öffnen / schließen
+        if (settingsBtn && settingsOverlay) {
+            settingsBtn.addEventListener("click", () => {
+                settingsOverlay.classList.remove("hidden");
+            });
+        }
+
+        if (closeSettingsBtn && settingsOverlay) {
+            closeSettingsBtn.addEventListener("click", () => {
+                settingsOverlay.classList.add("hidden");
+            });
+        }
+
+        // Theme-Overlay öffnen / zurück
+        if (themeOptionBtn && themeOverlayModal) {
+            themeOptionBtn.addEventListener("click", () => {
+                themeOverlayModal.classList.remove("hidden");
+            });
+        }
+
+        if (backFromThemesBtn && themeOverlayModal) {
+            backFromThemesBtn.addEventListener("click", () => {
+                themeOverlayModal.classList.add("hidden");
+            });
+        }
+
+        // Sprach-Overlay öffnen / zurück
+        if (languageOptionBtn && languageOverlayModal) {
+            languageOptionBtn.addEventListener("click", () => {
+                languageOverlayModal.classList.remove("hidden");
+            });
+        }
+
+        if (backFromLanguagesBtn && languageOverlayModal) {
+            backFromLanguagesBtn.addEventListener("click", () => {
+                languageOverlayModal.classList.add("hidden");
+            });
+        }
     },
 
 

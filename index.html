@@ -346,53 +346,151 @@
     </section>
 
 
-    <div id="settingsModal"
-         style="display:none;">
-
-        <div class="modal-content">
-
-            <h2 data-i18n="SETTINGS_TITLE"></h2>
-
-            <button id="changeLanguageBtn"
-                    data-i18n="CHANGE_LANGUAGE">
-            </button>
-
-            <button id="changeThemeBtn"
-                    data-i18n="APP_DESIGN"
-                    style="display:none;">
-            </button>
-
-            <div class="settings-group">
-                <label data-i18n="APP_DESIGN">App-Design</label>
-                <select id="themeSelect" class="settings-select">
-                    <option value="neutral" data-i18n="THEME_NEUTRAL">Neutral</option>
-                    <option value="midnight" data-i18n="THEME_MIDNIGHT">Mitternacht</option>
-                    <option value="sunny" data-i18n="THEME_SUNNY">Sonnig</option>
-                    <option value="cyberpunk" data-i18n="THEME_CYBERPUNK">Cyberpunk</option>
-                    <option value="aurora" data-i18n="THEME_AURORA">Polarlicht</option>
-                    <option value="sakura" data-i18n="THEME_SAKURA">Kirschblüte</option>
-                    <option value="galaxy" data-i18n="THEME_GALAXY">Galaxie</option>
-                    <option value="lava" data-i18n="THEME_LAVA">Lava</option>
-                    <option value="forest" data-i18n="THEME_FOREST">Zauberwald</option>
-                    <option value="winter" data-i18n="THEME_WINTER">Winter</option>
-                    <option value="royal" data-i18n="THEME_ROYAL">Königreich</option>
-                </select>
-            </div>
-
-            <button id="accountBtn"
-                    data-i18n="ACCOUNT_SETTINGS">
-            </button>
-
-            <button id="resetProfileBtn"
-                    data-i18n="RESET_PROFILE">
-            </button>
-
-            <button id="closeSettingsBtn"
-                    data-i18n="CLOSE">
-            </button>
-
+    <div id="settingsOverlay" class="full-overlay hidden">
+        <div class="overlay-header">
+            <h2 class="overlay-title" data-i18n="SETTINGS_TITLE">Einstellungen</h2>
+            <button id="closeSettingsBtn" class="overlay-close-btn" aria-label="Schließen">&times;</button>
         </div>
 
+        <div class="overlay-body">
+            <div class="profile-avatar-container">
+                <div class="profile-avatar-placeholder">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="settings-menu-group">
+                <button class="settings-menu-item disabled">
+                    <div class="item-left">
+                        <span class="item-icon">👤</span>
+                        <span class="item-label" data-i18n="PROFILE_SETTINGS">Profil Einstellungen</span>
+                    </div>
+                    <span class="chevron">›</span>
+                </button>
+
+                <button class="settings-menu-item disabled">
+                    <div class="item-left">
+                        <span class="item-icon">🔗</span>
+                        <span class="item-label" data-i18n="LINK_ACCOUNT">Konto verknüpfen</span>
+                    </div>
+                    <span class="chevron">›</span>
+                </button>
+
+                <button id="languageOptionBtn" class="settings-menu-item">
+                    <div class="item-left">
+                        <span class="item-icon">🌐</span>
+                        <span class="item-label" data-i18n="CHANGE_LANGUAGE">Sprache wechseln</span>
+                    </div>
+                    <div class="item-right">
+                        <span id="currentLangLabel" class="current-badge">Deutsch</span>
+                        <span class="chevron">›</span>
+                    </div>
+                </button>
+
+                <button id="themeOptionBtn" class="settings-menu-item">
+                    <div class="item-left">
+                        <span class="item-icon">🎨</span>
+                        <span class="item-label" data-i18n="APP_DESIGN">App Design</span>
+                    </div>
+                    <div class="item-right">
+                        <span id="currentThemeBadge" class="current-badge">Neutral</span>
+                        <span class="chevron">›</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="languageOverlayModal" class="full-overlay hidden">
+        <div class="overlay-header">
+            <button id="backFromLanguagesBtn" class="overlay-back-btn">‹ Zurück</button>
+            <h2 class="overlay-title" data-i18n="CHANGE_LANGUAGE">Sprache wählen</h2>
+            <div style="width: 60px;"></div>
+        </div>
+
+        <div class="overlay-body">
+            <div class="option-list">
+                <button class="select-option-btn active" data-lang="de">
+                    <span>Deutsch</span>
+                    <span class="check-icon">✓</span>
+                </button>
+                <button class="select-option-btn" data-lang="en">
+                    <span>English</span>
+                    <span class="check-icon">✓</span>
+                </button>
+                <button class="select-option-btn" data-lang="es">
+                    <span>Español</span>
+                    <span class="check-icon">✓</span>
+                </button>
+                <button class="select-option-btn" data-lang="fr">
+                    <span>Français</span>
+                    <span class="check-icon">✓</span>
+                </button>
+                <button class="select-option-btn" data-lang="it">
+                    <span>Italiano</span>
+                    <span class="check-icon">✓</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="themeOverlayModal" class="full-overlay hidden">
+        <div class="overlay-header">
+            <button id="backFromThemesBtn" class="overlay-back-btn">‹ Zurück</button>
+            <h2 class="overlay-title" data-i18n="APP_DESIGN">App Design</h2>
+            <div style="width: 60px;"></div>
+        </div>
+
+        <div class="overlay-body">
+            <div class="option-list">
+                <button class="select-option-btn theme-option-btn active" data-theme="neutral">
+                    <span data-i18n="THEME_NEUTRAL">Standard (Neutral)</span>
+                    <span class="check-icon">✓</span>
+                </button>
+                <button class="select-option-btn theme-option-btn" data-theme="midnight">
+                    <span data-i18n="THEME_MIDNIGHT">Mitternacht</span>
+                    <span class="check-icon">✓</span>
+                </button>
+                <button class="select-option-btn theme-option-btn" data-theme="sunny">
+                    <span data-i18n="THEME_SUNNY">Sonnig</span>
+                    <span class="check-icon">✓</span>
+                </button>
+                <button class="select-option-btn theme-option-btn" data-theme="cyberpunk">
+                    <span data-i18n="THEME_CYBERPUNK">Cyberpunk</span>
+                    <span class="check-icon">✓</span>
+                </button>
+                <button class="select-option-btn theme-option-btn" data-theme="aurora">
+                    <span data-i18n="THEME_AURORA">Polarlicht</span>
+                    <span class="check-icon">✓</span>
+                </button>
+                <button class="select-option-btn theme-option-btn" data-theme="sakura">
+                    <span data-i18n="THEME_SAKURA">Kirschblüte</span>
+                    <span class="check-icon">✓</span>
+                </button>
+                <button class="select-option-btn theme-option-btn" data-theme="galaxy">
+                    <span data-i18n="THEME_GALAXY">Galaxie</span>
+                    <span class="check-icon">✓</span>
+                </button>
+                <button class="select-option-btn theme-option-btn" data-theme="lava">
+                    <span data-i18n="THEME_LAVA">Lava</span>
+                    <span class="check-icon">✓</span>
+                </button>
+                <button class="select-option-btn theme-option-btn" data-theme="forest">
+                    <span data-i18n="THEME_FOREST">Zauberwald</span>
+                    <span class="check-icon">✓</span>
+                </button>
+                <button class="select-option-btn theme-option-btn" data-theme="winter">
+                    <span data-i18n="THEME_WINTER">Winter</span>
+                    <span class="check-icon">✓</span>
+                </button>
+                <button class="select-option-btn theme-option-btn" data-theme="royal">
+                    <span data-i18n="THEME_ROYAL">Königreich</span>
+                    <span class="check-icon">✓</span>
+                </button>
+            </div>
+        </div>
     </div>
 
 

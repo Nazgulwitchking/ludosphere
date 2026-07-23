@@ -445,90 +445,188 @@ body {
 }
 
 /* =========================================================
-   SETTINGS MODAL STYLING
+   FULLSCREEN OVERLAYS (Einstellungen, Sprachen & Themes)
    ========================================================= */
-#settingsModal {
+.full-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    z-index: 2000;
+    background: rgba(15, 18, 28, 0.85);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    visibility: visible;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+    padding: calc(var(--safe-top) + 20px) 16px calc(var(--safe-bottom) + 20px);
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.full-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(100%);
+    pointer-events: none;
+}
+
+/* Header */
+.overlay-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.overlay-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    text-align: center;
+    flex: 1;
+}
+
+.overlay-close-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: #ffffff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+}
+
+.overlay-back-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 6px 12px;
+}
+
+/* Overlay Body */
+.overlay-body {
+    flex: 1;
+    padding-top: 24px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Profile Avatar Placeholder */
+.profile-avatar-container {
+    margin-bottom: 28px;
     display: flex;
     justify-content: center;
+}
+
+.profile-avatar-placeholder {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    display: flex;
     align-items: center;
-    z-index: 2000;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
-#settingsModal .modal-content {
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    padding: 24px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    color: #ffffff;
-}
-
-#settingsModal h2 {
-    margin: 0 0 10px 0;
-    font-size: 1.5rem;
-    text-align: center;
-}
-
-.settings-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    text-align: left;
-}
-
-.settings-select {
+/* Settings Menu Group & Option Lists */
+.settings-menu-group, .option-list {
     width: 100%;
-    padding: 12px;
-    border-radius: 12px;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.settings-menu-item, .select-option-btn {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 18px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(15px);
+}
+
+.settings-menu-item:not(.disabled):active,
+.select-option-btn:active {
     background: rgba(255, 255, 255, 0.2);
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    font-size: 15px;
-    outline: none;
-    cursor: pointer;
+    transform: scale(0.98);
 }
 
-.settings-select option {
-    background: #1e293b;
-    color: #ffffff;
+.settings-menu-item.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
-#settingsModal button {
-    padding: 12px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
-    transition: background 0.2s ease;
+.item-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
 }
 
-#settingsModal button:hover {
-    background: rgba(255, 255, 255, 0.25);
+.item-icon {
+    font-size: 1.2rem;
 }
 
-#closeSettingsBtn {
-    margin-top: 10px;
-    background: rgba(239, 68, 68, 0.3) !important;
-    border-color: rgba(239, 68, 68, 0.5) !important;
+.item-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-#closeSettingsBtn:hover {
-    background: rgba(239, 68, 68, 0.5) !important;
+.current-badge {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: capitalize;
+}
+
+.chevron {
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1;
+}
+
+/* Selected Active Option (Sprache & Themes) */
+.select-option-btn .check-icon {
+    opacity: 0;
+    color: #4ade80;
+    font-weight: bold;
+}
+
+.select-option-btn.active {
+    border-color: rgba(74, 222, 128, 0.6);
+    background: rgba(74, 222, 128, 0.15);
+}
+
+.select-option-btn.active .check-icon {
+    opacity: 1;
 }
 
 /* =========================================================
