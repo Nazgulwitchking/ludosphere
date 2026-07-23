@@ -1,51 +1,60 @@
-name: Auto Version
+name: Version and Deploy
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
 
-    paths-ignore:
-        -'version.json'
+  # Erlaubt das manuelle Starten über GitHub
+  workflow_dispatch:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
+  # JOB 1: Auto-Versionierung
   bump-version:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Bump Version
+        uses: phips28/gh-action-bump-version@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          minor-wording: 'add,refs,feat'
+          major-wording: 'MAJOR,cut'
+          patch-wording: 'fix,patch'
+          rc-wording: 'RELEASE,alpha'
+
+  # JOB 2: Deployment zu GitHub Pages (Startet ERST nach der Versionierung)
+  deploy:
+    needs: bump-version
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Read Version
-        id: version
-        run: |
-          VERSION=$(cat version.json | jq -r '.version')
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
-      - name: Increment Patch
-        run: |
-          VERSION=${{ env.VERSION }}
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
 
-          IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
-
-          PATCH=$((PATCH + 1))
-
-          NEW_VERSION="$MAJOR.$MINOR.$PATCH"
-
-          echo "{ \"version\": \"$NEW_VERSION\" }" > version.json
-
-          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
-
-      - name: Commit Version
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-
-          git add version.json
-
-          git commit -m "Auto version bump to ${{ env.NEW_VERSION }}" || exit 0
-
-          git push
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

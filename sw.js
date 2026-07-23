@@ -1,5 +1,5 @@
 // ACHTUNG: Bei jedem neuen Release diesen Cache-Namen hochzählen! (z.B. v3, v4...)
-const CACHE_NAME = "ludosphere-cache-v7";
+const CACHE_NAME = "ludosphere-cache-v8";
 
 const CORE_FILES = [
     "index.html",
