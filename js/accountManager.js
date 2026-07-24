@@ -138,7 +138,8 @@ const AccountManager = {
         // Event listener für Google-Button
         const googleBtn = document.getElementById("googleLoginBtn");
         if (googleBtn) {
-            googleBtn.addEventListener("click", () => {
+            googleBtn.addEventListener("click", (e) => {
+                e.preventDefault();
                 this.signInWithGoogle();
             });
         }
@@ -162,8 +163,73 @@ const AccountManager = {
 
         const logoutBtn = document.getElementById("logoutBtn");
         if (logoutBtn) {
-            logoutBtn.addEventListener("click", () => {
+            logoutBtn.addEventListener("click", (e) => {
+                e.preventDefault();
                 this.signOut();
+            });
+        }
+
+        // UI-Steuerung für die Auswahl zwischen Login und Registrierung
+        const choiceStep = document.getElementById("authChoiceStep");
+        const formStep = document.getElementById("authFormStep");
+        
+        const showLoginBtn = document.getElementById("showLoginChoiceBtn");
+        const showRegisterBtn = document.getElementById("showRegisterChoiceBtn");
+        const backToChoiceBtn = document.getElementById("backToAuthChoiceBtn");
+        
+        const authSubmitBtn = document.getElementById("authSubmitBtn");
+        const authFormTitle = document.getElementById("authFormTitle");
+
+        // Wechsel zu Anmelden Formular
+        if (showLoginBtn) {
+            showLoginBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                if (choiceStep) choiceStep.style.display = "none";
+                if (formStep) formStep.style.display = "block";
+
+                if (authSubmitBtn) {
+                    authSubmitBtn.value = "login";
+                    authSubmitBtn.setAttribute("data-i18n", "BTN_LOGIN");
+                    authSubmitBtn.style.backgroundColor = "#34c759";
+                }
+                if (authFormTitle) {
+                    authFormTitle.setAttribute("data-i18n", "BTN_LOGIN");
+                }
+
+                if (typeof LanguageManager !== "undefined" && LanguageManager.updatePageTranslations) {
+                    LanguageManager.updatePageTranslations();
+                }
+            });
+        }
+
+        // Wechsel zu Registrieren Formular
+        if (showRegisterBtn) {
+            showRegisterBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                if (choiceStep) choiceStep.style.display = "none";
+                if (formStep) formStep.style.display = "block";
+
+                if (authSubmitBtn) {
+                    authSubmitBtn.value = "register";
+                    authSubmitBtn.setAttribute("data-i18n", "BTN_REGISTER");
+                    authSubmitBtn.style.backgroundColor = "#0a84ff";
+                }
+                if (authFormTitle) {
+                    authFormTitle.setAttribute("data-i18n", "BTN_REGISTER");
+                }
+
+                if (typeof LanguageManager !== "undefined" && LanguageManager.updatePageTranslations) {
+                    LanguageManager.updatePageTranslations();
+                }
+            });
+        }
+
+        // Zurück zur Auswahl
+        if (backToChoiceBtn) {
+            backToChoiceBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                if (formStep) formStep.style.display = "none";
+                if (choiceStep) choiceStep.style.display = "flex";
             });
         }
     },
@@ -181,10 +247,17 @@ const AccountManager = {
         const userSection = document.getElementById("userSection");
         const userEmailDisplay = document.getElementById("userEmailDisplay");
 
-        if (accountStatusText) accountStatusText.textContent = "Aktiv";
+        if (accountStatusText) {
+            accountStatusText.setAttribute("data-i18n", "STATUS_ACTIVE");
+            accountStatusText.textContent = "Aktiv";
+        }
         if (authSection) authSection.style.display = "none";
         if (userSection) userSection.style.display = "block";
         if (userEmailDisplay) userEmailDisplay.textContent = user.email;
+
+        if (typeof LanguageManager !== "undefined" && LanguageManager.updatePageTranslations) {
+            LanguageManager.updatePageTranslations();
+        }
     },
 
     updateUILoggedOut() {
@@ -192,68 +265,19 @@ const AccountManager = {
         const authSection = document.getElementById("authSection");
         const userSection = document.getElementById("userSection");
 
-        if (accountStatusText) accountStatusText.textContent = "Nicht verknüpft";
+        if (accountStatusText) {
+            accountStatusText.setAttribute("data-i18n", "STATUS_NOT_LINKED");
+            accountStatusText.textContent = "Nicht verknüpft";
+        }
         if (authSection) authSection.style.display = "block";
         if (userSection) userSection.style.display = "none";
+
+        if (typeof LanguageManager !== "undefined" && LanguageManager.updatePageTranslations) {
+            LanguageManager.updatePageTranslations();
+        }
     }
 };
 
 document.addEventListener("DOMContentLoaded", () => {
     AccountManager.init();
-});
-
-// UI-Steuerung für die Auswahl zwischen Login und Registrierung
-document.addEventListener("DOMContentLoaded", () => {
-    const choiceStep = document.getElementById("authChoiceStep");
-    const formStep = document.getElementById("authFormStep");
-    
-    const showLoginBtn = document.getElementById("showLoginChoiceBtn");
-    const showRegisterBtn = document.getElementById("showRegisterChoiceBtn");
-    const backToChoiceBtn = document.getElementById("backToAuthChoiceBtn");
-    
-    const authSubmitBtn = document.getElementById("authSubmitBtn");
-    const authFormTitle = document.getElementById("authFormTitle");
-
-    // Wechsel zu Anmelden Formular
-    if (showLoginBtn) {
-        showLoginBtn.addEventListener("click", () => {
-            choiceStep.style.display = "none";
-            formStep.style.display = "block";
-
-            authSubmitBtn.value = "login";
-            authSubmitBtn.setAttribute("data-i18n", "BTN_LOGIN");
-            authSubmitBtn.style.backgroundColor = "#34c759";
-            if (authFormTitle) authFormTitle.setAttribute("data-i18n", "BTN_LOGIN");
-
-            if (typeof LanguageManager !== "undefined" && LanguageManager.updatePageTranslations) {
-                LanguageManager.updatePageTranslations();
-            }
-        });
-    }
-
-    // Wechsel zu Registrieren Formular
-    if (showRegisterBtn) {
-        showRegisterBtn.addEventListener("click", () => {
-            choiceStep.style.display = "none";
-            formStep.style.display = "block";
-
-            authSubmitBtn.value = "register";
-            authSubmitBtn.setAttribute("data-i18n", "BTN_REGISTER");
-            authSubmitBtn.style.backgroundColor = "#0a84ff";
-            if (authFormTitle) authFormTitle.setAttribute("data-i18n", "BTN_REGISTER");
-
-            if (typeof LanguageManager !== "undefined" && LanguageManager.updatePageTranslations) {
-                LanguageManager.updatePageTranslations();
-            }
-        });
-    }
-
-
-    // Zurück zur Auswahl
-    if (backToChoiceBtn) {
-        backToChoiceBtn.addEventListener("click", () => {
-            formStep.style.display = "none";
-            choiceStep.style.display = "flex";
-        });
-    }
 });
