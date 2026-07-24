@@ -61,6 +61,7 @@
   "BTN_LOGOUT": "Abmelden",
   "STATUS_NOT_LINKED": "Nicht verknüpft",
   "BACK_BTN": "‹ Zurück",
-  "OR_LABEL": "oder"
+  "OR_LABEL": "oder",
+  "CHOOSE_OPTION": "‹ Option wählen"
 }
 

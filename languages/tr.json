@@ -61,5 +61,6 @@
   "BTN_LOGOUT": "Çıkış Yap",
   "STATUS_NOT_LINKED": "Bağlı değil",
   "BACK_BTN": "‹ Geri",
-  "OR_LABEL": "veya"
+  "OR_LABEL": "veya",
+  "CHOOSE_OPTION": "‹ Seçenek Seç"
 }

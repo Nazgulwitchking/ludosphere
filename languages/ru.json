@@ -61,5 +61,6 @@
   "BTN_LOGOUT": "Выйти",
   "STATUS_NOT_LINKED": "Не привязан",
   "BACK_BTN": "‹ Назад",
-  "OR_LABEL": "или"
+  "OR_LABEL": "или",
+  "CHOOSE_OPTION": "‹ Выбрать опцию"
 }

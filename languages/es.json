@@ -61,5 +61,6 @@
   "BTN_LOGOUT": "Cerrar sesión",
   "STATUS_NOT_LINKED": "No vinculado",
   "BACK_BTN": "‹ Atrás",
-  "OR_LABEL": "o"
+  "OR_LABEL": "o",
+  "CHOOSE_OPTION": "‹ Elegir opción"
 }
