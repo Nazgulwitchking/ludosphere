@@ -169,20 +169,21 @@ const AccountManager = {
             });
         }
 
-        // UI-Steuerung für die Auswahl zwischen Login und Registrierung
+       // UI-Steuerung für die Auswahl zwischen Login und Registrierung
         const choiceStep = document.getElementById("authChoiceStep");
         const formStep = document.getElementById("authFormStep");
         
-        const showLoginBtn = document.getElementById("showLoginChoiceBtn");
-        const showRegisterBtn = document.getElementById("showRegisterChoiceBtn");
+        // Beide möglichen ID-Varianten abfangen, damit es garantiert greift:
+        const showLoginBtn = document.getElementById("showLoginChoiceBtn") || document.getElementById("showLoginBtn");
+        const showRegisterBtn = document.getElementById("showRegisterChoiceBtn") || document.getElementById("showRegisterBtn");
         const backToChoiceBtn = document.getElementById("backToAuthChoiceBtn");
         
         const authSubmitBtn = document.getElementById("authSubmitBtn");
         const authFormTitle = document.getElementById("authFormTitle");
 
-        // Wechsel zu Anmelden Formular
+        // Klick auf "Anmelden"
         if (showLoginBtn) {
-            showLoginBtn.addEventListener("click", (e) => {
+            showLoginBtn.onclick = (e) => {
                 e.preventDefault();
                 if (choiceStep) choiceStep.style.display = "none";
                 if (formStep) formStep.style.display = "block";
@@ -190,7 +191,7 @@ const AccountManager = {
                 if (authSubmitBtn) {
                     authSubmitBtn.value = "login";
                     authSubmitBtn.setAttribute("data-i18n", "BTN_LOGIN");
-                    authSubmitBtn.style.backgroundColor = "#34c759";
+                    authSubmitBtn.style.backgroundColor = "#34c759"; // Grün
                 }
                 if (authFormTitle) {
                     authFormTitle.setAttribute("data-i18n", "BTN_LOGIN");
@@ -199,30 +200,31 @@ const AccountManager = {
                 if (typeof LanguageManager !== "undefined" && LanguageManager.updatePageTranslations) {
                     LanguageManager.updatePageTranslations();
                 }
-            });
+            };
         }
 
-        // Wechsel zu Registrieren Formular
+        // Klick auf "Registrieren"
         if (showRegisterBtn) {
-            showRegisterBtn.addEventListener("click", (e) => {
+            showRegisterBtn.onclick = (e) => {
                 e.preventDefault();
                 if (choiceStep) choiceStep.style.display = "none";
                 if (formStep) formStep.style.display = "block";
 
                 if (authSubmitBtn) {
                     authSubmitBtn.value = "register";
-                    authSubmitBtn.setAttribute("data-i18n", "BTN_REGISTER");
-                    authSubmitBtn.style.backgroundColor = "#0a84ff";
+                    authSubmitBtn.setAttribute("data-i18n", "BTN_REGISTER"); // Zwingt auf Registrieren
+                    authSubmitBtn.style.backgroundColor = "#0a84ff"; // Blau
                 }
                 if (authFormTitle) {
-                    authFormTitle.setAttribute("data-i18n", "BTN_REGISTER");
+                    authFormTitle.setAttribute("data-i18n", "BTN_REGISTER"); // Zwingt auf Registrieren
                 }
 
                 if (typeof LanguageManager !== "undefined" && LanguageManager.updatePageTranslations) {
                     LanguageManager.updatePageTranslations();
                 }
-            });
+            };
         }
+
 
         // Zurück zur Auswahl
         if (backToChoiceBtn) {
