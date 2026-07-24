@@ -118,6 +118,34 @@ const AccountManager = {
         }
     },
 
+    // ⭐️ HIER IST DIE SCHALTZENTRALE FÜR LOGIN/REGISTRIEREN
+    switchAuthMode(mode) {
+        const choiceStep = document.getElementById("authChoiceStep");
+        const formStep = document.getElementById("authFormStep");
+        const authSubmitBtn = document.getElementById("authSubmitBtn");
+        const authFormTitle = document.getElementById("authFormTitle");
+
+        if (choiceStep) choiceStep.style.display = "none";
+        if (formStep) formStep.style.display = "block";
+
+        const i18nKey = mode === "register" ? "BTN_REGISTER" : "BTN_LOGIN";
+        const bgColor = mode === "register" ? "#0a84ff" : "#34c759";
+
+        if (authSubmitBtn) {
+            authSubmitBtn.value = mode;
+            authSubmitBtn.setAttribute("data-i18n", i18nKey);
+            authSubmitBtn.style.backgroundColor = bgColor;
+        }
+
+        if (authFormTitle) {
+            authFormTitle.setAttribute("data-i18n", i18nKey);
+        }
+
+        if (typeof LanguageManager !== "undefined" && LanguageManager.updatePageTranslations) {
+            LanguageManager.updatePageTranslations();
+        }
+    },
+
     setupUIEvents() {
         const linkAccountBtn = document.getElementById("linkAccountBtn");
         const accountOverlay = document.getElementById("accountOverlayModal");
@@ -135,104 +163,67 @@ const AccountManager = {
             });
         }
 
-        // Event listener für Google-Button
+        // Google Button
         const googleBtn = document.getElementById("googleLoginBtn");
         if (googleBtn) {
-            googleBtn.addEventListener("click", (e) => {
+            googleBtn.onclick = (e) => {
                 e.preventDefault();
                 this.signInWithGoogle();
-            });
+            };
         }
 
-        // Formular-Submit: Login & Registrierung
+        // Formular Absenden
         const authForm = document.getElementById("authForm");
         if (authForm) {
-            authForm.addEventListener("submit", (e) => {
+            authForm.onsubmit = (e) => {
                 e.preventDefault();
                 const email = document.getElementById("authEmail").value;
                 const password = document.getElementById("authPassword").value;
-                const action = e.submitter ? e.submitter.value : "login";
+                const action = document.getElementById("authSubmitBtn") ? document.getElementById("authSubmitBtn").value : "login";
 
                 if (action === "register") {
                     this.signUp(email, password);
                 } else {
                     this.signIn(email, password);
                 }
-            });
+            };
         }
 
         const logoutBtn = document.getElementById("logoutBtn");
         if (logoutBtn) {
-            logoutBtn.addEventListener("click", (e) => {
+            logoutBtn.onclick = (e) => {
                 e.preventDefault();
                 this.signOut();
-            });
+            };
         }
 
-       // UI-Steuerung für die Auswahl zwischen Login und Registrierung
-        const choiceStep = document.getElementById("authChoiceStep");
-        const formStep = document.getElementById("authFormStep");
-        
-        // Beide möglichen ID-Varianten abfangen, damit es garantiert greift:
+        // ⭐️ DIE KLICK-EVENTS FÜR DEN MOUS-WECHSEL:
         const showLoginBtn = document.getElementById("showLoginChoiceBtn") || document.getElementById("showLoginBtn");
         const showRegisterBtn = document.getElementById("showRegisterChoiceBtn") || document.getElementById("showRegisterBtn");
         const backToChoiceBtn = document.getElementById("backToAuthChoiceBtn");
-        
-        const authSubmitBtn = document.getElementById("authSubmitBtn");
-        const authFormTitle = document.getElementById("authFormTitle");
 
-        // Klick auf "Anmelden"
         if (showLoginBtn) {
             showLoginBtn.onclick = (e) => {
                 e.preventDefault();
-                if (choiceStep) choiceStep.style.display = "none";
-                if (formStep) formStep.style.display = "block";
-
-                if (authSubmitBtn) {
-                    authSubmitBtn.value = "login";
-                    authSubmitBtn.setAttribute("data-i18n", "BTN_LOGIN");
-                    authSubmitBtn.style.backgroundColor = "#34c759"; // Grün
-                }
-                if (authFormTitle) {
-                    authFormTitle.setAttribute("data-i18n", "BTN_LOGIN");
-                }
-
-                if (typeof LanguageManager !== "undefined" && LanguageManager.updatePageTranslations) {
-                    LanguageManager.updatePageTranslations();
-                }
+                this.switchAuthMode("login");
             };
         }
 
-        // Klick auf "Registrieren"
         if (showRegisterBtn) {
             showRegisterBtn.onclick = (e) => {
                 e.preventDefault();
-                if (choiceStep) choiceStep.style.display = "none";
-                if (formStep) formStep.style.display = "block";
-
-                if (authSubmitBtn) {
-                    authSubmitBtn.value = "register";
-                    authSubmitBtn.setAttribute("data-i18n", "BTN_REGISTER"); // Zwingt auf Registrieren
-                    authSubmitBtn.style.backgroundColor = "#0a84ff"; // Blau
-                }
-                if (authFormTitle) {
-                    authFormTitle.setAttribute("data-i18n", "BTN_REGISTER"); // Zwingt auf Registrieren
-                }
-
-                if (typeof LanguageManager !== "undefined" && LanguageManager.updatePageTranslations) {
-                    LanguageManager.updatePageTranslations();
-                }
+                this.switchAuthMode("register");
             };
         }
 
-
-        // Zurück zur Auswahl
         if (backToChoiceBtn) {
-            backToChoiceBtn.addEventListener("click", (e) => {
+            backToChoiceBtn.onclick = (e) => {
                 e.preventDefault();
+                const choiceStep = document.getElementById("authChoiceStep");
+                const formStep = document.getElementById("authFormStep");
                 if (formStep) formStep.style.display = "none";
                 if (choiceStep) choiceStep.style.display = "flex";
-            });
+            };
         }
     },
 
@@ -251,7 +242,6 @@ const AccountManager = {
 
         if (accountStatusText) {
             accountStatusText.setAttribute("data-i18n", "STATUS_ACTIVE");
-            accountStatusText.textContent = "Aktiv";
         }
         if (authSection) authSection.style.display = "none";
         if (userSection) userSection.style.display = "block";
@@ -269,7 +259,6 @@ const AccountManager = {
 
         if (accountStatusText) {
             accountStatusText.setAttribute("data-i18n", "STATUS_NOT_LINKED");
-            accountStatusText.textContent = "Nicht verknüpft";
         }
         if (authSection) authSection.style.display = "block";
         if (userSection) userSection.style.display = "none";
