@@ -219,11 +219,15 @@ document.addEventListener("DOMContentLoaded", () => {
         showLoginBtn.addEventListener("click", () => {
             choiceStep.style.display = "none";
             formStep.style.display = "block";
-            
+
             authSubmitBtn.value = "login";
-            authSubmitBtn.textContent = "Anmelden";
+            authSubmitBtn.setAttribute("data-i18n", "BTN_LOGIN");
             authSubmitBtn.style.backgroundColor = "#34c759";
-            if (authFormTitle) authFormTitle.textContent = "Anmelden";
+            if (authFormTitle) authFormTitle.setAttribute("data-i18n", "BTN_LOGIN");
+
+            if (typeof LanguageManager !== "undefined" && LanguageManager.updatePageTranslations) {
+                LanguageManager.updatePageTranslations();
+            }
         });
     }
 
@@ -232,13 +236,18 @@ document.addEventListener("DOMContentLoaded", () => {
         showRegisterBtn.addEventListener("click", () => {
             choiceStep.style.display = "none";
             formStep.style.display = "block";
-            
+
             authSubmitBtn.value = "register";
-            authSubmitBtn.textContent = "Registrieren";
+            authSubmitBtn.setAttribute("data-i18n", "BTN_REGISTER");
             authSubmitBtn.style.backgroundColor = "#0a84ff";
-            if (authFormTitle) authFormTitle.textContent = "Registrieren";
+            if (authFormTitle) authFormTitle.setAttribute("data-i18n", "BTN_REGISTER");
+
+            if (typeof LanguageManager !== "undefined" && LanguageManager.updatePageTranslations) {
+                LanguageManager.updatePageTranslations();
+            }
         });
     }
+
 
     // Zurück zur Auswahl
     if (backToChoiceBtn) {
