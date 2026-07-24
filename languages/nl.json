@@ -58,6 +58,9 @@
   "BTN_LOGIN": "Inloggen",
   "BTN_REGISTER": "Registreren",
   "LOGGED_IN_AS": "Ingelogd als:",
-  "BTN_LOGOUT": "Uitloggen"
+  "BTN_LOGOUT": "Uitloggen",
+  "STATUS_NOT_LINKED": "Niet gekoppeld",
+  "BACK_BTN": "‹ Terug",
+  "OR_LABEL": "of"
 }
 

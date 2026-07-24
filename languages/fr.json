@@ -58,5 +58,8 @@
   "BTN_LOGIN": "Se connecter",
   "BTN_REGISTER": "S'inscrire",
   "LOGGED_IN_AS": "Connecté en tant que :",
-  "BTN_LOGOUT": "Se déconnecter"
+  "BTN_LOGOUT": "Se déconnecter",
+  "STATUS_NOT_LINKED": "Non lié",
+  "BACK_BTN": "‹ Retour",
+  "OR_LABEL": "ou"
 }

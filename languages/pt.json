@@ -58,6 +58,9 @@
   "BTN_LOGIN": "Entrar",
   "BTN_REGISTER": "Registrar",
   "LOGGED_IN_AS": "Conectado como:",
-  "BTN_LOGOUT": "Sair"
+  "BTN_LOGOUT": "Sair",
+  "STATUS_NOT_LINKED": "Não vinculado",
+  "BACK_BTN": "‹ Voltar",
+  "OR_LABEL": "ou"
 }
 

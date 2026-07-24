@@ -58,5 +58,8 @@
   "BTN_LOGIN": "Войти",
   "BTN_REGISTER": "Регистрация",
   "LOGGED_IN_AS": "Вы вошли как:",
-  "BTN_LOGOUT": "Выйти"
+  "BTN_LOGOUT": "Выйти",
+  "STATUS_NOT_LINKED": "Не привязан",
+  "BACK_BTN": "‹ Назад",
+  "OR_LABEL": "или"
 }

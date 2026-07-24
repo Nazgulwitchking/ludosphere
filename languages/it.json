@@ -58,5 +58,9 @@
   "BTN_LOGIN": "Accedi",
   "BTN_REGISTER": "Registrati",
   "LOGGED_IN_AS": "Connesso come:",
-  "BTN_LOGOUT": "Disconnettiti"
+  "BTN_LOGOUT": "Disconnettiti",
+  "STATUS_NOT_LINKED": "Non collegato",
+  "BACK_BTN": "‹ Indietro",
+  "OR_LABEL": "o"
+
 }

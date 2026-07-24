@@ -58,5 +58,8 @@
   "BTN_LOGIN": "Sign In",
   "BTN_REGISTER": "Register",
   "LOGGED_IN_AS": "Logged in as:",
-  "BTN_LOGOUT": "Log Out"
+  "BTN_LOGOUT": "Log Out",
+  "STATUS_NOT_LINKED": "Not Linked",
+  "BACK_BTN": "‹ Back",
+  "OR_LABEL": "or"
 }

@@ -58,5 +58,8 @@
   "BTN_LOGIN": "Iniciar sesión",
   "BTN_REGISTER": "Registrarse",
   "LOGGED_IN_AS": "Sesión iniciada como:",
-  "BTN_LOGOUT": "Cerrar sesión"
+  "BTN_LOGOUT": "Cerrar sesión",
+  "STATUS_NOT_LINKED": "No vinculado",
+  "BACK_BTN": "‹ Atrás",
+  "OR_LABEL": "o"
 }

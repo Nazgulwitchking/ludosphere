@@ -58,5 +58,8 @@
   "BTN_LOGIN": "Giriş Yap",
   "BTN_REGISTER": "Kaydol",
   "LOGGED_IN_AS": "Giriş yapan kullanıcı:",
-  "BTN_LOGOUT": "Çıkış Yap"
+  "BTN_LOGOUT": "Çıkış Yap",
+  "STATUS_NOT_LINKED": "Bağlı değil",
+  "BACK_BTN": "‹ Geri",
+  "OR_LABEL": "veya"
 }
