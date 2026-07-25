@@ -191,10 +191,12 @@ const AccountManager = {
                 if (authSubmitBtn) {
                     authSubmitBtn.value = "login";
                     authSubmitBtn.setAttribute("data-i18n", "BTN_LOGIN");
+                    authSubmitBtn.textContent = "Anmelden";
                     authSubmitBtn.style.backgroundColor = "#34c759"; // Grün
                 }
                 if (authFormTitle) {
                     authFormTitle.setAttribute("data-i18n", "BTN_LOGIN");
+                    authFormTitle.textContent = "Anmelden";
                 }
 
                 if (typeof LanguageManager !== "undefined" && LanguageManager.updatePageTranslations) {
@@ -213,10 +215,12 @@ const AccountManager = {
                 if (authSubmitBtn) {
                     authSubmitBtn.value = "register";
                     authSubmitBtn.setAttribute("data-i18n", "BTN_REGISTER"); // Zwingt auf Registrieren
+                    authSubmitBtn.textContent = "Registrieren";
                     authSubmitBtn.style.backgroundColor = "#0a84ff"; // Blau
                 }
                 if (authFormTitle) {
                     authFormTitle.setAttribute("data-i18n", "BTN_REGISTER"); // Zwingt auf Registrieren
+                    authFormTitle.textContent = "Registrieren";
                 }
 
                 if (typeof LanguageManager !== "undefined" && LanguageManager.updatePageTranslations) {
