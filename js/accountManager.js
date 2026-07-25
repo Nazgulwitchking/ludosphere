@@ -180,7 +180,7 @@ const AccountManager = {
         
         const authSubmitBtn = document.getElementById("authSubmitBtn");
         const authFormTitle = document.getElementById("authFormTitle");
-
+  
         // Klick auf "Anmelden"
         if (showLoginBtn) {
             showLoginBtn.onclick = (e) => {
@@ -191,16 +191,18 @@ const AccountManager = {
                 if (authSubmitBtn) {
                     authSubmitBtn.value = "login";
                     authSubmitBtn.setAttribute("data-i18n", "BTN_LOGIN");
-                    authSubmitBtn.textContent = "Anmelden";
                     authSubmitBtn.style.backgroundColor = "#34c759"; // Grün
                 }
                 if (authFormTitle) {
                     authFormTitle.setAttribute("data-i18n", "BTN_LOGIN");
-                    authFormTitle.textContent = "Anmelden";
                 }
 
+                // Übersetzung ERST HIER anwenden (überschreibt nicht mehr hart auf Deutsch)
                 if (typeof LanguageManager !== "undefined" && LanguageManager.updatePageTranslations) {
                     LanguageManager.updatePageTranslations();
+                } else {
+                    if (authSubmitBtn) authSubmitBtn.textContent = "Anmelden";
+                    if (authFormTitle) authFormTitle.textContent = "Anmelden";
                 }
             };
         }
@@ -214,20 +216,23 @@ const AccountManager = {
 
                 if (authSubmitBtn) {
                     authSubmitBtn.value = "register";
-                    authSubmitBtn.setAttribute("data-i18n", "BTN_REGISTER"); // Zwingt auf Registrieren
-                    authSubmitBtn.textContent = "Registrieren";
+                    authSubmitBtn.setAttribute("data-i18n", "BTN_REGISTER");
                     authSubmitBtn.style.backgroundColor = "#0a84ff"; // Blau
                 }
                 if (authFormTitle) {
-                    authFormTitle.setAttribute("data-i18n", "BTN_REGISTER"); // Zwingt auf Registrieren
-                    authFormTitle.textContent = "Registrieren";
+                    authFormTitle.setAttribute("data-i18n", "BTN_REGISTER");
                 }
 
+                // Übersetzung ERST HIER anwenden (überschreibt nicht mehr hart auf Deutsch)
                 if (typeof LanguageManager !== "undefined" && LanguageManager.updatePageTranslations) {
                     LanguageManager.updatePageTranslations();
+                } else {
+                    if (authSubmitBtn) authSubmitBtn.textContent = "Registrieren";
+                    if (authFormTitle) authFormTitle.textContent = "Registrieren";
                 }
             };
         }
+
 
 
         // Zurück zur Auswahl
