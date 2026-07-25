@@ -180,7 +180,7 @@ const AccountManager = {
         
         const authSubmitBtn = document.getElementById("authSubmitBtn");
         const authFormTitle = document.getElementById("authFormTitle");
-  
+    
         // Klick auf "Anmelden"
         if (showLoginBtn) {
             showLoginBtn.onclick = (e) => {
@@ -190,19 +190,16 @@ const AccountManager = {
 
                 if (authSubmitBtn) {
                     authSubmitBtn.value = "login";
-                    authSubmitBtn.setAttribute("data-i18n", "BTN_LOGIN");
                     authSubmitBtn.style.backgroundColor = "#34c759"; // Grün
+                    authSubmitBtn.setAttribute("data-i18n", "BTN_LOGIN");
                 }
                 if (authFormTitle) {
                     authFormTitle.setAttribute("data-i18n", "BTN_LOGIN");
                 }
 
-                // Übersetzung ERST HIER anwenden (überschreibt nicht mehr hart auf Deutsch)
+                // Überlässt dem LanguageManager die Übersetzung
                 if (typeof LanguageManager !== "undefined" && LanguageManager.updatePageTranslations) {
                     LanguageManager.updatePageTranslations();
-                } else {
-                    if (authSubmitBtn) authSubmitBtn.textContent = "Anmelden";
-                    if (authFormTitle) authFormTitle.textContent = "Anmelden";
                 }
             };
         }
@@ -216,24 +213,19 @@ const AccountManager = {
 
                 if (authSubmitBtn) {
                     authSubmitBtn.value = "register";
-                    authSubmitBtn.setAttribute("data-i18n", "BTN_REGISTER");
                     authSubmitBtn.style.backgroundColor = "#0a84ff"; // Blau
+                    authSubmitBtn.setAttribute("data-i18n", "BTN_REGISTER");
                 }
                 if (authFormTitle) {
                     authFormTitle.setAttribute("data-i18n", "BTN_REGISTER");
                 }
 
-                // Übersetzung ERST HIER anwenden (überschreibt nicht mehr hart auf Deutsch)
+                // Überlässt dem LanguageManager die Übersetzung
                 if (typeof LanguageManager !== "undefined" && LanguageManager.updatePageTranslations) {
                     LanguageManager.updatePageTranslations();
-                } else {
-                    if (authSubmitBtn) authSubmitBtn.textContent = "Registrieren";
-                    if (authFormTitle) authFormTitle.textContent = "Registrieren";
                 }
             };
         }
-
-
 
         // Zurück zur Auswahl
         if (backToChoiceBtn) {

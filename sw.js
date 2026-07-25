@@ -1,4 +1,4 @@
-const CACHE_NAME = "ludosphere-cache-v22";
+const CACHE_NAME = "ludosphere-cache-v23";
 
 const CORE_FILES = [
     "index.html",
